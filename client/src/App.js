@@ -3,6 +3,9 @@ import moment from 'moment';
 import WeatherSearchBar from './components/WeatherSearchBar';
 import WeatherDayCard from './components/WeatherDayCard';
 import API from './utils/API';
+import Header from './components/Header';
+import NavBar from './components/NavBar';
+import InstructionsCard from './components/HomeInstructionsCard';
 
 const App = () => {
   // using react hook to set state
@@ -52,8 +55,9 @@ const App = () => {
 
   return (
     <div className="App">
-      <h1>Dream Team</h1>
-      <h1>U Travel App</h1>
+      <Header />
+      <NavBar />
+      <InstructionsCard />
       <WeatherSearchBar
         searchTerm={searchTerm}
         handleInputChange={handleInputChange}
