@@ -1,12 +1,11 @@
 import React from 'react';
+import { Form, FormGroup, Input, Button } from 'reactstrap';
 
 const WeatherSearchBar = props => {
   return (
-    <div>
-      <h2>SearchBar</h2>
-      <form>
-        {/* <label for="searchTerm">Search by Location</label> */}
-        <input
+    <Form>
+      <FormGroup>
+        <Input
           type="text"
           name="searchTerm"
           id="searchTerm"
@@ -14,10 +13,9 @@ const WeatherSearchBar = props => {
           value={props.searchTerm}
           onChange={props.handleInputChange}
         />
-
-        <button onClick={props.handleFormSubmit}>Get Weather</button>
-      </form>
-    </div>
+        <Button onClick={props.handleFormSubmit}>Get Weather</Button>
+      </FormGroup>
+    </Form>
   );
 };
 

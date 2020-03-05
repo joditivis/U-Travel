@@ -1,14 +1,19 @@
 import React from 'react';
+import { Col, Card, CardHeader, CardBody } from 'reactstrap';
 
 const WeatherDayCard = props => {
+  console.log(props);
   return (
-    <div>
-      <h1>7 day forcast here</h1>
-      <h2>{props.day}</h2>
-      <h2>Current Weather: {props.current}°</h2>
-      <h2>High: {props.high}°</h2>
-      <h2>Low: {props.low}°</h2>
-    </div>
+      <Col>
+        <Card>
+          <CardHeader>{props.day}</CardHeader>
+          <CardBody>
+            <p>Current Weather: {props.current}°</p>
+            <p>High: {props.high}°</p>
+            <p>Low: {props.low}°</p>
+          </CardBody>
+        </Card>
+      </Col>
   );
 };
 
