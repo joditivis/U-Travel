@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import moment from 'moment';
 import WeatherSearchBar from './components/WeatherSearchBar';
 import WeatherDayCard from './components/WeatherDayCard';
@@ -6,6 +7,8 @@ import API from './utils/API';
 import Header from './components/Header';
 import NavBar from './components/NavBar';
 import InstructionsCard from './components/HomeInstructionsCard';
+import NoMatch from './components/NoMatch';
+
 
 const App = () => {
   // using react hook to set state
@@ -53,29 +56,42 @@ const App = () => {
     }
   };
 
+  // return (
+  //   <div className="App">
+  //     <Header />
+  //     <NavBar />
+  //     <InstructionsCard />
+  //     <WeatherSearchBar
+  //       searchTerm={searchTerm}
+  //       handleInputChange={handleInputChange}
+  //       handleFormSubmit={handleFormSubmit}
+  //     />
+  //     <h1>Weather for {location}</h1>
+  //     {/* map over WeatherDayCard to get results */}
+  //     {days.map(day => (
+  //       <WeatherDayCard
+  //         // need a unique key - using timestamp (ts) from API
+  //         key={day.ts}
+  //         day={moment(day.valid_date, 'YYYY-MM-DD').format('dddd')}
+  //         current={day.temp}
+  //         high={day.max_temp}
+  //         low={day.min_temp}
+  //       />
+  //     ))}
+  //   </div>
+  // );
   return (
-    <div className="App">
-      <Header />
-      <NavBar />
-      <InstructionsCard />
-      <WeatherSearchBar
-        searchTerm={searchTerm}
-        handleInputChange={handleInputChange}
-        handleFormSubmit={handleFormSubmit}
-      />
-      <h1>Weather for {location}</h1>
-      {/* map over WeatherDayCard to get results */}
-      {days.map(day => (
-        <WeatherDayCard
-          // need a unique key - using timestamp (ts) from API
-          key={day.ts}
-          day={moment(day.valid_date, 'YYYY-MM-DD').format('dddd')}
-          current={day.temp}
-          high={day.max_temp}
-          low={day.min_temp}
-        />
-      ))}
-    </div>
+    <Router>
+      <div>
+        <NavBar />
+        <Header />
+        <Switch>
+          <Route exact path="/" component={InstructionsCard} />
+          <Route exact path="/weather" component={WeatherDayCard} />
+          <Route component={NoMatch} />
+        </Switch>
+      </div>
+    </Router>
   );
 };
 
