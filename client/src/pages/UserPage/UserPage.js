@@ -1,5 +1,5 @@
-import React, { useState, UseEffect } from 'react';
-import { Container, Row, Col } from 'reactstrap';
+import React from 'react';
+import { Container, Row } from 'reactstrap';
 import PackingList from '../../components/PackingList';
 
 const UserPage = () => {
