@@ -1,7 +1,16 @@
 require(`dotenv`).config({ path: './client' });
 const express = require('express');
 const mongoose = require('mongoose');
-//const routes = require("./routes");
+const bodyParser = require('body-parser');
+const morgan = require('morgan');
+const session = require('express-session');
+const dbConnection = require('./database') ;
+const MongoStore = require('connect-mongo')(session)
+const passport = require('./passport'); 
+
+// Route requires
+const user = require('./routes/user');
+
 const app = express();
 const PORT = process.env.PORT || 3001;
 
@@ -11,11 +20,30 @@ app.use(express.json());
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
-}
-// Add routes, both API and view
+};
 
+app.use(morgan('dev'));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+// Session to keep track of the login credentials
+app.use(
+	session({
+		secret: 'tootsie-roll', // random string to make the hash that is generated secure
+		store: new MongoStore({ mongooseConnection: dbConnection }),
+		resave: false, //required
+		saveUninitialized: false //required
+	})
+);
+
+// Passport
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Add routes, both API and view
 //**** UNCOMMENT THIS WHEN WE SETUP ROUTES */
 // app.use(routes);
+app.use('/user', user);
 
 // Connect to the Mongo DB
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/utravel');
@@ -23,4 +51,4 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/utravel');
 // Start the API server
 app.listen(PORT, function() {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
-});
+  });
