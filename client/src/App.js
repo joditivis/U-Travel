@@ -18,7 +18,8 @@ class App extends Component {
     super()
     this.state = {
       loggedIn: false,
-      username: null
+      username: null,
+      results: []
     }
 
     this.getUser = this.getUser.bind(this)
@@ -26,8 +27,21 @@ class App extends Component {
     this.updateUser = this.updateUser.bind(this)
   }
 
+
+  callApi = async () => {
+    const response = await fetch('/airport/DEN');
+    const body = await response.json();
+    if (response.status !== 200) throw Error(body.message);
+    
+    return body;
+  };
+
   componentDidMount() {
-    this.getUser()
+    this.getUser();
+    this.callApi()
+      .then(res => this.setState({ results: res.data }))
+      .then(res2 => console.log(this.state.results))
+      .catch(err => console.log(err));
   }
 
   updateUser (userObject) {
