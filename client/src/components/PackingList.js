@@ -1,15 +1,30 @@
 import React from 'react';
 import { Col, Card, CardHeader, CardBody } from 'reactstrap';
 
-const PackingList = props => {
+const PackingList = ({ items, deleteItem }) => {
+  const packingList = items.length ? (
+    items.map(item => {
+      return (
+        <p key={item.id}>
+          <span
+            onClick={() => {
+              deleteItem(item.id);
+            }}
+          >
+            {item.title}
+          </span>
+        </p>
+      );
+    })
+  ) : (
+    <p>You are all packed!</p>
+  );
   return (
     <Col>
       <Card>
         <CardHeader>Items I need to Pack</CardHeader>
         <CardBody>
-          <p>to pack 1</p>
-          <p>to pack 2</p>
-          <p>to pack 3</p>
+          <p>{packingList}</p>
         </CardBody>
       </Card>
     </Col>
