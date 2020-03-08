@@ -52,10 +52,11 @@ const WeatherPage = () => {
   };
 
   return (
+    <div>
     <Container>
       <Row>
         <Col md={8}>
-          <h1>Weather for {location}</h1>
+          <h3>Weather for {location}</h3>
         </Col>
         <Col md={4}>
           <WeatherSearchBar
@@ -79,6 +80,7 @@ const WeatherPage = () => {
         ))}
       </Row>
     </Container>
+    </div>
   );
 };
 
