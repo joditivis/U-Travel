@@ -5,7 +5,7 @@ const PackingList = ({ items, deleteItem }) => {
   const packingList = items.length ? (
     items.map(item => {
       return (
-        <p key={item.id}>
+        <Col key={item.id}>
           <span
             onClick={() => {
               deleteItem(item.id);
@@ -13,7 +13,7 @@ const PackingList = ({ items, deleteItem }) => {
           >
             {item.title}
           </span>
-        </p>
+        </Col>
       );
     })
   ) : (
@@ -24,7 +24,7 @@ const PackingList = ({ items, deleteItem }) => {
       <Card>
         <CardHeader>Items I need to Pack</CardHeader>
         <CardBody>
-          <p>{packingList}</p>
+          <span>{packingList}</span>
         </CardBody>
       </Card>
     </Col>
