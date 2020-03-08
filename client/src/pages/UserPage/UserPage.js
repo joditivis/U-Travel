@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Container, Row, Col } from 'reactstrap';
-import PackingList from '../../components/PackingList';
-import AddItemForm from '../../components/AddItemForm';
-import SavedTripInfoCard from '../../components/SavedTripInfoCard';
+import PackingList from '../../components/PackingList/PackingList';
+import AddItemForm from '../../components/PackingList/AddItemForm';
+import SavedTripInfoCard from '../../components/SavedTripInfo/SavedTripInfoCard';
 import WeatherPage from '../WeatherPage/WeatherPage';
 
 class UserPage extends Component {
