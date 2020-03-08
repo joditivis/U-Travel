@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
-import { Container, Row } from 'reactstrap';
+import { Container, Row, Col } from 'reactstrap';
 import PackingList from '../../components/PackingList';
 import AddItemForm from '../../components/AddItemForm';
+import SavedTripInfoCard from '../../components/SavedTripInfoCard';
+import WeatherPage from '../WeatherPage/WeatherPage';
 
 class UserPage extends Component {
+  
   state = {
     items: [
       {
@@ -45,8 +48,14 @@ class UserPage extends Component {
       <Container>
         <AddItemForm addItem={this.addItem} />
         <Row>
-          <PackingList items={this.state.items} deleteItem={this.deleteItem} />
+          <Col md={7}>
+            <SavedTripInfoCard />
+          </Col>
+          <Col md={5}>
+            <PackingList items={this.state.items} deleteItem={this.deleteItem} />
+          </Col>
         </Row>
+        <WeatherPage />
       </Container>
     );
   }
