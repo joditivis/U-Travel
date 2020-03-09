@@ -3,12 +3,12 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import axios from 'axios';
 
 // Components
-import Header from './components/Header';
-import NavBar from './components/NavBar';
-import InstructionsCard from './components/HomeInstructionsCard';
+import Header from './components/Header/Header';
+import NavBar from './components/NavBar/NavBar';
+import InstructionsCard from './components/HomePage/HomeInstructionsCard';
 import LogInPage from './pages/LogInPage/LogInPage';
 import CreateAccountPage from './pages/CreateAccountPage/CreateAccountPage';
-import NoMatch from './components/NoMatch';
+import NoMatch from './components/404Page/NoMatch';
 import WeatherPage from './pages/WeatherPage/WeatherPage';
 import UserPage from "./pages/UserPage/UserPage"
 

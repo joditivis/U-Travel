@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import moment from 'moment';
-import WeatherSearchBar from '../../components/WeatherSearchBar';
-import WeatherDayCard from '../../components/WeatherDayCard';
+import WeatherSearchBar from '../../components/Weather/WeatherSearchBar';
+import WeatherDayCard from '../../components/Weather/WeatherDayCard';
 import API from '../../utils/API';
 
 const WeatherPage = () => {
@@ -76,6 +76,8 @@ const WeatherPage = () => {
             current={day.temp}
             high={day.max_temp}
             low={day.min_temp}
+            icon={day.weather.icon}
+            description={day.weather.description}
           />
         ))}
       </Row>
