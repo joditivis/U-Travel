@@ -76,6 +76,8 @@ const WeatherPage = () => {
             current={day.temp}
             high={day.max_temp}
             low={day.min_temp}
+            icon={day.weather.icon}
+            description={day.weather.description}
           />
         ))}
       </Row>
