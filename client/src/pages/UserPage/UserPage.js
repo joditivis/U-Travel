@@ -6,7 +6,6 @@ import SavedTripInfoCard from '../../components/SavedTripInfo/SavedTripInfoCard'
 import WeatherPage from '../WeatherPage/WeatherPage';
 
 class UserPage extends Component {
-  
   state = {
     items: [
       {
@@ -17,12 +16,12 @@ class UserPage extends Component {
       {
         id: 2,
         title: 'Sunscreen',
-        complete: 'false'
+        complete: false
       },
       {
         id: 3,
         title: 'Snorkel',
-        complete: 'false'
+        complete: false
       }
     ]
   };
@@ -36,10 +35,23 @@ class UserPage extends Component {
   };
 
   addItem = item => {
-    item.id = Math.random();
+    item.id = Math.floor(Math.random());
+    item.complete = false;
     let items = [...this.state.items, item];
     this.setState({
       items
+    });
+  };
+
+  markComplete = id => {
+    console.log('markComplete', id);
+    this.setState({
+      items: this.state.items.map(item => {
+        if (item.id === id) {
+          item.complete = !item.complete;
+        }
+        return item;
+      })
     });
   };
 
@@ -52,7 +64,11 @@ class UserPage extends Component {
             <SavedTripInfoCard />
           </Col>
           <Col md={5}>
-            <PackingList items={this.state.items} deleteItem={this.deleteItem} />
+            <PackingList
+              items={this.state.items}
+              deleteItem={this.deleteItem}
+              markComplete={this.markComplete}
+            />
           </Col>
         </Row>
         <WeatherPage />

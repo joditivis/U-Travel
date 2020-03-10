@@ -1,18 +1,41 @@
 import React from 'react';
-import { Col, Card, CardHeader, CardBody } from 'reactstrap';
+import { Col, Card, CardHeader, CardBody, Input, Button } from 'reactstrap';
+import './style.css';
 
-const PackingList = ({ items, deleteItem }) => {
+const PackingList = ({ items, deleteItem, markComplete }) => {
+  const getStyle = () => {
+    return {
+      backgroundColor: '#f4f4f4',
+      padding: '10px',
+      borderBottom: '1px #ccc dotted',
+      textDecoration: items.complete ? 'line-through' : 'none'
+    };
+  };
+
   const packingList = items.length ? (
     items.map(item => {
       return (
         <Col key={item.id}>
-          <span
+          <Button
+            className="remove"
+            outline
+            color="danger"
+            size="sm"
             onClick={() => {
               deleteItem(item.id);
             }}
           >
-            {item.title}
-          </span>
+            X
+          </Button>
+          {item.title}
+          <Input
+            style={getStyle()}
+            className="checkbox"
+            type="checkbox"
+            onClick={() => {
+              markComplete(item.id);
+            }}
+          />
         </Col>
       );
     })
