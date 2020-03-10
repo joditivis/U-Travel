@@ -1,36 +1,30 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { Form, Button, Input } from 'reactstrap';
 
-class AddItemForm extends Component {
-  state = {
-    title: ''
-  };
-  handleChange = e => {
-    this.setState({
-      title: e.target.value
-    });
+const AddItemForm = ({ addItem }) => {
+  const [value, setValue] = useState('');
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    if (!value) return;
+    addItem(value);
+    setValue('');
   };
 
-  handleSubmit = e => {
-    e.preventDefault();
-    console.log(this.state);
-    this.props.addItem(this.state);
-    this.setState({ title: '' });
-  };
-  render() {
-    return (
-      <Form>
-        <Input
-          type="text"
-          name="addItem"
-          placeholder="Add new item..."
-          onChange={this.handleChange}
-          value={this.state.title}
-        />
-        <Button onClick={this.handleSubmit}>Submit</Button>
-      </Form>
-    );
-  }
-}
+  return (
+    <Form className="add-item-input">
+      <Input
+        type="text"
+        placeholder="Add Item"
+        className="input"
+        value={value}
+        onChange={e => setValue(e.target.value)}
+      />
+      <Button className="add-item-btn" size="sm" onClick={handleSubmit}>
+        Add Item
+      </Button>
+    </Form>
+  );
+};
 
 export default AddItemForm;
