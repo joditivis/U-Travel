@@ -10,6 +10,11 @@
   justify-content: space-between;
 }
 
+.form-check-input {
+  position: static;
+  margin-top: 0;
+  margin-left: 0;
+}
 .item-list {
   background: #e8e8e8;
   border-radius: 4px;
