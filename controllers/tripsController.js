@@ -1,33 +1,34 @@
-const db = require("../models");
+const db = require("../database/models/savedTrips");
 
 module.exports = {
     findAll: function(req, res){
-        db.Packing
+        db.User.
             .find({username: req.params.username})
             .then(dbModel => res.json(dbModel))
             .catch(err=> res.status(404).json(err));
     },
     findbyID: function(req, res){
-        db.Packing
+        db.Trips
             .findById(req.params.id)
             .then(dbModel => res.json(dbModel))
             .catch(err=> res.status(404).json(err));
     },
     create: function(req, res){
-        db.Packing
+        db.Trips
             .find(req.body)
             .then(dbModel => res.json(dbModel))
             .catch(err=> res.status(404).json(err));
     },
     updateById: function(req, res){
-        db.Packing
-            .findOneAndUpdate({_id: req.params.id}, req.body)
+        db.Trips
+            .findOneAndUpdate({_id: req.params.id},{$set:{isSaved: true}}, req.body)
             .then(dbModel => res.json(dbModel))
             .catch(err=> res.status(404).json(err));
     },
     remove: function(req, res){
-        db.Packing
+        db.Trips
             .findOneAndDelete({_id: req.params.id})
+            .then(dbModel => dbModel.remove())
             .then(dbModel => res.json(dbModel))
             .catch(err=> res.status(404).json(err));
     }

@@ -8,5 +8,7 @@ export default {
     return axios.get(
       `${weatherApiUrl}&key=${weatherKey}&city=${city}`
     );
-  }
+  },
+
+ 
 };
