@@ -12,7 +12,7 @@ const InstructionsCard = (props) => {
         <p>2. Search for flights, hotels, rental cars, and things to do</p>
         <p>3. Let us calculate how much you need to save to get to where you want to go</p>
         <p className="lead">
-          <Button color="primary">Start Planning</Button>
+          <Button color="primary" href='/flightSearchResults'>Start Planning</Button>
         </p>
       </Jumbotron>
     </Container>
