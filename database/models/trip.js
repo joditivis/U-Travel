@@ -3,11 +3,13 @@ const Schema = mongoose.Schema
 
 const tripSchema = new Schema(
     {
-        user_id: {type: Number, required: true},
+        trip_id: {type: Number, required: true},
         name: {type: String, required: true},
         item: {type: String, required: true},
-        price: {type: Number, required: true}
+        price: {type: Number, required: true},
+        user: [{type: Schema.Types.ObjectId, ref: "User"}]
+
     }
 );
 const Trip = mongoose.model("Trip", tripSchema);
-module.export = Trip;
+module.exports = Trip;
