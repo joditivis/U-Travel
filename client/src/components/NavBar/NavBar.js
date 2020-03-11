@@ -13,6 +13,7 @@ import {
   DropdownItem,
   Container
 } from 'reactstrap';
+import "./style.css";
 
 
 class NavbarComponent extends Component {
@@ -39,12 +40,17 @@ class NavbarComponent extends Component {
 
         // Navbar dropdown toggler
         isOpen(event) {
+          event.preventDefault();
           useState(false);
         }
         setIsOpen(event) {
+          event.preventDefault();
           useState(false);
         }
-        toggle = event => this.setIsOpen(!this.isOpen);
+        toggle(event) {
+          event.preventDefault();
+          this.setIsOpen(!this.isOpen);
+        }
 
 
   render() {
@@ -55,18 +61,18 @@ class NavbarComponent extends Component {
     return (
       <div>
         <Container>
-          <Navbar color="light" light expand="md">
+          <Navbar className="navbar" expand="md">
             <NavbarToggler onClick={this.toggle} />
-            <Collapse isOpen={true} navbar>
-              <Nav className="mr-auto" navbar>
+            <Collapse isOpen={this.isOpen} navbar>
+              <Nav className="mr-auto nav" navbar>
                 <NavItem>
-                  <NavLink href="/">Home</NavLink>
+                  <NavLink className="nav-link" href="/">Home</NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink href="#">Flights</NavLink>
+                  <NavLink className="nav-link" href="#">Flights</NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink href="/hotelSearchPage">Hotels</NavLink>
+                  <NavLink className="nav-link" href="/hotelSearchPage">Hotels</NavLink>
                 </NavItem>
                 {/* <NavItem>
                   <NavLink href="#">Cars</NavLink>

@@ -1,19 +1,23 @@
 import React from 'react';
 import { Jumbotron, Container, Button } from 'reactstrap';
+import './style.css';
 
 const InstructionsCard = (props) => {
   return (
     <div>
     <Container>
-      <Jumbotron>
-        <p className="display-4">Ready to take your next vacation?</p>
-        <p className="lead">We're ready to help you get there.</p>
-        <p>1. Create an account to start saving your plans</p>
-        <p>2. Search for flights, hotels, rental cars, and things to do</p>
-        <p>3. Let us calculate how much you need to save to get to where you want to go</p>
-        <p className="lead">
-          <Button color="primary" href='/flightSearchResults'>Start Planning</Button>
-        </p>
+      <Jumbotron className="instruction-jumbo">
+        <h2 className="lead-instructions">Ready to take your next vacation?</h2>
+        <h3 className="lead-instructions">We're ready to help you get there.</h3>
+        <hr className="line-break"></hr>
+        <p className="instructions">1. Create an account to start saving your plans</p>
+        <p className="instructions">2. Search for flights and hotels</p>
+        <p className="instructions">3. Save your packing list so you don't forget the most important items</p>
+        <p className="instructions">5. Add all of your trip expenses and let us calculate 
+        <br></br>
+        how much you need to save to get to where you want to go</p>
+        <br></br>
+          <Button id="start-planning" color="primary" href='/flightSearchResults'>Start Planning</Button>
       </Jumbotron>
     </Container>
     </div>
