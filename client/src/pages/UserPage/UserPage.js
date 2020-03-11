@@ -5,6 +5,7 @@ import SavedTripInfoCard from '../../components/SavedTripInfo/SavedTripInfoCard'
 import BudgetCard from '../../components/Budget/BudgetCard';
 import CountDown from '../../components/DaysUntilTrip/CountDown';
 import WeatherPage from '../WeatherPage/WeatherPage';
+import DatePicker from '../../components/DatePicker/DatePicker';
 
 class UserPage extends Component {
  
@@ -18,6 +19,8 @@ class UserPage extends Component {
             <CountDown />
             <br></br>
             <PackingList />
+            <br></br>
+            <DatePicker />
           </Col>
           <Col md={5}>
             <BudgetCard />
