@@ -1,0 +1,29 @@
+.item {
+  background: #fff;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15);
+  padding: 3px 10px;
+  font-size: 16px;
+  margin-bottom: 6px;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.item-list {
+  background: #e8e8e8;
+  border-radius: 4px;
+  padding: 5px;
+}
+
+.add-item-input {
+  margin-top: 10px;
+}
+
+.add-item-btn {
+  margin-top: 10px;
+}
+
+.remove-button:hover {
+  color: red;
+}
