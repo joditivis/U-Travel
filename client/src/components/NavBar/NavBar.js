@@ -66,14 +66,14 @@ class NavbarComponent extends Component {
                   <NavLink href="#">Flights</NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink href="#">Hotels</NavLink>
+                  <NavLink href="/hotelSearchPage">Hotels</NavLink>
                 </NavItem>
-                <NavItem>
+                {/* <NavItem>
                   <NavLink href="#">Cars</NavLink>
-                </NavItem>
-                <NavItem>
+                </NavItem> */}
+                {/* <NavItem>
                   <NavLink href="#">Things To Do</NavLink>
-                </NavItem>
+                </NavItem> */}
 
                 <UncontrolledDropdown nav inNavbar>
                   <DropdownToggle nav caret>
@@ -85,7 +85,7 @@ class NavbarComponent extends Component {
                         onClick={this.logout}>
                         Logout
                       </DropdownItem>
-                    {/* // ) : ( */}
+                    {/* ) : ( */}
                       <DropdownItem href="/login">
                         Log In
                       </DropdownItem>
@@ -93,7 +93,7 @@ class NavbarComponent extends Component {
                       <DropdownItem href="/createaccount">
                         Create Account
                       </DropdownItem>
-                    {/* // )} */}
+                    {/* )} */}
                   </DropdownMenu>
                 </UncontrolledDropdown>
 
