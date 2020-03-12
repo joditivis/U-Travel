@@ -13,6 +13,7 @@ import NoMatch from './components/404Page/NoMatch';
 import WeatherPage from './pages/WeatherPage/WeatherPage';
 import UserPage from "./pages/UserPage/UserPage"
 import TravelSearch from "./pages/TravelSearch/TravelSearch";
+import HotelSearchPage from './pages/HotelSearchPage/HotelSearchPage';
 
 
 class App extends Component {
@@ -91,6 +92,7 @@ class App extends Component {
             <Route path="/weather" component={WeatherPage} />
             <Route path="/userpage" component={UserPage} />
             <Route path="/flightSearchResults" component={TravelSearch} />
+            <Route path ="/hotelSearchPage" component={HotelSearchPage} />
             <Route component={NoMatch} />
           </Switch>
         </div>

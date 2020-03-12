@@ -16,7 +16,7 @@ const WeatherPage = () => {
   // destructure state object to make it easier to use
   const { days, location, searchTerm } = data;
 
-  // useEffect replaces componentDidMount when using Hooks. Denver will show until the user types a search.
+  // useEffect replaces componentDidMount. Denver will show until the user types a search.
   useEffect(() => {
     getWeather('Denver, CO');
   }, []);
@@ -72,6 +72,7 @@ const WeatherPage = () => {
           <WeatherDayCard
             // need a unique key - using timestamp (ts) from API
             key={day.ts}
+            id={day.ts}
             day={moment(day.valid_date, 'YYYY-MM-DD').format('dddd')}
             current={day.temp}
             high={day.max_temp}

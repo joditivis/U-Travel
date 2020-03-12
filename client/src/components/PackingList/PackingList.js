@@ -21,22 +21,27 @@ const PackingList = () => {
   ]);
 
   const addItem = text => {
-    const newItems = [...items, { text }];
+    console.log('add', text);
+    const newItems = [...items, { text, isCompleted: false }];
     setItems(newItems);
   };
 
   const completeItem = index => {
+    console.log('complete', index);
     const newItems = [...items];
-    newItems[index].isCompleted = true;
+    if (newItems[index].isCompleted === false)
+      newItems[index].isCompleted = true;
+    else newItems[index].isCompleted = false;
     setItems(newItems);
   };
 
   const removeItem = index => {
+    console.log('remove', index);
     const newItems = [...items];
     newItems.splice(index, 1);
     setItems(newItems);
   };
-  
+
   return (
     <Card>
       <CardHeader>Items to Pack</CardHeader>

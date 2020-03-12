@@ -1,0 +1,10 @@
+.header-jumbo {
+    background-color: rgba(66, 66, 66, 0.87);
+    height: 6rem;
+}
+
+.header {
+    font-family: 'Megrim', cursive;
+    color: white;
+    margin-top: -50px;
+}

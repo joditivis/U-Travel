@@ -13,6 +13,7 @@ import {
   DropdownItem,
   Container
 } from 'reactstrap';
+import "./style.css";
 
 
 class NavbarComponent extends Component {
@@ -39,12 +40,17 @@ class NavbarComponent extends Component {
 
         // Navbar dropdown toggler
         isOpen(event) {
+          event.preventDefault();
           useState(false);
         }
         setIsOpen(event) {
+          event.preventDefault();
           useState(false);
         }
-        toggle = event => this.setIsOpen(!this.isOpen);
+        toggle(event) {
+          event.preventDefault();
+          this.setIsOpen(!this.isOpen);
+        }
 
 
   render() {
@@ -55,25 +61,25 @@ class NavbarComponent extends Component {
     return (
       <div>
         <Container>
-          <Navbar color="light" light expand="md">
+          <Navbar className="navbar" expand="md">
             <NavbarToggler onClick={this.toggle} />
-            <Collapse isOpen={true} navbar>
-              <Nav className="mr-auto" navbar>
+            <Collapse isOpen={this.isOpen} navbar>
+              <Nav className="mr-auto nav" navbar>
                 <NavItem>
-                  <NavLink href="/">Home</NavLink>
+                  <NavLink className="nav-link" href="/">Home</NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink href="#">Flights</NavLink>
+                  <NavLink className="nav-link" href="#">Flights</NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink href="#">Hotels</NavLink>
+                  <NavLink className="nav-link" href="/hotelSearchPage">Hotels</NavLink>
                 </NavItem>
-                <NavItem>
+                {/* <NavItem>
                   <NavLink href="#">Cars</NavLink>
-                </NavItem>
-                <NavItem>
+                </NavItem> */}
+                {/* <NavItem>
                   <NavLink href="#">Things To Do</NavLink>
-                </NavItem>
+                </NavItem> */}
 
                 <UncontrolledDropdown nav inNavbar>
                   <DropdownToggle nav caret>
@@ -85,7 +91,7 @@ class NavbarComponent extends Component {
                         onClick={this.logout}>
                         Logout
                       </DropdownItem>
-                    {/* // ) : ( */}
+                    {/* ) : ( */}
                       <DropdownItem href="/login">
                         Log In
                       </DropdownItem>
@@ -93,7 +99,7 @@ class NavbarComponent extends Component {
                       <DropdownItem href="/createaccount">
                         Create Account
                       </DropdownItem>
-                    {/* // )} */}
+                    {/* )} */}
                   </DropdownMenu>
                 </UncontrolledDropdown>
 
