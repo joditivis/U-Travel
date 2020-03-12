@@ -19,6 +19,22 @@ class TravelSearchForm extends Component {
     });
   };
 
+  airportSearch = () => {
+    this.callApi(this.state.origin)
+      .then(res => this.setState({ origin: res.data }))
+      // .then(res2 => console.log(this.state.flights))
+      .catch(err => console.log(err));
+  }
+
+  callApi = async (city) => {
+    
+    const response = await fetch(`/airport/${city}`);
+    const body = await response.json();
+    if (response.status !== 200) throw Error(body.message);
+
+    return body;
+  };
+
   handleSubmit = e => {
     e.preventDefault();
     console.log(this.state);
@@ -36,6 +52,7 @@ class TravelSearchForm extends Component {
           type="text"
           name="origin"
           placeholder="Origin City"
+          onInput={this.airportSearch}
           onChange={this.handleInputChange}
           value={this.state.origin}
         />
