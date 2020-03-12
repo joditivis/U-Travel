@@ -30,13 +30,13 @@ class App extends Component {
     this.updateUser = this.updateUser.bind(this);
   }
 
-  callApi = async () => {
-    const response = await fetch("/airport/DEN");
-    const body = await response.json();
-    if (response.status !== 200) throw Error(body.message);
+  // callApi = async () => {
+  //   const response = await fetch("/airport/DEN");
+  //   const body = await response.json();
+  //   if (response.status !== 200) throw Error(body.message);
 
-    return body;
-  };
+  //   return body;
+  // };
 
   componentDidMount() {
     this.getUser();
