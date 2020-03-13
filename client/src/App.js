@@ -91,7 +91,7 @@ class App extends Component {
             <Route path="/createaccount" render={() => <CreateAccountPage />} />
             <Route path="/weather" component={WeatherPage} />
             <Route path="/userpage" component={UserPage} />
-            <Route path="/flightSearchResults" component={TravelSearch} />
+            <Route path="/flightSearchPage" component={TravelSearch} />
             <Route path ="/hotelSearchPage" component={HotelSearchPage} />
             <Route component={NoMatch} />
           </Switch>

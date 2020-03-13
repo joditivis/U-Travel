@@ -69,7 +69,7 @@ class NavbarComponent extends Component {
                   <NavLink className="nav-link" href="/">Home</NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink className="nav-link" href="#">Flights</NavLink>
+                  <NavLink className="nav-link" href="/flightSearchPage">Flights</NavLink>
                 </NavItem>
                 <NavItem>
                   <NavLink className="nav-link" href="/hotelSearchPage">Hotels</NavLink>
