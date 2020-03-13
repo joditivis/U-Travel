@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-// import React, { useReducer } from 'react';
 import { Form, Button, Input } from 'reactstrap';
 
 const AddTripForm = ({ addTrip }) => {
@@ -10,7 +9,6 @@ const AddTripForm = ({ addTrip }) => {
 
   const handleSubmit = event => {
     event.preventDefault();
-    // addTrip(userInput);
     addTrip(title, peopleOrDays, amount);
     setTitle('');
     setPeopleOrDays('');
@@ -25,8 +23,6 @@ const AddTripForm = ({ addTrip }) => {
         placeholder="surfing lessons"
         value={title}
         onChange={event => setTitle(event.target.value)}
-        // value={userInput.title}
-        // onChange={handleChange}
       />
       <Input
         type="text"

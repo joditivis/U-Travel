@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import PackingList from '../../components/PackingList/PackingList';
-import SavedTripInfoCard from '../../components/SavedTripInfo/SavedTripInfoCard';
 import BudgetCard from '../../components/Budget/BudgetCard';
 import CountDown from '../../components/DaysUntilTrip/CountDown';
 import WeatherPage from '../WeatherPage/WeatherPage';
@@ -15,7 +14,6 @@ class UserPage extends Component {
       <Container>
         <Row>
           <Col md={7}>
-            <SavedTripInfoCard />
             <TripInfo />
             <br></br>
             <CountDown />

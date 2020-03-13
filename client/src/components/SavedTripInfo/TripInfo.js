@@ -1,24 +1,24 @@
 import React, { useState } from 'react';
 import AddTripForm from '../SavedTripInfo/AddTripForm';
 import Trip from '../SavedTripInfo/Trip';
-import { Card, CardHeader, CardBody } from 'reactstrap';
+import { Card, CardHeader, CardBody, Table } from 'reactstrap';
 
 const TripInfo = () => {
   const [trips, setTrip] = useState([
     {
       title: 'Surfing',
       peopleOrDays: 5,
-      amount: '$100'
+      amount: 100
     },
     {
       title: 'Hiking',
       peopleOrDays: 2,
-      amount: '$30'
+      amount: 30
     },
     {
       title: 'Helicopter Tour',
       peopleOrDays: 4,
-      amount: '$5000'
+      amount: 5000
     }
   ]);
 
@@ -38,11 +38,27 @@ const TripInfo = () => {
   return (
     <Card>
       <CardHeader>Planned trip to Kailua Kona, HI</CardHeader>
+      <CardHeader>Add to my trip</CardHeader>
       <AddTripForm addTrip={addTrip} />
       <CardBody>
-        {trips.map((trip, index) => (
-          <Trip key={index} index={index} trip={trip} removeTrip={removeTrip} />
-        ))}
+        <Table striped>
+          <thead>
+            <tr>
+              <th>Activity</th>
+              <th>People/Days</th>
+              <th>Cost</th>
+              <th>Remove</th>
+            </tr>
+          </thead>
+          {trips.map((trip, index) => (
+            <Trip
+              key={index}
+              index={index}
+              trip={trip}
+              removeTrip={removeTrip}
+            />
+          ))}
+        </Table>
       </CardBody>
     </Card>
   );
