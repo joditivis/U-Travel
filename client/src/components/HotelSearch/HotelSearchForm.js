@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Button, Form, FormGroup, Label, Input, Row, Col } from "reactstrap";
 import DatePicker from "../DatePicker/DatePicker";
+import './style.css';
 
 class HotelSearchForm extends Component {
   state = {
@@ -48,11 +49,11 @@ class HotelSearchForm extends Component {
   render() {
     return (
       <div>
-        <Form>
+        <Form className="hotel-form">
           <Row>
-            <Col md={4}>
-              <FormGroup>
-                <Label for="hotelSearch">Staying In</Label>
+            <Col md={12}>
+              <FormGroup className="hotel-form-group">
+                <Label className="hotel-form-label" for="hotelSearch">Staying In</Label>
                 <Input
                   type="text"
                   name="city"
@@ -66,16 +67,16 @@ class HotelSearchForm extends Component {
             </Col>
           </Row>
 
-          <br></br>
-          <p>Check In/Check Out</p>
-          <DatePicker />
+          {/* <br></br>
+          <p className="hotel-form-label">Check In / Check Out</p>
+          <DatePicker /> */}
 
           <br></br>
 
           <Row>
-            <Col md={4}>
+            <Col md={12}>
               <FormGroup>
-                <Label for="numOfTravelers">Number of Travelers</Label>
+                <Label className="hotel-form-label" for="numOfTravelers">Number of Travelers</Label>
                 <Input
                   type="text"
                   name="numOfTravelers"
@@ -85,9 +86,18 @@ class HotelSearchForm extends Component {
               </FormGroup>
             </Col>
           </Row>
-        </Form>
+
         <br></br>
-        <Button onClick={this.handleSubmit}>Search</Button>
+
+          <p className="hotel-form-label">Check In / Check Out</p>
+          <DatePicker />
+
+        <br></br>
+        <br></br>
+
+        </Form>
+        <Button className="hotel-form-btn" onClick={this.handleSubmit}>Search</Button>
+        <br></br>
       </div>
     );
   }

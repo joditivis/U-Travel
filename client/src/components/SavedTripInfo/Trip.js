@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button } from 'reactstrap';
+import './style.css';
 
 const Trip = ({ trip, index, removeTrip }) => {
   return (

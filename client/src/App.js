@@ -77,7 +77,7 @@ class App extends Component {
         <div className="App">
           <NavBar updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
           {/* Display user to page to show they are logged in */}
-          {this.state.loggedIn && <p>Hi, {this.state.username}!</p>}
+          {this.state.loggedIn && <p className="text-center">Hi, {this.state.username}!</p>}
 
           <Header />
 

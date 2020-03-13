@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Card, CardHeader, CardBody, Container } from "reactstrap";
 import HotelSearchForm from "../../components/HotelSearch/HotelSearchForm";
 import HotelSearchResults from "../../components/HotelSearch/HotelSearchResults";
+import './style.css';
 
 class HotelSearchPage extends Component {
 
@@ -37,9 +38,9 @@ class HotelSearchPage extends Component {
     return (
       <div>
         <Container>
-          <Card>
-            <CardHeader>Search Hotels</CardHeader>
-            <CardBody>
+          <Card className="hotel-card">
+            <CardHeader className="hotel-header"><h3>Search Hotels</h3></CardHeader>
+            <CardBody className="hotel-body">
               <HotelSearchForm hotelSearch={this.hotelSearch}/>
             </CardBody>
           </Card>

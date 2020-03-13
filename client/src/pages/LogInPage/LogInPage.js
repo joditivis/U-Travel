@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 import { Row, Col, Button, Form, FormGroup, Label, Input, Container } from 'reactstrap';
+import './style.css';
 
 class LogInPage extends Component {
     constructor() {
@@ -58,12 +59,14 @@ class LogInPage extends Component {
         } else {
           return (
             <Container>
-              <h2>Log In</h2>
-              <Form>
+            <br></br>
+              <h2 className="login-header">Log In</h2>
+              <Form className="login-form">
                 <Row form>
                   <Col md={4}>
+                  <hr></hr>
                     <FormGroup>
-                      <Label for='username'>Email</Label>
+                      <Label className="login-form-label" for='username'>Email</Label>
                       <Input 
                         type='text' 
                         name='username' 
@@ -74,7 +77,7 @@ class LogInPage extends Component {
                       />
                     </FormGroup>
                     <FormGroup>
-                      <Label for='userPassword'>Password</Label>
+                      <Label className="login-form-label" for='userPassword'>Password</Label>
                       <Input 
                         type='password' 
                         name='password' 
@@ -84,8 +87,9 @@ class LogInPage extends Component {
                         onChange={this.handleChange}
                       />
                     </FormGroup>
+                    <br></br>
                     <Button 
-                      className='btn btn-primary'
+                      className='login-btn'
                       onClick={this.handleSubmit}
                       type='submit'>
                       Log In

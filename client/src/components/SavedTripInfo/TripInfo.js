@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import AddTripForm from '../SavedTripInfo/AddTripForm';
 import Trip from '../SavedTripInfo/Trip';
 import { Card, CardHeader, CardBody, Table } from 'reactstrap';
+import './style.css';
 
 const TripInfo = () => {
   const [trips, setTrip] = useState([
@@ -36,12 +37,12 @@ const TripInfo = () => {
   };
 
   return (
-    <Card>
-      <CardHeader>Planned trip to Kailua Kona, HI</CardHeader>
-      <CardHeader>Add to my trip</CardHeader>
-      <AddTripForm addTrip={addTrip} />
-      <CardBody>
-        <Table striped>
+    <Card className='trip-card'>
+      <CardHeader className='trip-header'><h4>Planned trip to Kailua Kona, HI</h4></CardHeader>
+      {/* <CardHeader>Add to my trip</CardHeader>
+      <AddTripForm addTrip={addTrip} /> */}
+      <CardBody className='trip-body'>
+        <Table striped className='trip-table'>
           <thead>
             <tr>
               <th>Activity</th>
@@ -59,6 +60,9 @@ const TripInfo = () => {
             />
           ))}
         </Table>
+        <hr></hr>
+        <CardHeader className='trip-header'><h4>Add to Trip</h4></CardHeader>
+      <AddTripForm addTrip={addTrip} />
       </CardBody>
     </Card>
   );
