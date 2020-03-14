@@ -14,6 +14,7 @@ import WeatherPage from './pages/WeatherPage/WeatherPage';
 import UserPage from "./pages/UserPage/UserPage"
 import TravelSearch from "./pages/TravelSearch/TravelSearch";
 import HotelSearchPage from './pages/HotelSearchPage/HotelSearchPage';
+import './style.css';
 
 
 class App extends Component {
@@ -77,9 +78,10 @@ class App extends Component {
         <div className="App">
           <NavBar updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
           {/* Display user to page to show they are logged in */}
-          {this.state.loggedIn && <p className="text-center">Hi, {this.state.username}!</p>}
+          {/* {this.state.loggedIn && <p className="text-center">Hi, {this.state.username}!</p>} */}
 
           <Header />
+          {this.state.loggedIn && <h2 className="welcome-user">Hi, {this.state.username}!</h2>}
 
           <Switch>
             {/* routes to different components */}

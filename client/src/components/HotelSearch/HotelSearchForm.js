@@ -58,7 +58,7 @@ class HotelSearchForm extends Component {
                   type="text"
                   name="city"
                   id="hotelSearchInput"
-                  placeholder="Kailua Kona, HI"
+                  placeholder="Destination City"
                   onInput={this.hotelSearch}
                   onChange={this.handleInputChange}
                   value={this.state.city}
@@ -81,7 +81,7 @@ class HotelSearchForm extends Component {
                   type="text"
                   name="numOfTravelers"
                   id="numOfTravelersInput"
-                  placeholder="2 travelers"
+                  placeholder="1"
                 />
               </FormGroup>
             </Col>

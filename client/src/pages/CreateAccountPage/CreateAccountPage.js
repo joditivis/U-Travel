@@ -58,12 +58,12 @@ render() {
               <Col md={4}>
               <hr></hr>
                 <FormGroup>
-                  <Label className='create-act-label' for='createUserEmail'>Email</Label>
+                  <Label className='create-act-label' for='createUserEmail'>User Name</Label>
                   <Input 
                     type='text' 
                     name='username' 
                     id='createUserEmail' 
-                    placeholder='Username'
+                    placeholder='username'
                     value={this.state.username}
 							      onChange={this.handleChange}
                   />
