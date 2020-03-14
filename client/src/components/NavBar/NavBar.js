@@ -13,7 +13,7 @@ import {
   DropdownItem,
   Container
 } from 'reactstrap';
-import { BrowserRouter as Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./style.css";
 
 
