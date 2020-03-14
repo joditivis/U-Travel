@@ -1,5 +1,11 @@
+.packing-card {
+  background-color: rgba(66, 66, 66, 0.74);
+  /* font-family: 'Pontano Sans', sans-serif; */
+  color: rgb(255, 255, 255);
+}
+
 .item {
-  background: #fff;
+  /* background: #fff; */
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15);
   padding: 3px 10px;
   font-size: 16px;
@@ -8,6 +14,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 25rem;
+  margin: 0 auto;
 }
 
 .form-check-input {
@@ -16,13 +24,15 @@
   margin-left: 0;
 }
 .item-list {
-  background: #e8e8e8;
+  /* background: #e8e8e8; */
   border-radius: 4px;
   padding: 5px;
 }
 
 .add-item-input {
   margin-top: 10px;
+  width: 16rem;
+  margin: 0 auto;
 }
 
 .add-item-btn {

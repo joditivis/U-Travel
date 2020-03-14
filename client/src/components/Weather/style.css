@@ -1,3 +1,24 @@
+.weather-card {
+  background-color: rgba(66, 66, 66, 0.74);
+  font-family: 'Pontano Sans', sans-serif;
+  color: rgb(255, 255, 255);
+}
+
+/* .weather-search {} */
+
+.weather-search-btn {
+  color: rgba(255, 255, 255, 0.87);
+  background-color: rgb(36, 36, 36);
+  border: solid rgb(36, 36, 36);
+  box-shadow: 0px 5px 15px 8px rgba(0, 0, 0, 0.2), 10px 5px 10px 0px rgba(0, 0, 0, 0.19);
+}
+
+.weather-search-btn:hover {
+  color: rgb(0, 0, 0);
+  background-color: rgba(255, 255, 255, 0.87);
+  border: solid rgba(255, 255, 255, 0.87);
+}
+
 img {
   width: 50px;
 }
