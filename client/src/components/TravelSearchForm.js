@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import { Form, Button, Input, Row, Col, FormGroup, Label } from "reactstrap";
+import { Form, Button, Input, Row, Col, FormGroup, Label, Card, CardHeader, CardBody, Container } from "reactstrap";
 import DatePicker from "./DatePicker/DatePicker";
 import moment from "moment";
+import './style.css';
 
 class TravelSearchForm extends Component {
   state = {
@@ -69,62 +70,87 @@ class TravelSearchForm extends Component {
   };
   render() {
     return (
-      <Form>
-        <Row>
-          <Col md={4}>
-            <FormGroup>
-              <Label for="flightSearch">Starting Destination</Label>
-              <Input
-                type="text"
-                name="origin"
-                placeholder="Origin City"
-                //onInput={this.airportSearch}
-                onChange={this.handleInputChange}
-                value={this.state.origin}
-              />
-              <Label for="flightSearch">Ending Destination</Label>
-              <Input
-                type="text"
-                name="destination"
-                placeholder="Destination City"
-                onChange={this.handleInputChange}
-                value={this.state.destination}
-              />
-              {/* <Input
-          type="text"
-          name="date"
-          placeholder="Start Date"
-          onChange={this.handleInputChange}
-          value={this.state.date}
-        /> */}
-            </FormGroup>
-          </Col>
-        </Row>
+      <Container>
+        <Card className='travel-card'>
+          <CardHeader className='travel-header'><h3>Search Flights</h3></CardHeader>
+            <CardBody className='travel-body'>
+              <Form className='travel-form'>
+                <Row>
+                  <Col md={12}>
+                    <FormGroup>
+                      <Label className='travel-form-label' for="flightSearch">Starting Destination</Label>
+                      <Input
+                        className='tavel-destination-input'
+                        type="text"
+                        name="origin"
+                        placeholder="Origin City"
+                        //onInput={this.airportSearch}
+                        onChange={this.handleInputChange}
+                        value={this.state.origin}
+                      />
+                    </FormGroup>
+                  </Col>
+                </Row>
+                <br></br>
+                <Row>
+                  <Col md={12}>
+                    <FormGroup>
+                        <Label className='travel-form-label' for="flightSearch">Ending Destination</Label>
+                        <Input
+                          className='tavel-destination-input'
+                          type="text"
+                          name="destination"
+                          placeholder="Destination City"
+                          onChange={this.handleInputChange}
+                          value={this.state.destination}
+                        />
+                        {/* <Input
+                    type="text"
+                    name="date"
+                    placeholder="Start Date"
+                    onChange={this.handleInputChange}
+                    value={this.state.date}
+                  /> */}
+                    </FormGroup>
+                  </Col>
+                </Row>
 
-        <br></br>
+                <br></br>
 
-        <p>Flight Date</p>
-        <DatePicker setDate={this.setDate} />
-        <br></br>
+                {/* <p>Flight Date</p>
+                <DatePicker setDate={this.setDate} />
+                <br></br> */}
 
-        <Row>
-          <Col md={4}>
-            <FormGroup>
-              <Label for="numOfTravelers">Number of Travelers</Label>
-              <Input
-                type="text"
-                name="numAdults"
-                id="numOfTravelersInput"
-                placeholder="2"
-                onChange={this.handleInputChange}
-                value={this.state.numAdults}
-              />
-            </FormGroup>
-          </Col>
-        </Row>
+                <Row>
+                  <Col md={12}>
+                    <FormGroup>
+                      <Label className='travel-form-label' for="numOfTravelers">Number of Travelers</Label>
+                      <Input
+                        type="text"
+                        name="numAdults"
+                        id="numOfTravelersInput"
+                        placeholder="2"
+                        onChange={this.handleInputChange}
+                        value={this.state.numAdults}
+                      />
+                    </FormGroup>
+                  </Col>
+                </Row>
 
-        <Button onClick={this.handleSubmit}>Submit</Button>
-      </Form>
+                <br></br>
+
+                <p>Depart / Return</p>
+                <DatePicker setDate={this.setDate} />
+
+                <br></br>
+                <br></br>
+
+                <Button className='travel-form-btn' onClick={this.handleSubmit}>Submit</Button>
+                <br></br>
+              </Form>
+            </CardBody>
+        </Card>
+      </Container>
     );
   }
 }

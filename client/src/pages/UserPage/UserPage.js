@@ -12,6 +12,8 @@ class UserPage extends Component {
   render() {
     return (
       <Container>
+      <br></br>
+      <br></br>
         <Row>
           <Col md={7}>
             <TripInfo />

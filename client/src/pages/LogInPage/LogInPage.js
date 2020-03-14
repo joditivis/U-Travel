@@ -66,12 +66,12 @@ class LogInPage extends Component {
                   <Col md={4}>
                   <hr></hr>
                     <FormGroup>
-                      <Label className="login-form-label" for='username'>Email</Label>
+                      <Label className="login-form-label" for='username'>User Name</Label>
                       <Input 
                         type='text' 
                         name='username' 
                         id='username' 
-                        placeholder='Username'
+                        placeholder='username'
                         value={this.state.username}
                         onChange={this.handleChange}
                       />
@@ -82,7 +82,7 @@ class LogInPage extends Component {
                         type='password' 
                         name='password' 
                         id='userPassword' 
-                        placeholder=''
+                        placeholder='password'
                         value={this.state.password}
                         onChange={this.handleChange}
                       />
