@@ -13,9 +13,9 @@ const BudgetCard = props => {
         <CardHeader className='budget-header'><h4>Trip Expenses</h4></CardHeader>
             <CardBody>
                <h5>Total Trip Cost:</h5>
-               <h5>$4,286</h5>
-
                <br></br>
+               <h5 className="trip-cost">$4,286</h5>
+
                <hr></hr>
 
                <Chart />
@@ -26,6 +26,7 @@ const BudgetCard = props => {
 
                <h5>Money Saved:</h5>
                <MoneySavedInput />
+               <br></br>
                <p>*Amount will be subtracted from 
                <br></br>
                total amount needed for trip</p>

@@ -20,9 +20,11 @@ const AddItemForm = ({ addItem }) => {
         value={value}
         onChange={e => setValue(e.target.value)}
       />
+      <br></br>
       <Button className="add-item-btn" size="sm" onClick={handleSubmit}>
         Add Item
       </Button>
+      <br></br>
     </Form>
   );
 };

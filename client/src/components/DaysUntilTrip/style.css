@@ -1,0 +1,15 @@
+.countdown-card {
+    background-color: rgba(66, 66, 66, 0.74);
+    font-family: 'Pontano Sans', sans-serif;
+    color: rgb(255, 255, 255);
+}
+
+.countdown-header {
+    font-size: 20px;
+    text-align: center;
+}
+
+.countdown-num {
+    font-size: 60px;
+    text-align: center;
+}

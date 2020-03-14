@@ -43,8 +43,8 @@ const PackingList = () => {
   };
 
   return (
-    <Card>
-      <CardHeader>Items to Pack</CardHeader>
+    <Card className='packing-card'>
+      <CardHeader className='packing-header'>Items to Pack</CardHeader>
       <CardBody className="item-list">
         {items.map((item, index) => (
           <Item
@@ -55,6 +55,7 @@ const PackingList = () => {
             removeItem={removeItem}
           />
         ))}
+        <br></br>
         <AddItemForm addItem={addItem} />
       </CardBody>
     </Card>
