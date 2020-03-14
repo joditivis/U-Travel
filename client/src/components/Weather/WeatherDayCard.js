@@ -6,8 +6,8 @@ const WeatherDayCard = props => {
   console.log(props);
   return (
     <Col>
-      <Card>
-        <CardHeader>{props.day}</CardHeader>
+      <Card className='weather-card'>
+        <CardHeader className='weather-header'>{props.day}</CardHeader>
         <CardBody>
           <p>Current Weather: {props.current}°</p>
           <img

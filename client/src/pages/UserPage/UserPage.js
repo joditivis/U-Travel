@@ -15,14 +15,16 @@ class UserPage extends Component {
         <Row>
           <Col md={7}>
             <TripInfo />
-            <br></br>
-            <CountDown />
+            {/* <br></br>
+            <CountDown /> */}
             <br></br>
             <PackingList />
             <br></br>
             {/* <DatePicker /> */}
           </Col>
           <Col md={5}>
+            <CountDown />
+            <br></br>
             <BudgetCard />
           </Col>
         </Row>

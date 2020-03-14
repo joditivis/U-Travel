@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Form, Button, Input, Row, Col } from 'reactstrap';
+import { Form, Button, Input } from 'reactstrap';
+import './style.css';
 
 const MoneySavedInput = ({ subtractMoneySaved }) => {
   const [value, setValue] = useState('');
@@ -13,8 +14,6 @@ const MoneySavedInput = ({ subtractMoneySaved }) => {
 
   return (
     <Form className="add-money-input">
-      <Row>
-      <Col md={8}>
       <Input
         type="text"
         placeholder="$"
@@ -22,13 +21,10 @@ const MoneySavedInput = ({ subtractMoneySaved }) => {
         value={value}
         onChange={e => setValue(e.target.value)}
       />
-      </Col>
-      <Col md={4}>
+      <br></br>
       <Button className="add-money-btn" size="md" onClick={handleSubmit}>
         Submit
       </Button>
-      </Col>
-      </Row>
     </Form>
   );
 };

@@ -4,6 +4,7 @@ import moment from 'moment';
 import WeatherSearchBar from '../../components/Weather/WeatherSearchBar';
 import WeatherDayCard from '../../components/Weather/WeatherDayCard';
 import API from '../../utils/API';
+import './style.css';
 
 const WeatherPage = () => {
   // using react hook to set state
@@ -56,7 +57,7 @@ const WeatherPage = () => {
     <Container>
       <Row>
         <Col md={8}>
-          <h3>Weather for {location}</h3>
+          <h3 className='weather-for'>Weather for {location}</h3>
         </Col>
         <Col md={4}>
           <WeatherSearchBar
