@@ -32,6 +32,10 @@ app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+app.get('/*', function (req, res) {
+	res.sendFile(path.join(__dirname, './build', 'index.html'));
+  });
+
 // Session to keep track of the login credentials
 app.use(
 	session({
