@@ -30,13 +30,13 @@ class App extends Component {
     this.updateUser = this.updateUser.bind(this);
   }
 
-  callApi = async () => {
-    const response = await fetch("/airport/DEN");
-    const body = await response.json();
-    if (response.status !== 200) throw Error(body.message);
+  // callApi = async () => {
+  //   const response = await fetch("/airport/DEN");
+  //   const body = await response.json();
+  //   if (response.status !== 200) throw Error(body.message);
 
-    return body;
-  };
+  //   return body;
+  // };
 
   componentDidMount() {
     this.getUser();
@@ -77,7 +77,7 @@ class App extends Component {
         <div className="App">
           <NavBar updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
           {/* Display user to page to show they are logged in */}
-          {this.state.loggedIn && <p>Hi, {this.state.username}!</p>}
+          {this.state.loggedIn && <p className="text-center">Hi, {this.state.username}!</p>}
 
           <Header />
 
@@ -91,7 +91,7 @@ class App extends Component {
             <Route path="/createaccount" render={() => <CreateAccountPage />} />
             <Route path="/weather" component={WeatherPage} />
             <Route path="/userpage" component={UserPage} />
-            <Route path="/flightSearchResults" component={TravelSearch} />
+            <Route path="/flightSearchPage" component={TravelSearch} />
             <Route path ="/hotelSearchPage" component={HotelSearchPage} />
             <Route component={NoMatch} />
           </Switch>

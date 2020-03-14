@@ -63,13 +63,13 @@ class NavbarComponent extends Component {
         <Container>
           <Navbar className="navbar" expand="md">
             <NavbarToggler onClick={this.toggle} />
-            <Collapse isOpen={this.isOpen} navbar>
+            <Collapse isOpen={false} navbar>
               <Nav className="mr-auto nav" navbar>
                 <NavItem>
                   <NavLink className="nav-link" href="/">Home</NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink className="nav-link" href="#">Flights</NavLink>
+                  <NavLink className="nav-link" href="/flightSearchPage">Flights</NavLink>
                 </NavItem>
                 <NavItem>
                   <NavLink className="nav-link" href="/hotelSearchPage">Hotels</NavLink>

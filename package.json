@@ -43,6 +43,7 @@
     "nodemon": "^2.0.2",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
+    "path": "^0.12.7",
     "react": "^16.13.0",
     "react-dates": "^21.8.0",
     "react-dom": "^16.13.0",

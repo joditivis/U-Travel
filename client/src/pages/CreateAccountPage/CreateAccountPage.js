@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Row, Col, Button, Form, FormGroup, Label, Input, Container } from 'reactstrap';
+import './style.css';
 
 class CreateAccountPage extends Component {
     constructor() {
@@ -50,12 +51,14 @@ class CreateAccountPage extends Component {
 render() {
     return (
       <Container>
-        <h2>Create Account</h2>
+      <br></br>
+        <h2 className='create-act-header'>Create Account</h2>
           <Form>
             <Row form>
               <Col md={4}>
+              <hr></hr>
                 <FormGroup>
-                  <Label for='createUserEmail'>Email</Label>
+                  <Label className='create-act-label' for='createUserEmail'>Email</Label>
                   <Input 
                     type='text' 
                     name='username' 
@@ -66,7 +69,7 @@ render() {
                   />
                 </FormGroup>
                 <FormGroup>
-                  <Label for='createUserPassword'>Password</Label>
+                  <Label className='create-act-label' for='createUserPassword'>Password</Label>
                   <Input 
                     type='password' 
                     name='password' 
@@ -76,8 +79,9 @@ render() {
 							      onChange={this.handleChange} 
                   />
                 </FormGroup>
+                <br></br>
             <Button
-              className='btn btn-primary'
+              className='create-act-btn'
               onClick={this.handleSubmit}
               type='submit'>
               Create Account

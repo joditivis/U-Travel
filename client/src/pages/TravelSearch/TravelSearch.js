@@ -25,15 +25,15 @@ class TravelSearch extends Component {
 //   };
 
   flightSearch = (flightSearch) => {
-    this.callApi(flightSearch.origin, flightSearch.destination, flightSearch.date)
+    this.callApi(flightSearch.origin, flightSearch.destination, flightSearch.startDate, flightSearch.numAdults)
       .then(res => this.setState({ flights: res.data }))
       // .then(res2 => console.log(this.state.flights))
       .catch(err => console.log(err));
   }
 
-  callApi = async (origin, destination, date) => {
+  callApi = async (origin, destination, date, adults) => {
     
-    const response = await fetch(`/flights/${origin}/${destination}/${date}/2/true`);
+    const response = await fetch(`/flights/${origin}/${destination}/${date}/${adults}/true`);
     const body = await response.json();
     if (response.status !== 200) throw Error(body.message);
 
