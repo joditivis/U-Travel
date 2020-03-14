@@ -63,7 +63,7 @@ class NavbarComponent extends Component {
         <Container>
           <Navbar className="navbar" expand="md">
             <NavbarToggler onClick={this.toggle} />
-            <Collapse isOpen={this.isOpen} navbar>
+            <Collapse isOpen={false} navbar>
               <Nav className="mr-auto nav" navbar>
                 <NavItem>
                   <NavLink className="nav-link" href="/">Home</NavLink>

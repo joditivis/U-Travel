@@ -1,0 +1,13 @@
+.hotel-card {
+    background-color: rgba(66, 66, 66, 0.74);
+    font-family: 'Pontano Sans', sans-serif;
+    color: rgb(255, 255, 255);
+    width: 35rem;
+    margin: 0 auto;
+    margin-top: 5rem;
+}
+
+.hotel-header {
+    font-size: 20px;
+    text-align: center;
+}

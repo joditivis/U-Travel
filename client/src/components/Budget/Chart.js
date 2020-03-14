@@ -10,7 +10,7 @@ class Chart extends Component {
 		const options = {
 			animationEnabled: true,
 			// exportEnabled: true,
-			theme: "light1", // "light1", "dark1", "dark2"
+			theme: "dark1", // "light1", "dark1", "dark2"
 			title:{
 				text: "Budget Chart"
 			},
