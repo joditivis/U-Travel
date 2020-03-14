@@ -13,6 +13,7 @@ import {
   DropdownItem,
   Container
 } from 'reactstrap';
+import { Link } from "react-router-dom";
 import "./style.css";
 
 
@@ -66,10 +67,12 @@ class NavbarComponent extends Component {
             <Collapse isOpen={false} navbar>
               <Nav className="mr-auto nav" navbar>
                 <NavItem>
-                  <NavLink className="nav-link" href="/">Home</NavLink>
+                  {/* <NavLink className="nav-link" href="/">Home</NavLink> */}
+                  <Link to={`/`} className="nav-link">Home</Link>
                 </NavItem>
                 <NavItem>
-                  <NavLink className="nav-link" href="/flightSearchPage">Flights</NavLink>
+                  {/* <NavLink className="nav-link" href="/flightSearchPage">Flights</NavLink> */}
+                  <Link to={`/flightSearchPage`} className="nav-link">Flights</Link>
                 </NavItem>
                 <NavItem>
                   <NavLink className="nav-link" href="/hotelSearchPage">Hotels</NavLink>
