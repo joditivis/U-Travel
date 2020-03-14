@@ -7,7 +7,8 @@ const morgan = require('morgan');
 const session = require('express-session');
 const dbConnection = require('./database') ;
 const MongoStore = require('connect-mongo')(session)
-const passport = require('./passport'); 
+const passport = require('./passport');
+const path = require('path'); 
 
 // Route requires
 const user = require('./routes/user');
@@ -25,16 +26,17 @@ app.use(bodyParser.json());
 app.use(cors());
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('client/build'));
+  //app.use(express.static('client/build'));
+  app.get('/*', function (req, res) {
+	res.sendFile(path.join(__dirname, './client/build', 'index.html'));
+  });
 };
 
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.get('/*', function (req, res) {
-	res.sendFile(path.join(__dirname, './build', 'index.html'));
-  });
+
 
 // Session to keep track of the login credentials
 app.use(
