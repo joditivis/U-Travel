@@ -99,6 +99,9 @@ class NavbarComponent extends Component {
                       <DropdownItem href="/createaccount">
                         Create Account
                       </DropdownItem>
+                      <DropdownItem href="/userpage">
+                        My Trip
+                      </DropdownItem>
                     {/* )} */}
                   </DropdownMenu>
                 </UncontrolledDropdown>
