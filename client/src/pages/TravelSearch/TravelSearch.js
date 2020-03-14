@@ -28,7 +28,10 @@ class TravelSearch extends Component {
     this.callApi(flightSearch.origin, flightSearch.destination, flightSearch.startDate, flightSearch.numAdults)
       .then(res => this.setState({ flights: res.data }))
       // .then(res2 => console.log(this.state.flights))
-      .catch(err => console.log(err));
+      .catch(err => {
+        console.log(process.env.AMADEUS_CLIENT_ID);
+        console.log(process.env.AMADEUS_CLIENT_SECRET);
+        console.log(err)});
   }
 
   callApi = async (origin, destination, date, adults) => {
