@@ -55,6 +55,7 @@ class NavbarComponent extends Component {
   }
 
   render() {
+
     const loggedIn = this.props.loggedIn;
     console.log("navbar render, props: ");
     console.log(this.props);
@@ -93,12 +94,22 @@ class NavbarComponent extends Component {
                     Account
                   </DropdownToggle>
 
-                  {loggedIn ? (
-                    <DropdownMenu right>
-                      <DropdownItem onClick={this.logout}>Logout</DropdownItem>
-                    </DropdownMenu>
+
+                   {loggedIn ? (
+                    <DropdownMenu left>
+                      <DropdownItem>
+                          <Link to={`/userpage`} className="nav-link-dark">
+                          My Trip
+                          </Link>
+                      </DropdownItem>
+                      <DropdownItem>
+                        <Link to={`/`} className="nav-link-dark" onClick={this.logout}>
+                        Logout
+                        </Link>
+                      </DropdownItem>
+                    </DropdownMenu left>
                   ) : (
-                    <DropdownMenu right>
+                    <DropdownMenu left>
                       <DropdownItem>
                         <Link to={`/login`} className="nav-link-dark">
                           Log In
@@ -107,11 +118,6 @@ class NavbarComponent extends Component {
                       <DropdownItem>
                         <Link to={`/createaccount`} className="nav-link-dark">
                           Create Account
-                        </Link>
-                      </DropdownItem>
-                      <DropdownItem>
-                        <Link to={`/userpage`} className="nav-link-dark">
-                        My Trip
                         </Link>
                       </DropdownItem>
                     </DropdownMenu>

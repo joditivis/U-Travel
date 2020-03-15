@@ -77,8 +77,6 @@ class App extends Component {
       <Router>
         <div className="App">
           <NavBar updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
-          {/* Display user to page to show they are logged in */}
-          {/* {this.state.loggedIn && <p className="text-center">Hi, {this.state.username}!</p>} */}
 
           <Header />
           {this.state.loggedIn && <h2 className="welcome-user">Hi, {this.state.username}!</h2>}

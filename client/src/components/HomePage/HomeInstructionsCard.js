@@ -18,7 +18,8 @@ const InstructionsCard = (props) => {
         <br></br>
         how much you need to save to get to where you want to go</p>
         <br></br>
-          <Button id="start-planning" color="primary">
+
+          <Button className="start-planning-btn">
           <Link to={`/createaccount`} className="nav-link">
             Start Planning</Link></Button>
       </Jumbotron>
