@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Container, Row } from 'reactstrap';
-import TravelSearchForm from '../../components/TravelSearchForm';
-import TravelSearchResults from '../../components/TravelSearchResults';
+import TravelSearchForm from '../../components/TravelSearch/TravelSearchForm';
+import TravelSearchResults from '../../components/TravelSearch/TravelSearchResults';
 
 class TravelSearch extends Component {
   state = {

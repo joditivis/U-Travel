@@ -18,3 +18,15 @@
 .nav-link:hover {
     color: rgb(0, 0, 0);
 }
+
+.nav-link-dark {
+    color: rgb(0, 0, 0);
+    /* margin-left: 10px;
+    margin-right: 10px; */
+    font-family: 'Pontano Sans', sans-serif;
+    font-size: 17px;
+}
+
+.nav-link-dark:hover {
+    color: rgb(0, 0, 0);
+}
