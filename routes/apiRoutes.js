@@ -26,10 +26,12 @@ module.exports = function(app) {
   });
 
   // Flight Inspiration Search
-  app.get("/flightDestinations/:city", (req, res) => {
+  app.get("/flightDestinations/:city/:date/:nonstop?", (req, res) => {
     amadeus.shopping.flightDestinations
       .get({
-        origin: req.params.city
+        origin: req.params.city,
+        departureDate: req.params.date,
+        nonStop: req.params.nonstop || false
       })
       .then(function(response) {
         res.send({ data: response.data });

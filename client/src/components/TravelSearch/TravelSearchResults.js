@@ -5,8 +5,8 @@ import moment from 'moment';
 const TravelSearchResults = props => {
   console.log(props.flight.offerItems[0].services[0].segments[0].flightSegment.carrierCode);
   return (
-      <Col>
-        <Card>
+      <Col >
+        <Card className="travelCard">
           <CardHeader>Airline: {props.flight.offerItems[0].services[0].segments[0].flightSegment.carrierCode}</CardHeader>
           <CardBody>
             <p>Departure: {props.flight.offerItems[0].services[0].segments[0].flightSegment.departure.iataCode} at {moment(props.flight.offerItems[0].services[0].segments[0].flightSegment.departure.at, ["YYYY", moment.ISO_8601]).format("MM/DD/YYYY h:mm a")}</p>

@@ -107,7 +107,7 @@ class NavbarComponent extends Component {
                         Logout
                         </Link>
                       </DropdownItem>
-                    </DropdownMenu left>
+                    </DropdownMenu>
                   ) : (
                     <DropdownMenu left>
                       <DropdownItem>

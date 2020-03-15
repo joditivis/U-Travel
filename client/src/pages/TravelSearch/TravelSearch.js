@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import { Container, Row } from 'reactstrap';
 import TravelSearchForm from '../../components/TravelSearch/TravelSearchForm';
 import TravelSearchResults from '../../components/TravelSearch/TravelSearchResults';
+import TravelSearchAnyResults from '../../components/TravelSearch/TravelSearchAnyResults';
 
 class TravelSearch extends Component {
   state = {
-    flights: []
+    flights: [],
+    flightsAny: []
   };
 
   deleteItem = id => {
@@ -29,8 +31,14 @@ class TravelSearch extends Component {
       .then(res => this.setState({ flights: res.data }))
       // .then(res2 => console.log(this.state.flights))
       .catch(err => {
-        console.log(process.env.AMADEUS_CLIENT_ID);
-        console.log(process.env.AMADEUS_CLIENT_SECRET);
+        console.log(err)});
+  }
+
+  flightSearchAny = (flightSearch) => {
+    this.callApiAny(flightSearch.origin, flightSearch.startDate, flightSearch.numAdults)
+      .then(res => this.setState({ flightsAny: res.data }))
+      // .then(res2 => console.log(this.state.flights))
+      .catch(err => {
         console.log(err)});
   }
 
@@ -43,16 +51,29 @@ class TravelSearch extends Component {
     return body;
   };
 
+  callApiAny = async (origin, date, adults) => {
+    
+    const response = await fetch(`/flightDestinations/${origin}/${date}/true`);
+    const body = await response.json();
+    if (response.status !== 200) throw Error(body.message);
+
+    return body;
+  };
+
   render() {
     return (
       <Container>
-        <TravelSearchForm flightSearch={this.flightSearch} />
+        <TravelSearchForm flightSearch={this.flightSearch} flightSearchAny={this.flightSearchAny}/>
         {this.state.flights.map(flight => (
           <Row >
           <TravelSearchResults flight={flight} />
         </Row>
         ))}
-        
+        {this.state.flightsAny.map(flight => (
+          <Row >
+          <TravelSearchAnyResults flight={flight} />
+        </Row>
+        ))}
       </Container>
     );
   }
