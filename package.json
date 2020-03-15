@@ -2,7 +2,7 @@
   "name": "u-travel",
   "version": "1.0.0",
   "engines": {
-    "node": "10.x"
+    "node": "12.x"
   },
   "description": "Travel application for budgeting and planning",
   "main": "server.js",
