@@ -1,5 +1,6 @@
 import React from 'react';
 import { Jumbotron, Container, Button } from 'reactstrap';
+import { Link } from "react-router-dom";
 import './style.css';
 
 const InstructionsCard = (props) => {
@@ -17,7 +18,9 @@ const InstructionsCard = (props) => {
         <br></br>
         how much you need to save to get to where you want to go</p>
         <br></br>
-          <Button id="start-planning" color="primary" href='/createaccount'>Start Planning</Button>
+          <Button id="start-planning" color="primary">
+          <Link to={`/createaccount`} className="nav-link">
+            Start Planning</Link></Button>
       </Jumbotron>
     </Container>
     </div>
