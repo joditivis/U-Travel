@@ -12,6 +12,8 @@ const path = require('path');
 
 // Route requires
 const user = require('./routes/user');
+const trip = require('./routes/tripRoutes');
+console.log(trip);
 
 const app = express();
 const cors = require("cors");
@@ -59,7 +61,7 @@ app.use('/user', user);
 require("./routes/apiRoutes")(app);
 
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/utravel');
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/utravel',{useNewUrlParser: true});
 
 // Start the API server
 app.listen(PORT, function() {

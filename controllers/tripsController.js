@@ -1,35 +1,45 @@
-const db = require("../database/models/savedTrips");
+const db = require("../database/models");
 
 module.exports = {
-    findAll: function(req, res){
-        db.User.
-            .find({username: req.params.username})
-            .then(dbModel => res.json(dbModel))
-            .catch(err=> res.status(404).json(err));
-    },
-    findbyID: function(req, res){
-        db.Trips
-            .findById(req.params.id)
-            .then(dbModel => res.json(dbModel))
-            .catch(err=> res.status(404).json(err));
-    },
-    create: function(req, res){
-        db.Trips
-            .find(req.body)
-            .then(dbModel => res.json(dbModel))
-            .catch(err=> res.status(404).json(err));
-    },
-    updateById: function(req, res){
-        db.Trips
-            .findOneAndUpdate({_id: req.params.id},{$set:{isSaved: true}}, req.body)
-            .then(dbModel => res.json(dbModel))
-            .catch(err=> res.status(404).json(err));
-    },
-    remove: function(req, res){
-        db.Trips
-            .findOneAndDelete({_id: req.params.id})
-            .then(dbModel => dbModel.remove())
-            .then(dbModel => res.json(dbModel))
-            .catch(err=> res.status(404).json(err));
-    }
-};
+    findAll: function (req, res) {
+        db.Trip
+        .find(req.query)
+        .then(dbModel=>res.json(dbModel))
+        .catch(err=> res.status(422).json(err));
+      }
+}
+// createTrip = (req,res)=> {
+    
+//     const user = req.user.id
+//     if(!user){
+//         return res.status(400).json({
+//             success:false,
+//             error: "you need to be signed in to save a flight.",
+//         })
+//     }
+//    const trip = new trip(user)
+//    if(!trip){
+//        return res.status(400).json({})
+//    }
+//    trip 
+//    .save()
+//    .then(()=> {
+//        return res.status(201).json({
+//            success:true,
+//            id:trip_id,
+//            message: "your trip was saved."
+//        })
+//    })
+//    .catch(error=> {
+//        return res.status(400).json({
+//            error,
+//            message: "Trip was not saved. Please make sure you are logged in and try again.",
+//        })
+//    })
+// }
+// updateTrip =
+
+
+
+
+
