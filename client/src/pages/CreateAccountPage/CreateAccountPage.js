@@ -7,8 +7,9 @@ class CreateAccountPage extends Component {
     constructor() {
         super()
         this.state = {
-          username: '',
-          password: ''
+          email: '',
+          password: '',
+          redirectTo: null
         }
 
         this.handleSubmit = this.handleSubmit.bind(this)
@@ -21,15 +22,15 @@ class CreateAccountPage extends Component {
       })
     }
 
-    // Set state to a user's created username and password
+    // Set state to a user's created email and password
     handleSubmit(event) {
-      console.log('create account handleSubmit, username: ')
-      console.log(this.state.username)
+      console.log('Create account handleSubmit, email: ')
+      console.log(this.state.email)
       event.preventDefault()
 
-      // Request to server to add a new username/password
+      // Request to server to add a new email/password
       axios.post('/user/', {
-        username: this.state.username,
+        email: this.state.email,
         password: this.state.password
       })
 			.then(response => {
@@ -40,7 +41,7 @@ class CreateAccountPage extends Component {
 						redirectTo: '/login'
 					})
 				} else {
-					console.log('username already taken')
+					console.log('email already used')
 				}
 			}).catch(error => {
 				console.log('create account error: ')
@@ -58,12 +59,12 @@ render() {
               <Col md={4}>
               <hr></hr>
                 <FormGroup>
-                  <Label className='create-act-label' for='createUserEmail'>User Name</Label>
+                  <Label className='create-act-label' for='createUserEmail'>Email</Label>
                   <Input 
-                    type='text' 
-                    name='username' 
+                    type='email' 
+                    name='email' 
                     id='createUserEmail' 
-                    placeholder='username'
+                    placeholder='johndoe@example.com'
                     value={this.state.username}
 							      onChange={this.handleChange}
                   />
