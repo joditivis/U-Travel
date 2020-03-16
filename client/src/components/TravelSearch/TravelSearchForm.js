@@ -16,7 +16,6 @@ import DatePicker from "../DatePicker/DatePicker";
 import moment from "moment";
 import Autosuggest from "react-autosuggest";
 import "./style.css";
-import "_" from "underscore";
 
 let cities = [];
 let lastValue = "";
