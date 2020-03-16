@@ -349,7 +349,7 @@ class TravelSearchForm extends Component {
 
               <br></br>
 
-              <p>Depart / Return</p>
+              <p className="travel-form-label">Depart / Return</p>
               <DatePicker setDate={this.setDate} />
 
               <br></br>

@@ -1,12 +1,31 @@
-.create-act-header {
+.create-act-card {
+    background-color: rgba(66, 66, 66, 0.74);
     font-family: 'Pontano Sans', sans-serif;
     color: rgb(255, 255, 255);
+    width: 35rem;
+    margin: 0 auto;
+    margin-top: 5rem;
+}
+
+.create-act-header {
+    font-size: 20px;
+    text-align: center;
+}
+
+.create-act-form {
+    text-align: center;
+    align-items: center;
 }
 
 .create-act-label {
-    font-family: 'Pontano Sans', sans-serif;
-    font-size: 18px;
     color: rgb(255, 255, 255);
+    font-size: 18px;
+}
+
+#createUserEmail, #createUserPassword {
+    display: block;
+    margin: 0 auto;
+    width: 18rem;
 }
 
 .create-act-btn {
@@ -17,6 +36,8 @@
     font-family: 'Pontano Sans', sans-serif;
     font-size: 17px;
     width: 12rem;
+    margin: 0 auto;
+    display: block;
 }
 
 .create-act-btn:hover {
@@ -24,4 +45,19 @@
     background-color: rgba(255, 255, 255, 0.87);
     border: solid rgba(255, 255, 255, 0.87);
     font-family: 'Pontano Sans', sans-serif;
+}
+
+.already-account {
+    color: rgb(255, 255, 255);
+    font-family: 'Pontano Sans', sans-serif;
+}
+
+.login-link {
+    color: rgb(255, 255, 255);
+    font-family: 'Pontano Sans', sans-serif;
+    font-size: 18px;
+}
+
+.login-link:hover {
+    color: rgb(0, 0, 0);
 }
