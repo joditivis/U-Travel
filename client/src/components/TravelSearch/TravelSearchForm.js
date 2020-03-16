@@ -41,9 +41,6 @@ function getSuggestions(value) {
         res.data.map(city =>
           cities.push({ name: `${city.name} (${city.iataCode})` })
         );
-        console.log(cities);
-        cities = Array.from(new Set(cities));
-        console.log(_.uniq(cities));
       })
       .catch(err => console.log(err));
   } else if (value.substring("(")) {
