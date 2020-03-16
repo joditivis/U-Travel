@@ -16,29 +16,30 @@ import { Link } from "react-router-dom";
 import "./style.css";
 
 class NavbarComponent extends Component {
-  constructor() {
-    super();
-    this.logout = this.logout.bind(this);
-  }
+    constructor() {
+        super()
+        this.logout = this.logout.bind(this)
+    }
 
-  logout(event) {
-    event.preventDefault();
-    console.log("logging out");
-    axios
-      .post("/user/logout")
-      .then(response => {
-        console.log(response.data);
-        if (response.status === 200) {
-          this.props.updateUser({
-            loggedIn: false,
-            username: null
+    logout(event) {
+        event.preventDefault()
+        console.log("logging out")
+        axios
+          .post("/user/logout")
+          .then(response => {
+            console.log(response.data)
+            if (response.status === 200) {
+              this.props.updateUser({
+                loggedIn: false,
+                email: null
+              });
+            }
+          })
+          .catch(error => {
+            console.log("Logout error")
           });
-        }
-      })
-      .catch(error => {
-        console.log("Logout error");
-      });
-  }
+      }
+
 
   // Navbar dropdown toggler
   isOpen(event) {
@@ -94,9 +95,8 @@ class NavbarComponent extends Component {
                     Account
                   </DropdownToggle>
 
-
                    {loggedIn ? (
-                    <DropdownMenu left>
+                    <DropdownMenu>
                       <DropdownItem>
                           <Link to={`/userpage`} className="nav-link-dark">
                           My Trip
@@ -107,9 +107,9 @@ class NavbarComponent extends Component {
                         Logout
                         </Link>
                       </DropdownItem>
-                    </DropdownMenu left>
+                    </DropdownMenu>
                   ) : (
-                    <DropdownMenu left>
+                    <DropdownMenu>
                       <DropdownItem>
                         <Link to={`/login`} className="nav-link-dark">
                           Log In

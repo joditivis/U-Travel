@@ -8,7 +8,7 @@ class LogInPage extends Component {
     constructor() {
         super()
         this.state = {
-            username: '',
+            email: '',
             password: '',
             redirectTo: null
         }
@@ -29,7 +29,7 @@ class LogInPage extends Component {
         console.log('handleSubmit')
 
         axios.post('/user/login', {
-                username: this.state.username,
+                email: this.state.email,
                 password: this.state.password
             })
             .then(response => {
@@ -39,7 +39,7 @@ class LogInPage extends Component {
                     // Update state to logged in
                     this.props.updateUser({
                         loggedIn: true,
-                        username: response.data.username
+                        email: response.data.email
                     })
                     // Update the state to redirect to home
                     this.setState({
@@ -66,13 +66,13 @@ class LogInPage extends Component {
                   <Col md={4}>
                   <hr></hr>
                     <FormGroup>
-                      <Label className="login-form-label" for='username'>User Name</Label>
+                      <Label className="login-form-label" for='userEmail'>Email</Label>
                       <Input 
-                        type='text' 
-                        name='username' 
-                        id='username' 
-                        placeholder='username'
-                        value={this.state.username}
+                        type='email' 
+                        name='email' 
+                        id='userEmail' 
+                        placeholder='johndoe@example.com'
+                        value={this.state.email}
                         onChange={this.handleChange}
                       />
                     </FormGroup>

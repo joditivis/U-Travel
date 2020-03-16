@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import axios from "axios";
 
 // Components
-
 import Header from './components/Header/Header';
 import NavBar from './components/NavBar/NavBar';
 import InstructionsCard from './components/HomePage/HomeInstructionsCard';
@@ -14,6 +13,7 @@ import WeatherPage from './pages/WeatherPage/WeatherPage';
 import UserPage from "./pages/UserPage/UserPage"
 import TravelSearch from "./pages/TravelSearch/TravelSearch";
 import HotelSearchPage from './pages/HotelSearchPage/HotelSearchPage';
+import Footer from './components/Footer/Footer';
 import './style.css';
 
 
@@ -22,7 +22,7 @@ class App extends Component {
     super();
     this.state = {
       loggedIn: false,
-      username: null,
+      email: null,
       results: []
     };
 
@@ -60,13 +60,13 @@ class App extends Component {
 
         this.setState({
           loggedIn: true,
-          username: response.data.user.username
+          email: response.data.user.email
         });
       } else {
         console.log("Get user: no user");
         this.setState({
           loggedIn: false,
-          username: null
+          email: null
         });
       }
     });
@@ -79,7 +79,7 @@ class App extends Component {
           <NavBar updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
 
           <Header />
-          {this.state.loggedIn && <h2 className="welcome-user">Hi, {this.state.username}!</h2>}
+          {this.state.loggedIn && <h2 className="welcome-user">Hi, {this.state.email}!</h2>}
 
           <Switch>
             {/* routes to different components */}
@@ -92,9 +92,11 @@ class App extends Component {
             <Route path="/weather" component={WeatherPage} />
             <Route path="/userpage" component={UserPage} />
             <Route path="/flightSearchPage" component={TravelSearch} />
-            <Route path ="/hotelSearchPage" component={HotelSearchPage} />
+            <Route path="/hotelSearchPage" component={HotelSearchPage} />
             <Route component={NoMatch} />
           </Switch>
+
+          <Footer />
         </div>
       </Router>
     );

@@ -24,6 +24,7 @@ const PORT = process.env.PORT || 3001;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
+
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === 'production') {
   //app.use(express.static('client/build'));
@@ -34,7 +35,9 @@ app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-
+// Passport
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Session to keep track of the login credentials
 app.use(
@@ -46,13 +49,7 @@ app.use(
 	})
 );
 
-// Passport
-app.use(passport.initialize());
-app.use(passport.session());
-
 // Add routes, both API and view
-//**** UNCOMMENT THIS WHEN WE SETUP ROUTES */
-// app.use(routes);
 app.use('/user', user);
 
 // Routes

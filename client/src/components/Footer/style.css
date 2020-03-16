@@ -1,0 +1,42 @@
+body {
+    position: relative;
+}
+
+.footer {
+    background-color: rgba(66, 66, 66, 0.74);
+    color: white;
+    position: relative;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+    text-align: center;
+    margin-top: 7rem;
+    font-family: 'Pontano Sans', sans-serif;
+}
+
+.copyright {
+    margin-top: 7px;
+    font-size: 16px;
+
+}
+
+.project-github {
+    color: white;
+    font-size: 30px;
+}
+
+.project-github:hover {
+    color: black;
+}
+
+.profile-links {
+    color: white;
+    font-family: 'Pontano Sans', sans-serif;
+    margin: 12px;
+    font-size: 18px;
+}
+
+.profile-links:hover {
+    color: black;
+}
