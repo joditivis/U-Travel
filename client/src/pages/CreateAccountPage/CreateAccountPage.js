@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Row, Col, Button, Form, FormGroup, Label, Input, Container } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, Container, Card,
+  CardHeader,
+  CardBody, } from 'reactstrap';
 import './style.css';
+import { Link } from 'react-router-dom';
 
 class CreateAccountPage extends Component {
     constructor() {
@@ -52,44 +55,48 @@ class CreateAccountPage extends Component {
 render() {
     return (
       <Container>
-      <br></br>
-        <h2 className='create-act-header'>Create Account</h2>
-          <Form>
-            <Row form>
-              <Col md={4}>
-              <hr></hr>
-                <FormGroup>
-                  <Label className='create-act-label' for='createUserEmail'>Email</Label>
-                  <Input 
-                    type='email' 
-                    name='email' 
-                    id='createUserEmail' 
-                    placeholder='johndoe@example.com'
-                    value={this.state.username}
-							      onChange={this.handleChange}
-                  />
-                </FormGroup>
-                <FormGroup>
-                  <Label className='create-act-label' for='createUserPassword'>Password</Label>
-                  <Input 
-                    type='password' 
-                    name='password' 
-                    id='createUserPassword' 
-                    placeholder='password'
-                    value={this.state.password}
-							      onChange={this.handleChange} 
-                  />
-                </FormGroup>
+        <Card className='create-act-card'>
+          <CardHeader className='create-act-header'>
+            <h2>Create Account</h2>
+          </CardHeader>
+            <CardBody className='create-act-body'>
+              <Form className='create-act-form'>
+                    <FormGroup>
+                      <Label className='create-act-label' for='createUserEmail'>Email</Label>
+                      <Input 
+                        type='email' 
+                        name='email' 
+                        id='createUserEmail' 
+                        placeholder='johndoe@example.com'
+                        value={this.state.username}
+                        onChange={this.handleChange}
+                      />
+                    </FormGroup>
+                    <br></br>
+                    <FormGroup>
+                      <Label className='create-act-label' for='createUserPassword'>Password</Label>
+                      <Input 
+                        type='password' 
+                        name='password' 
+                        id='createUserPassword' 
+                        placeholder='password'
+                        value={this.state.password}
+                        onChange={this.handleChange} 
+                      />
+                    </FormGroup>
+                  <br></br>
+                <Button
+                  className='create-act-btn'
+                  onClick={this.handleSubmit}
+                  type='submit'>
+                  Create Account
+                </Button>
                 <br></br>
-            <Button
-              className='create-act-btn'
-              onClick={this.handleSubmit}
-              type='submit'>
-              Create Account
-            </Button>
-            </Col>
-          </Row>
-        </Form>
+                <hr></hr>
+                <p className='already-account'>Already have an account? <Link to={`/login`} className='login-link'> Login </Link> </p>
+            </Form>
+          </CardBody>
+        </Card>
       </Container>
     );
   }

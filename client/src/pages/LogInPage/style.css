@@ -1,12 +1,31 @@
-.login-header {
+.login-card {
+    background-color: rgba(66, 66, 66, 0.74);
     font-family: 'Pontano Sans', sans-serif;
     color: rgb(255, 255, 255);
+    width: 35rem;
+    margin: 0 auto;
+    margin-top: 5rem;
+}
+
+.login-header {
+    font-size: 20px;
+    text-align: center;
+}
+
+.login-form {
+    text-align: center;
+    align-items: center;
 }
 
 .login-form-label {
-    font-family: 'Pontano Sans', sans-serif;
-    font-size: 18px;
     color: rgb(255, 255, 255);
+    font-size: 18px;
+}
+
+#userEmail, #userPassword {
+    display: block;
+    margin: 0 auto;
+    width: 18rem;
 }
 
 .login-btn {
@@ -16,7 +35,9 @@
     box-shadow: 0px 5px 15px 8px rgba(0, 0, 0, 0.2), 10px 5px 10px 0px rgba(0, 0, 0, 0.19);
     font-family: 'Pontano Sans', sans-serif;
     font-size: 17px;
-    width: 8rem;
+    width: 12rem;
+    margin: 0 auto;
+    display: block;
 }
 
 .login-btn:hover {
@@ -24,4 +45,19 @@
     background-color: rgba(255, 255, 255, 0.87);
     border: solid rgba(255, 255, 255, 0.87);
     font-family: 'Pontano Sans', sans-serif;
+}
+
+.no-account {
+    color: rgb(255, 255, 255);
+    font-family: 'Pontano Sans', sans-serif;
+}
+
+.create-act-link {
+    color: rgb(255, 255, 255);
+    font-family: 'Pontano Sans', sans-serif;
+    font-size: 18px;
+}
+
+.create-act-link:hover {
+    color: rgb(0, 0, 0);
 }
