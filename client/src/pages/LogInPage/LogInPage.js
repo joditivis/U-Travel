@@ -30,7 +30,7 @@ class LogInPage extends Component {
         console.log('handleSubmit')
 
         axios.post('/user/login', {
-                email: this.state.email,
+                username: this.state.email,
                 password: this.state.password
             })
             .then(response => {
