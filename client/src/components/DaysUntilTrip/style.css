@@ -9,7 +9,7 @@
     text-align: center;
 }
 
-.countdown-num {
-    font-size: 60px;
+#countdown-num {
+    font-size: 30px;
     text-align: center;
 }
