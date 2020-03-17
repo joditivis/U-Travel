@@ -23,7 +23,8 @@ let x = setInterval(function() {
   let seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
   // Display the result in the element with id="demo"
-  document.getElementById("countdown-num").innerHTML = days + "d " + hours + "h "
+  if(document.getElementById("countdown-num") !== null){
+    document.getElementById("countdown-num").innerHTML = days + "d " + hours + "h "
   + minutes + "m " + seconds + "s ";
 
   // If the count down is finished, display text
@@ -31,6 +32,7 @@ let x = setInterval(function() {
     clearInterval(x);
     document.getElementById("countdown-num").innerHTML = "Time to party";
   }
+};
 }, 1000);
 
   return (
