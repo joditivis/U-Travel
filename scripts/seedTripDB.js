@@ -5,10 +5,24 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/utravel');
 
 const tripSeed = [
     {
-        trip_id: 3198941,
-        name:"New York",
-        item: "Flight",
-        price: 800
+        trip_id: 987654321,
+        destination:"test",
+        flight: [
+            {
+            flight_id: 123456789,
+            departure: "03/30/2020 9:45 AM",
+            arrival: "03/30/2020 12:45 AM",
+            price: 800
+            }
+        ],
+        hotel: [
+            {
+                hotel_id: 23456,
+                name: "fake hotel",
+                roomType: "1 bed",
+                price: 100.10
+            }
+        ]
         
     }
 ];
