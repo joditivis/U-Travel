@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Button, Form, FormGroup, Label, Input, Container, Card,
-  CardHeader,
-  CardBody, } from 'reactstrap';
+import { Redirect } from 'react-router-dom';
+import { Button, Form, FormGroup, Label, Input, Container, Card, CardHeader, CardBody } from 'reactstrap';
 import './style.css';
 import { Link } from 'react-router-dom';
 
@@ -40,11 +39,13 @@ class CreateAccountPage extends Component {
 				console.log(response)
 				if (!response.data.err) {
 					console.log('successfully created account');
+          alert('Account successfully created.');
 					this.setState({ //redirect to login page
 						redirectTo: '/login'
 					})
 				} else {
-					console.log('email already used')
+					console.log('email already used');
+          alert('Email already used.');
 				}
 			}).catch(error => {
 				console.log('create account error: ')
@@ -53,52 +54,57 @@ class CreateAccountPage extends Component {
 	}
 
 render() {
-    return (
-      <Container>
-        <Card className='create-act-card'>
-          <CardHeader className='create-act-header'>
-            <h2>Create Account</h2>
-          </CardHeader>
-            <CardBody className='create-act-body'>
-              <Form className='create-act-form'>
-                    <FormGroup>
-                      <Label className='create-act-label' for='createUserEmail'>Email</Label>
-                      <Input 
-                        type='email' 
-                        name='email' 
-                        id='createUserEmail' 
-                        placeholder='johndoe@example.com'
-                        value={this.state.username}
-                        onChange={this.handleChange}
-                      />
-                    </FormGroup>
+  if (this.state.redirectTo) {
+          return <Redirect to={{ pathname: this.state.redirectTo }} />
+      } else {
+      return (
+        <Container>
+          <Card className='create-act-card'>
+            <CardHeader className='create-act-header'>
+              <h2>Create Account</h2>
+            </CardHeader>
+              <CardBody className='create-act-body'>
+                <Form className='create-act-form'>
+                      <FormGroup>
+                        <Label className='create-act-label' for='createUserEmail'>Email</Label>
+                        <Input 
+                          type='email' 
+                          name='email' 
+                          id='createUserEmail' 
+                          placeholder='johndoe@example.com'
+                          value={this.state.username}
+                          onChange={this.handleChange}
+                        />
+                      </FormGroup>
+                      <br></br>
+                      <FormGroup>
+                        <Label className='create-act-label' for='createUserPassword'>Password</Label>
+                        <Input 
+                          type='password' 
+                          name='password' 
+                          id='createUserPassword' 
+                          placeholder='password'
+                          value={this.state.password}
+                          onChange={this.handleChange} 
+                        />
+                      </FormGroup>
                     <br></br>
-                    <FormGroup>
-                      <Label className='create-act-label' for='createUserPassword'>Password</Label>
-                      <Input 
-                        type='password' 
-                        name='password' 
-                        id='createUserPassword' 
-                        placeholder='password'
-                        value={this.state.password}
-                        onChange={this.handleChange} 
-                      />
-                    </FormGroup>
+                  <Button
+                    className='create-act-btn'
+                    onClick={this.handleSubmit}
+                    type='submit'>
+                    Create Account
+                  </Button>
                   <br></br>
-                <Button
-                  className='create-act-btn'
-                  onClick={this.handleSubmit}
-                  type='submit'>
-                  Create Account
-                </Button>
-                <br></br>
-                <hr></hr>
-                <p className='already-account'>Already have an account? <Link to={`/login`} className='login-link'> Login </Link> </p>
-            </Form>
-          </CardBody>
-        </Card>
-      </Container>
-    );
+                  <hr></hr>
+                  <p className='already-account'>Already have an account? <Link to={`/login`} className='login-link'> Login </Link> </p>
+                  {/* {this.handleSubmit && <h4 className='account-created'>Account successfully created.</h4>} */}
+              </Form>
+            </CardBody>
+          </Card>
+        </Container>
+      );
+    }
   }
 }
 
