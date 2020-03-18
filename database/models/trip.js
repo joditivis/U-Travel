@@ -10,7 +10,7 @@ const tripSchema = new Schema(
                 flight_id: {type: Number, required: true},
                 departure: {type: String, required: true},
                 arrival: {type: String, required: true},
-                price: {type: Number, required: true}
+                price: {type: mongoose.Decimal128, required: true}
             }
         ],
         hotel: [

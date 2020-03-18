@@ -23,6 +23,7 @@ class App extends Component {
     this.state = {
       loggedIn: false,
       email: null,
+      userId: null,
       results: []
     };
 
@@ -49,6 +50,8 @@ class App extends Component {
 
   updateUser(userObject) {
     this.setState(userObject);
+    console.log(userObject);
+    console.log(this.state);
   }
 
   getUser() {
@@ -72,6 +75,10 @@ class App extends Component {
     });
   }
 
+ componentDidMount(){
+   console.log(this.state);
+ }
+  
   render() {
     return (
       <Router>
@@ -91,7 +98,7 @@ class App extends Component {
             <Route path="/createaccount" render={() => <CreateAccountPage />} />
             <Route path="/weather" component={WeatherPage} />
             <Route path="/userpage" component={UserPage} />
-            <Route path="/flightSearchPage" component={TravelSearch} />
+            <Route path="/flightSearchPage" component={TravelSearch} user={this.state.userId} />
             <Route path="/hotelSearchPage" component={HotelSearchPage} />
             <Route component={NoMatch} />
           </Switch>

@@ -8,6 +8,17 @@ import WeatherPage from '../WeatherPage/WeatherPage';
 import TripInfo from '../../components/SavedTripInfo/TripInfo'
 
 class UserPage extends Component {
+
+  db = async () => {
+    const response = await fetch(`/test`);
+    const body = await response.json();
+    if (response.status !== 200) throw Error(body.message);
+    return body;
+  };
+
+  componentDidMount(){
+   this.db().then(res => console.log(res));
+  }
  
   render() {
     return (

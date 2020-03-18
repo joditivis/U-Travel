@@ -10,6 +10,39 @@ class TravelSearch extends Component {
     flightsAny: []
   };
 
+  db = async (requestOptions, trip_id) => {
+    const response = await fetch(`/savetrip/${trip_id}`, requestOptions);
+    const body = await response.json();
+    if (response.status !== 200) throw Error(body.message);
+    return body;
+  };
+  updateDB=() => {
+    // POST request using fetch inside useEffect React hook
+    const requestOptions = {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ destination: 'here is the destination' })
+    };
+    const trip_id = "5e6fd0f1beec473d50eb1b2e";
+   this.db(requestOptions, trip_id)
+        
+        .then(data => console.log(data));
+// empty dependency array means this effect will only run once (like componentDidMount in classes)
+};
+
+findTripByUser = async (user_id) => {
+  const response = await fetch(`/findtrip/${user_id}`);
+  const body = await response.json();
+  if (response.status !== 200) throw Error(body.message);
+  return body;
+};
+
+componentDidMount(){
+  console.log(this.props.user);
+  this.findTripByUser(this.props.user).then(res=>console.log(res))
+}
+
+
   deleteItem = id => {
     console.log(id);
     const flights = this.state.flights.filter(flight => {
@@ -66,7 +99,7 @@ class TravelSearch extends Component {
         <TravelSearchForm flightSearch={this.flightSearch} flightSearchAny={this.flightSearchAny}/>
         {this.state.flights.map(flight => (
           <Row >
-          <TravelSearchResults flight={flight} />
+          <TravelSearchResults flight={flight} updateDB={this.updateDB} />
         </Row>
         ))}
         {this.state.flightsAny.map(flight => (
