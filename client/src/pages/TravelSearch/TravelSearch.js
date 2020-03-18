@@ -30,6 +30,18 @@ class TravelSearch extends Component {
 // empty dependency array means this effect will only run once (like componentDidMount in classes)
 };
 
+findTripByUser = async (user_id) => {
+  const response = await fetch(`/findtrip/${user_id}`);
+  const body = await response.json();
+  if (response.status !== 200) throw Error(body.message);
+  return body;
+};
+
+componentDidMount(){
+  console.log(this.props.user);
+  this.findTripByUser(this.props.user).then(res=>console.log(res))
+}
+
 
   deleteItem = id => {
     console.log(id);

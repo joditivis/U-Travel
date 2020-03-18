@@ -54,7 +54,7 @@ app.use(
 // Add routes, both API and view
 app.use('/user', user);
 app.use(trip);
-console.log(trip);
+
 
 // Routes
 require("./routes/apiRoutes")(app);

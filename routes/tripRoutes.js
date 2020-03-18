@@ -10,5 +10,7 @@ router.route("/savetrip/:id")
 // .get(savedTrips.findById)
     .put(tripsController.updateById);
 // .delete(savedTrips.remove);
+router.route("/findtrip/:userId")
+    .get(tripsController.findByUserID);
 
 module.exports = router;

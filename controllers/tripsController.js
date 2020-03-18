@@ -12,6 +12,11 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
+  findByUserID: function(req, res) {
+    db.Trip.findOne(req.query)
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
   create: function(req, res) {
     db.Trip.find(req.body)
       .then(dbModel => res.json(dbModel))

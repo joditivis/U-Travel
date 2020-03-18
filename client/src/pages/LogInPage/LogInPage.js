@@ -38,9 +38,11 @@ class LogInPage extends Component {
                 console.log(response)
                 if (response.status === 200) {
                     // Update state to logged in
+                    console.log(response.data);
                     this.props.updateUser({
                         loggedIn: true,
-                        email: response.data.email
+                        email: response.data.email,
+                        userId: response.data.id
                     })
                     // Update the state to redirect to home
                     this.setState({
