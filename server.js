@@ -13,7 +13,7 @@ const path = require('path');
 // Route requires
 const user = require('./routes/user');
 const trip = require('./routes/tripRoutes');
-console.log(trip);
+
 
 const app = express();
 const cors = require("cors");
@@ -53,6 +53,8 @@ app.use(
 
 // Add routes, both API and view
 app.use('/user', user);
+app.use(trip);
+console.log(trip);
 
 // Routes
 require("./routes/apiRoutes")(app);

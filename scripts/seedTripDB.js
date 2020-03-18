@@ -26,6 +26,7 @@ const tripSeed = [
         
     }
 ];
+
 db.Trip
     .remove({})
     .then(()=>db.Trip.collection.insertMany(tripSeed))
