@@ -10,7 +10,7 @@ export const Footer = (props) => {
             <Container>
                 <Row>
                     <Col md={12}>
-                        <a className='project-github' href='https://github.com/Nicole103/U-Travel' rel='noopener noreferrer' target='_blank'><i class='fab fa-github'></i></a>
+                        <a className='project-github' href='https://github.com/Nicole103/U-Travel' rel='noopener noreferrer' target='_blank'><i className='fab fa-github'></i></a>
                     </Col>
                 </Row>
                 <Row>
