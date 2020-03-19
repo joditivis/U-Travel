@@ -22,10 +22,13 @@ const tripSeed = [
                 roomType: "1 bed",
                 price: 100.10
             }
-        ]
+        ],
+        user: '5e717d6db04a6e2a58e974b5'
+            
         
     }
 ];
+
 db.Trip
     .remove({})
     .then(()=>db.Trip.collection.insertMany(tripSeed))

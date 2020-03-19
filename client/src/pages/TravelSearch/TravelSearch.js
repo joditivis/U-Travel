@@ -1,14 +1,57 @@
-import React, { Component } from 'react';
-import { Container, Row } from 'reactstrap';
-import TravelSearchForm from '../../components/TravelSearch/TravelSearchForm';
-import TravelSearchResults from '../../components/TravelSearch/TravelSearchResults';
-import TravelSearchAnyResults from '../../components/TravelSearch/TravelSearchAnyResults';
+import React, { Component } from "react";
+import { Container, Row } from "reactstrap";
+import TravelSearchForm from "../../components/TravelSearch/TravelSearchForm";
+import TravelSearchResults from "../../components/TravelSearch/TravelSearchResults";
+import TravelSearchAnyResults from "../../components/TravelSearch/TravelSearchAnyResults";
 
 class TravelSearch extends Component {
   state = {
     flights: [],
     flightsAny: []
   };
+
+  db = async (requestOptions, trip_id) => {
+    const response = await fetch(`/savetrip/${trip_id}`, requestOptions);
+    const body = await response.json();
+    if (response.status !== 200) throw Error(body.message);
+    return body;
+  };
+  updateDB = () => {
+    // POST request using fetch inside useEffect React hook
+    const requestOptions = {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ destination: "here is the destination" })
+    };
+    const trip_id = "5e6fd0f1beec473d50eb1b2e";
+    this.db(requestOptions, trip_id)
+    .then(data => console.log(data));
+    // empty dependency array means this effect will only run once (like componentDidMount in classes)
+  };
+
+  findTrip = async ( user_id) => {
+    const response = await fetch(`/findtrip/${user_id}`);
+    const body = await response.json();
+    if (response.status !== 200) throw Error(body.message);
+    return body;
+  };
+
+  findTripByUser = async user_id => {
+    console.log(user_id);
+    // const requestOptions = {
+    //   method: "GET",
+    //   headers: { "Content-Type": "application/json" },
+    //   query: { user: {$eq: user_id} }
+    // };
+    this.findTrip(user_id).then(data=> console.log(data))
+  };
+
+  componentDidMount() {
+    console.log(this.props.user);
+    if(this.props.user){
+    this.findTripByUser(this.props.user).then(res => console.log(res));
+    }
+  }
 
   deleteItem = id => {
     console.log(id);
@@ -18,33 +61,45 @@ class TravelSearch extends Component {
     this.setState({ flights });
   };
 
-//   addItem = flight => {
-//     flight.id = Math.random();
-//     let items = [...this.state.flights, flight];
-//     this.setState({
-//       flights
-//     });
-//   };
+  //   addItem = flight => {
+  //     flight.id = Math.random();
+  //     let items = [...this.state.flights, flight];
+  //     this.setState({
+  //       flights
+  //     });
+  //   };
 
-  flightSearch = (flightSearch) => {
-    this.callApi(flightSearch.origin, flightSearch.destination, flightSearch.startDate, flightSearch.numAdults)
+  flightSearch = flightSearch => {
+    this.callApi(
+      flightSearch.origin,
+      flightSearch.destination,
+      flightSearch.startDate,
+      flightSearch.numAdults
+    )
       .then(res => this.setState({ flights: res.data }))
       // .then(res2 => console.log(this.state.flights))
       .catch(err => {
-        console.log(err)});
-  }
+        console.log(err);
+      });
+  };
 
-  flightSearchAny = (flightSearch) => {
-    this.callApiAny(flightSearch.origin, flightSearch.startDate, flightSearch.numAdults)
+  flightSearchAny = flightSearch => {
+    this.callApiAny(
+      flightSearch.origin,
+      flightSearch.startDate,
+      flightSearch.numAdults
+    )
       .then(res => this.setState({ flightsAny: res.data }))
       // .then(res2 => console.log(this.state.flights))
       .catch(err => {
-        console.log(err)});
-  }
+        console.log(err);
+      });
+  };
 
   callApi = async (origin, destination, date, adults) => {
-    
-    const response = await fetch(`/flights/${origin}/${destination}/${date}/${adults}/true`);
+    const response = await fetch(
+      `/flights/${origin}/${destination}/${date}/${adults}/true`
+    );
     const body = await response.json();
     if (response.status !== 200) throw Error(body.message);
 
@@ -52,7 +107,6 @@ class TravelSearch extends Component {
   };
 
   callApiAny = async (origin, date, adults) => {
-    
     const response = await fetch(`/flightDestinations/${origin}/${date}/true`);
     const body = await response.json();
     if (response.status !== 200) throw Error(body.message);
@@ -63,16 +117,19 @@ class TravelSearch extends Component {
   render() {
     return (
       <Container>
-        <TravelSearchForm flightSearch={this.flightSearch} flightSearchAny={this.flightSearchAny}/>
+        <TravelSearchForm
+          flightSearch={this.flightSearch}
+          flightSearchAny={this.flightSearchAny}
+        />
         {this.state.flights.map(flight => (
-          <Row >
-          <TravelSearchResults flight={flight} />
-        </Row>
+          <Row>
+            <TravelSearchResults flight={flight} updateDB={this.updateDB} />
+          </Row>
         ))}
         {this.state.flightsAny.map(flight => (
-          <Row >
-          <TravelSearchAnyResults flight={flight} />
-        </Row>
+          <Row>
+            <TravelSearchAnyResults flight={flight} />
+          </Row>
         ))}
       </Container>
     );

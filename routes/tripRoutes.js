@@ -1,14 +1,16 @@
-const express = require('express');
-const router = express.Router();
-const Trip = require('../controllers/tripsController');
+
+const router = require('express').Router();
+const tripsController = require('../controllers/tripsController');
 
 router.route('/test')
-    .get(Trip.findAll)
+    .get(tripsController.findAll)
+    .post(tripsController.create);
     
-
-// .route("/:id")
+router.route("/savetrip/:id")
 // .get(savedTrips.findById)
-// .put(savedTrips.update)
+    .put(tripsController.updateById);
 // .delete(savedTrips.remove);
+router.route("/findtrip/:userId")
+    .get(tripsController.findByUserID);
 
-module.exports=router;
+module.exports = router;
