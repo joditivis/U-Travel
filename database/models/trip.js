@@ -22,12 +22,8 @@ const tripSchema = new Schema(
 
             }
         ],        
-        user: [
-            {
-                type: Schema.Types.ObjectId,
-                ref: "User"
-            }
-        ]
+        user: { type: String, required: true }
+        
 
     }
 );
