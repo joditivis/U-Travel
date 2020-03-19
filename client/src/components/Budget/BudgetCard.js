@@ -5,7 +5,7 @@ import MoneySavedInput from './MoneySavedInput';
 import './style.css';
 
 
-const BudgetCard = props => {
+const BudgetCard = () => {
 
   return (
     <div>
@@ -14,22 +14,16 @@ const BudgetCard = props => {
             <CardBody>
                <h5>Total Trip Cost:</h5>
                <br></br>
-               <h5 className="trip-cost">$4,286</h5>
+               <h4 className="trip-cost">$6,470</h4>
 
                <hr></hr>
-
-               <Chart />
-
-               <br></br>
-               <hr></hr>
-               <br></br>
 
                <h5>Money Saved:</h5>
                <MoneySavedInput />
                <br></br>
-               <p>*Amount will be subtracted from 
-               <br></br>
-               total amount needed for trip</p>
+               <hr></hr>
+
+               <Chart />
                
             </CardBody>
       </Card>

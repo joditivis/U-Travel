@@ -11,7 +11,10 @@ class CreateAccountPage extends Component {
         this.state = {
           email: '',
           password: '',
-          redirectTo: null
+          redirectTo: null,
+          errorEmailMsg:'',
+          errorPasswordMsg:''
+          // errorExistingEmail: ''
         }
 
         this.handleSubmit = this.handleSubmit.bind(this)
@@ -28,7 +31,7 @@ class CreateAccountPage extends Component {
     handleSubmit(event) {
       console.log('Create account handleSubmit, email: ')
       console.log(this.state.email)
-      event.preventDefault()
+      event.preventDefault();
 
       // Request to server to add a new email/password
       axios.post('/user/', {
@@ -36,20 +39,25 @@ class CreateAccountPage extends Component {
         password: this.state.password
       })
 			.then(response => {
-				console.log(response)
-				if (!response.data.err) {
-					console.log('successfully created account');
-          alert('Account successfully created.');
-					this.setState({ //redirect to login page
-						redirectTo: '/login'
-					})
+				console.log("Response from create account submission:", response)
+        if(response.data._id){
+          console.log('Account Successfully Created')
+          this.setState({
+            redirectTo: '/login'
+          })
 				} else {
-					console.log('email already used');
-          alert('Email already used.');
+          let errorEmailMsg = response.data.errors.email ? response.data.errors.email.message  : ''
+          let errorPasswordMsg = response.data.errors.password ? response.data.errors.password.message  : ''
+          // let errorExistingEmail = response.data.error ? response.data.error : ''
+            
+          this.setState({
+            errorEmailMsg : errorEmailMsg, 
+            errorPasswordMsg : errorPasswordMsg, 
+            // errorExistingEmail : errorExistingEmail
+          })
 				}
-			}).catch(error => {
-				console.log('create account error: ')
-				console.log(error)
+			// }).catch(error => {
+			// 	console.log('create account error: ', error)
 			});
 	}
 
@@ -76,6 +84,8 @@ render() {
                           onChange={this.handleChange}
                         />
                       </FormGroup>
+                      {this.state.errorEmailMsg ? (<p className='errormsg'>{this.state.errorEmailMsg}</p> ):( <p></p>)}
+                      {/* {this.state.errorExistingEmail ? (<p className='errormsg'>{this.state.errorExistingEmail}</p> ):( <p></p>)} */}
                       <br></br>
                       <FormGroup>
                         <Label className='create-act-label' for='createUserPassword'>Password</Label>
@@ -88,6 +98,7 @@ render() {
                           onChange={this.handleChange} 
                         />
                       </FormGroup>
+                      {this.state.errorPasswordMsg ? (<p className='errormsg'>{this.state.errorPasswordMsg}</p> ):( <p></p>)}
                     <br></br>
                   <Button
                     className='create-act-btn'
@@ -98,7 +109,6 @@ render() {
                   <br></br>
                   <hr></hr>
                   <p className='already-account'>Already have an account? <Link to={`/login`} className='login-link'> Login </Link> </p>
-                  {/* {this.handleSubmit && <h4 className='account-created'>Account successfully created.</h4>} */}
               </Form>
             </CardBody>
           </Card>
