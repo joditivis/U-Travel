@@ -4,6 +4,8 @@ import moment from 'moment';
 
 const TravelSearchResults = props => {
   console.log(props.flight.offerItems[0].services[0].segments[0].flightSegment.carrierCode);
+ 
+ 
   return (
         <Card className="travelCard">
           <CardHeader className="flight-results-header"><h3>Airline: {props.flight.offerItems[0].services[0].segments[0].flightSegment.carrierCode}</h3></CardHeader>
@@ -14,7 +16,7 @@ const TravelSearchResults = props => {
                   <hr></hr>
                   <p className="flight-details"><h5>Price:</h5> ${props.flight.offerItems[0].price.total}</p>
                   <br></br>
-                  <Button className="flight-results-btn" id={props.flight.id}>Save Flight</Button>
+                  <Button className="flight-results-btn" id={props.flight.id} onClick={props.updateDB}>Save Flight</Button>
             </CardBody>
         </Card>
   );
