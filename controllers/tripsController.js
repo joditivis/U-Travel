@@ -13,7 +13,8 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   findByUserID: function(req, res) {
-    db.Trip.findOne(req.query)
+      console.log("this is the body line", req.params);
+    db.Trip.findOne({user: req.params.userId})
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },

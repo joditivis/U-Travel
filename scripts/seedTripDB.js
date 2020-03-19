@@ -23,11 +23,8 @@ const tripSeed = [
                 price: 100.10
             }
         ],
-        user:[
-            {
-                user_id: '5e717d6db04a6e2a58e974b5'
-            }
-        ]
+        user: '5e717d6db04a6e2a58e974b5'
+            
         
     }
 ];

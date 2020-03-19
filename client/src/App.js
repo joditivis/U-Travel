@@ -75,9 +75,6 @@ class App extends Component {
     });
   }
 
- componentDidMount(){
-   console.log(this.state);
- }
   
   render() {
     return (
@@ -98,7 +95,11 @@ class App extends Component {
             <Route path="/createaccount" render={() => <CreateAccountPage />} />
             <Route path="/weather" component={WeatherPage} />
             <Route path="/userpage" component={UserPage} />
-            <Route path="/flightSearchPage" component={TravelSearch} user={this.state.userId} />
+            {/* <Route path="/flightSearchPage" component={TravelSearch}/> */}
+            <Route 
+            path="/flightSearchPage"
+            render={() => <TravelSearch user={this.state.userId} />} 
+            />
             <Route path="/hotelSearchPage" component={HotelSearchPage} />
             <Route component={NoMatch} />
           </Switch>
