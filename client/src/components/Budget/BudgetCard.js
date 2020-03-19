@@ -6,7 +6,7 @@ import './style.css';
 
 
 const BudgetCard = props => {
-
+console.log('trip', props.trip)
   return (
     <div>
       <Card className='budget-card'>
@@ -18,7 +18,8 @@ const BudgetCard = props => {
 
                <hr></hr>
 
-               <Chart />
+               <Chart 
+               trip={props.trip}/>
 
                <br></br>
                <hr></hr>
