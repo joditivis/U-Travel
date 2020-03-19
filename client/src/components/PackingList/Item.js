@@ -10,7 +10,7 @@ const Item = ({ item, index, completeItem, removeItem  }) => {
         <Input type="checkbox"
      
           className="item-btn"
-          size="sm"
+          bsSize="sm"
           onClick={() => completeItem(index)}
         >
       

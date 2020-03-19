@@ -50,8 +50,7 @@ class LogInPage extends Component {
                     })
                 }
             }).catch(error => {
-                console.log('login error: ')
-                console.log(error);
+                console.log('Login Error: ', error);
                 
             })
     }
