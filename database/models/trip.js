@@ -3,22 +3,21 @@ const Schema = mongoose.Schema;
 
 const tripSchema = new Schema(
     {
-        trip_id: {type: Number, required: true},
         destination: {type: String, required: true},
         flight:[
             {
-                flight_id: {type: Number, required: true},
-                departure: {type: String, required: true},
-                arrival: {type: String, required: true},
-                price: {type: mongoose.Decimal128, required: true}
+                flight_id: {type: Number},
+                departure: {type: String},
+                arrival: {type: String},
+                price: {type: mongoose.Decimal128}
             }
         ],
         hotel: [
             {
-                hotel_id: {type: Number, required: true},
-                name: {type: String, required: true},
-                roomType: {type: String, required: true},
-                price: {type: mongoose.Decimal128, required: true}
+                hotel_id: {type: Number},
+                name: {type: String},
+                roomType: {type: String},
+                price: {type: mongoose.Decimal128}
 
             }
         ],        
