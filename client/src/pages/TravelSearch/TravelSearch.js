@@ -7,7 +7,9 @@ import TravelSearchAnyResults from "../../components/TravelSearch/TravelSearchAn
 class TravelSearch extends Component {
   state = {
     flights: [],
-    flightsAny: []
+    flightsAny: [],
+    trip: "",
+    user: ""
   };
 
   db = async (requestOptions, trip_id) => {
@@ -29,28 +31,15 @@ class TravelSearch extends Component {
     // empty dependency array means this effect will only run once (like componentDidMount in classes)
   };
 
-  findTrip = async ( user_id) => {
-    const response = await fetch(`/findtrip/${user_id}`);
-    const body = await response.json();
-    if (response.status !== 200) throw Error(body.message);
-    return body;
-  };
-
-  findTripByUser = async user_id => {
-    console.log(user_id);
-    // const requestOptions = {
-    //   method: "GET",
-    //   headers: { "Content-Type": "application/json" },
-    //   query: { user: {$eq: user_id} }
-    // };
-    this.findTrip(user_id).then(data=> console.log(data))
-  };
 
   componentDidMount() {
     console.log(this.props.user);
-    if(this.props.user){
-    this.findTripByUser(this.props.user).then(res => console.log(res));
-    }
+    console.log(this.props.trip);
+    this.setState({
+      trip: this.props.trip,
+      user: this.props.user
+    }, () =>console.log(this.state));
+    ;
   }
 
   deleteItem = id => {
@@ -60,14 +49,6 @@ class TravelSearch extends Component {
     });
     this.setState({ flights });
   };
-
-  //   addItem = flight => {
-  //     flight.id = Math.random();
-  //     let items = [...this.state.flights, flight];
-  //     this.setState({
-  //       flights
-  //     });
-  //   };
 
   flightSearch = flightSearch => {
     this.callApi(

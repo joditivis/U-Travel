@@ -19,7 +19,9 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   create: function(req, res) {
-    db.Trip.find(req.body)
+    console.log("create is happening");
+    console.log(req.body);
+    db.Trip.create(req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
