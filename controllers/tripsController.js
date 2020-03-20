@@ -34,6 +34,23 @@ module.exports = {
     )
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
+  },
+  updateFlightById: function(req, res) {
+    console.log(req.body.flight);
+    db.Trip.findOneAndUpdate(
+      { _id: req.params.id },
+      { $set: {flight: {
+        flight_id: req.body.flight.id,
+        origin: req.body.flight.origin,
+        destination: req.body.flight.destination,
+        departure: req.body.flight.departure,
+        arrival: req.body.flight.arrival,
+        price: req.body.flight.price
+      }}},
+      req.body
+    )
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
   }
 };
 
