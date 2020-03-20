@@ -66,7 +66,7 @@ class App extends Component {
           email: response.data.user.email
         });
       } else {
-        console.log("Get user: no user");
+        console.log("Get user: No user logged in.");
         this.setState({
           loggedIn: false,
           email: null

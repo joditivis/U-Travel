@@ -12,6 +12,8 @@ class LogInPage extends Component {
             email: '',
             password: '',
             redirectTo: null
+            // incorrectEmail: '',
+            // incorrectPassword: ''
         }
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleChange = this.handleChange.bind(this)
@@ -34,8 +36,7 @@ class LogInPage extends Component {
                 password: this.state.password
             })
             .then(response => {
-                console.log('login response: ')
-                console.log(response)
+                console.log('login response: ', response)
                 if (response.status === 200) {
                     // Update state to logged in
                     console.log(response.data);
@@ -49,9 +50,18 @@ class LogInPage extends Component {
                         redirectTo: '/'
                     })
                 }
+                // } else {
+                //   let incorrectEmail = response.data.error ? response.data.email : ''
+                //   let incorrectPassword = response.data.error ? response.data.password : ''
+
+                //   this.setState({
+                //     incorrectEmail : incorrectEmail,
+                //     incorrectPassword : incorrectPassword
+                //   })
+                // }
             }).catch(error => {
                 console.log('Login Error: ', error);
-                
+
             })
     }
 

@@ -38,7 +38,7 @@ let x = setInterval(function() {
   return (
     <div>
       <Card className='countdown-card'>
-        <CardHeader className='countdown-header'>Days Until Trip</CardHeader>
+        <CardHeader className='countdown-header'><h4>Days Until Trip</h4></CardHeader>
             <CardBody id='countdown-num'></CardBody>
       </Card>
     </div>
