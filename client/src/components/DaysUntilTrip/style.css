@@ -9,7 +9,30 @@
     text-align: center;
 }
 
+.start-date-text {
+    text-align: center;
+}
+
+.date-change-input {
+    width: 10rem;
+    margin: 0 auto;
+    display: block;
+}
+
+.pencil {
+    font-size: 17px;
+}
+
+.pencil:hover {
+    color: black;
+}
+
+.vacation-date {
+    font-size: 25px;
+    text-align: center;
+}
+
 #countdown-num {
-    font-size: 30px;
+    font-size: 25px;
     text-align: center;
 }
