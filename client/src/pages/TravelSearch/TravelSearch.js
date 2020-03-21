@@ -4,6 +4,8 @@ import TravelSearchForm from "../../components/TravelSearch/TravelSearchForm";
 import TravelSearchResults from "../../components/TravelSearch/TravelSearchResults";
 import TravelSearchAnyResults from "../../components/TravelSearch/TravelSearchAnyResults";
 import axios from "axios";
+import toast from "toasted-notes";
+import "toasted-notes/src/styles.css";
 
 class TravelSearch extends Component {
   constructor(props) {
@@ -21,7 +23,18 @@ class TravelSearch extends Component {
   db = async (requestOptions, trip_id) => {
     const response = await axios.put(`/saveflight/${trip_id}`, requestOptions);
     const body = await response;
-    if (response.status !== 200) throw Error(body.message);
+    if (response.status !== 200) {
+      toast.notify("We are having a little trouble saving your information - please try again.", {
+        position: "top", // top-left, top, top-right, bottom-left, bottom, bottom-right
+        duration: 5000 // This notification will not automatically close
+      });
+      throw Error(body.message);
+    } else {
+      toast.notify("Your flight has been saved.", {
+        position: "bottom", // top-left, top, top-right, bottom-left, bottom, bottom-right
+        duration: 2000 // This notification will not automatically close
+      });
+    }
     return body;
   };
   updateDB = (trip_id, flightInfo) => {
@@ -100,9 +113,16 @@ class TravelSearch extends Component {
 
   getTripInfoFromButton(tripObject) {
     console.log(tripObject);
+    if (!this.state.trip) {
+      toast.notify("Please create an account before attempting to save a trip.", {
+        position: "top", // top-left, top, top-right, bottom-left, bottom, bottom-right
+        duration: 10000 // This notification will not automatically close
+      });
+    } else {
     this.updateDB(this.state.trip, tripObject);
     console.log("trip is updated");
     console.log(this.state);
+    }
   }
 
   render() {
