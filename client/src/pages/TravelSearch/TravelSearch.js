@@ -1,9 +1,11 @@
 import React, { Component } from "react";
-import { Container, Row } from "reactstrap";
+import { Container, Row, Card, CardHeader, Col } from "reactstrap";
 import TravelSearchForm from "../../components/TravelSearch/TravelSearchForm";
 import TravelSearchResults from "../../components/TravelSearch/TravelSearchResults";
 import TravelSearchAnyResults from "../../components/TravelSearch/TravelSearchAnyResults";
 import axios from "axios";
+import toast from "toasted-notes";
+import "toasted-notes/src/styles.css";
 
 class TravelSearch extends Component {
   constructor(props) {
@@ -12,7 +14,8 @@ class TravelSearch extends Component {
       flights: [],
       flightsAny: [],
       trip: "",
-      user: ""
+      user: "",
+      search: false
     };
     //this.setState = this.setState.bind(this);
     this.getTripInfoFromButton = this.getTripInfoFromButton.bind(this);
@@ -21,7 +24,21 @@ class TravelSearch extends Component {
   db = async (requestOptions, trip_id) => {
     const response = await axios.put(`/saveflight/${trip_id}`, requestOptions);
     const body = await response;
-    if (response.status !== 200) throw Error(body.message);
+    if (response.status !== 200) {
+      toast.notify(
+        "We are having a little trouble saving your information - please try again.",
+        {
+          position: "top", // top-left, top, top-right, bottom-left, bottom, bottom-right
+          duration: 5000 // This notification will not automatically close
+        }
+      );
+      throw Error(body.message);
+    } else {
+      toast.notify("Your flight has been saved.", {
+        position: "bottom", // top-left, top, top-right, bottom-left, bottom, bottom-right
+        duration: 2000 // This notification will not automatically close
+      });
+    }
     return body;
   };
   updateDB = (trip_id, flightInfo) => {
@@ -54,6 +71,9 @@ class TravelSearch extends Component {
   };
 
   flightSearch = flightSearch => {
+    this.setState({
+      search: true
+    });
     this.callApi(
       flightSearch.origin,
       flightSearch.destination,
@@ -100,9 +120,19 @@ class TravelSearch extends Component {
 
   getTripInfoFromButton(tripObject) {
     console.log(tripObject);
-    this.updateDB(this.state.trip, tripObject);
-    console.log("trip is updated");
-    console.log(this.state);
+    if (!this.state.trip) {
+      toast.notify(
+        "Please create an account before attempting to save a trip.",
+        {
+          position: "top", // top-left, top, top-right, bottom-left, bottom, bottom-right
+          duration: 10000 // This notification will not automatically close
+        }
+      );
+    } else {
+      this.updateDB(this.state.trip, tripObject);
+      console.log("trip is updated");
+      console.log(this.state);
+    }
   }
 
   render() {
@@ -113,15 +143,23 @@ class TravelSearch extends Component {
           flightSearchAny={this.flightSearchAny}
         />
         <Row>
-          {this.state.flights.map(flight => (
-            <TravelSearchResults
-              key={flight.id}
-              flight={flight}
-              updateDB={this.updateDB}
-              getTripInfoFromButton={this.getTripInfoFromButton}
-              trip={this.state.trip_id}
-            />
-          ))}
+          {!this.state.flights.length && this.state.search ? (
+            <Col>
+              <Card className="travelCard">
+                <CardHeader>There are no flight results.</CardHeader>
+              </Card>
+            </Col>
+          ) : (
+            this.state.flights.map(flight => (
+              <TravelSearchResults
+                key={flight.id}
+                flight={flight}
+                updateDB={this.updateDB}
+                getTripInfoFromButton={this.getTripInfoFromButton}
+                trip={this.state.trip_id}
+              />
+            ))
+          )}
         </Row>
         <Row>
           {this.state.flightsAny.map(flight => (
