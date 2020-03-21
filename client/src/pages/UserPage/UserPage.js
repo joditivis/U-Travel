@@ -17,6 +17,7 @@ import CountDown from '../../components/DaysUntilTrip/CountDown';
 import WeatherPage from '../WeatherPage/WeatherPage';
 // import TripInfo from '../../components/SavedTripInfo/TripInfo';
 import Trip from '../../components/SavedTripInfo/Trip';
+import DestinationCard from '../../components/DestinationInput/DestinationCard';
 // import AddTripForm from '../../components/SavedTripInfo/AddTripForm';
 import './style.css';
 
@@ -90,12 +91,18 @@ const UserPage = () => {
   return (
     <Container>
       <br></br>
-      <br></br>
       <Row>
-        <Col md={7}>
+        <Col md={6}>
+          <DestinationCard />
+        </Col>
+        <Col md={6}>
+          <CountDown />
+          <br></br>
+        </Col>
+        <Col md={6}>
           <Card className="trip-card">
             <CardHeader className="trip-header">
-              <h4>Planned trip to Kailua Kona, HI</h4>
+              <h4>Planned Activities</h4>
             </CardHeader>
             {/* <CardHeader>Add to my trip</CardHeader>
       <AddTripForm addTrip={addTrip} /> */}
@@ -129,10 +136,10 @@ const UserPage = () => {
           <PackingList />
           <br></br>
         </Col>
-        <Col md={5}>
-          <CountDown />
-          <br></br>
-          <BudgetCard trip={trips} />
+        <Col md={6}>
+          <BudgetCard
+          trip={trips} 
+          />
         </Col>
       </Row>
       <br></br>

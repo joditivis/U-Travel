@@ -1,0 +1,28 @@
+.destination-card {
+    background-color: rgba(66, 66, 66, 0.74);
+    font-family: 'Pontano Sans', sans-serif;
+    color: rgb(255, 255, 255);
+}
+
+.destination-header {
+    font-size: 20px;
+    text-align: center;
+}
+
+.destination-input {
+    width: 10rem;
+    margin: 0 auto;
+    display: block;
+    font-size: 27px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.destination {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-family: 'Pontano Sans', sans-serif;
+    font-size: 30px;
+    text-align: center;
+
+}
