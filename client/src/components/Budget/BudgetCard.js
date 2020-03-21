@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardHeader, CardBody } from 'reactstrap';
+import { Card, CardHeader, CardBody, Row, Col } from 'reactstrap';
 import Chart from './Chart';
 import MoneySavedInput from './MoneySavedInput';
 import './style.css';
@@ -14,19 +14,25 @@ console.log('trip', props.trip)
       <Card className='budget-card'>
         <CardHeader className='budget-header'><h4>Trip Expenses</h4></CardHeader>
             <CardBody>
-               <h5>Total Trip Cost:</h5>
-               <br></br>
-               <h4 className="trip-cost">$6,470</h4>
-
-               <hr></hr>
-
-               <h5>Money Saved:</h5>
-               <MoneySavedInput />
-               <br></br>
-               <hr></hr>
-
                <Chart 
                trip={props.trip}/>
+
+               <br></br>
+               <hr></hr>
+               <br></br>
+
+              <Row>
+                <Col md={6}>
+                  <h5>Total Trip Cost:</h5>
+                  <h4 className="trip-cost">$6,470</h4>
+                </Col>
+
+                <Col md={6}>
+                  {/* <h5>Money Saved:</h5> */}
+                  <MoneySavedInput />
+                </Col>
+               </Row>
+               <br></br>
                
             </CardBody>
       </Card>

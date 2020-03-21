@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardHeader, CardBody } from 'reactstrap';
+import { Card, CardHeader, CardBody, Row, Col } from 'reactstrap';
 import DateInput from './DateInput';
 import './style.css';
 
@@ -41,11 +41,17 @@ let x = setInterval(function() {
       <Card className='countdown-card'>
         <CardHeader className='countdown-header'><h4>Count Down</h4></CardHeader>
             <CardBody>
-              <h5 className='start-date-text'>Vacation Start Date:</h5>
-              <DateInput />
-              <hr></hr>
-              <h5 className='start-date-text'>Days Until Trip:</h5>
-              <p id='countdown-num'></p>
+              <Row>
+                <Col md={6}>
+                  <h5 className='start-date-text'>Vacation Start Date:</h5>
+                  <DateInput />
+                </Col>
+                  {/* <hr></hr> */}
+                <Col md={6}>
+                  <h5 className='start-date-text'>Days Until Trip:</h5>
+                  <p id='countdown-num'></p>
+                </Col>
+              </Row>
             </CardBody>
       </Card>
     </div>
