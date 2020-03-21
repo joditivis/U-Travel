@@ -22,14 +22,12 @@ import './style.css';
 
 const AddTripForm = ({ addTrip }) => {
   const [title, setTitle] = useState('');
-  const [peopleOrDays, setPeopleOrDays] = useState('');
   const [amount, setAmount] = useState('');
 
   const handleSubmit = event => {
     event.preventDefault();
-    addTrip(title, peopleOrDays, amount);
+    addTrip(title, amount);
     setTitle('');
-    setPeopleOrDays('');
     setAmount('');
   };
 
@@ -44,15 +42,6 @@ const AddTripForm = ({ addTrip }) => {
         onChange={event => setTitle(event.target.value)}
       />
       <br></br>
-      {/* <Input
-        className="add-trip-input"
-        type="text"
-        name="peopleOrDays"
-        placeholder="people/days"
-        value={peopleOrDays}
-        onChange={event => setPeopleOrDays(event.target.value)}
-      />
-      <br></br> */}
       <Input
         className="add-trip-input"
         type="text"
@@ -73,24 +62,21 @@ const UserPage = () => {
   const [trips, setTrip] = useState([
     {
       title: 'Surfing',
-      peopleOrDays: 5,
       amount: 400
     },
     {
       title: 'Hiking',
-      peopleOrDays: 2,
       amount: 100
     },
     {
       title: 'Helicopter Tour',
-      peopleOrDays: 4,
       amount: 1000
     }
   ]);
 
-  const addTrip = (title, peopleOrDays, amount) => {
-    console.log('add trip', { title, peopleOrDays, amount });
-    const newTrip = [...trips, { title, peopleOrDays, amount }];
+  const addTrip = (title, amount) => {
+    console.log('add trip', { title, amount });
+    const newTrip = [...trips, { title, amount }];
     setTrip(newTrip);
   };
 
@@ -118,7 +104,6 @@ const UserPage = () => {
                 <thead>
                   <tr>
                     <th>Activity</th>
-                    {/* <th>People/Days</th> */}
                     <th>Cost</th>
                     <th>Remove</th>
                   </tr>
@@ -147,9 +132,7 @@ const UserPage = () => {
         <Col md={5}>
           <CountDown />
           <br></br>
-          <BudgetCard
-          trip={trips} 
-          />
+          <BudgetCard trip={trips} />
         </Col>
       </Row>
       <br></br>
@@ -160,6 +143,5 @@ const UserPage = () => {
     </Container>
   );
 };
-
 
 export default UserPage;
