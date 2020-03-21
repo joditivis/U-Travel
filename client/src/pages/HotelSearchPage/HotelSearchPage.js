@@ -37,15 +37,15 @@ class HotelSearchPage extends Component {
     }
   
     hotelSearch = (hotelSearch) => {
-      this.callApi(hotelSearch.city)
+      this.callApi(hotelSearch.city, hotelSearch.checkInDate)
         .then(res => this.setState({ hotels: res.data }))
         // .then(res2 => console.log(this.state.flights))
         .catch(err => console.log(err));
     }
   
-    callApi = async (city) => {
+    callApi = async (city, checkInDate) => {
       
-      const response = await fetch(`/hotels/${city}`);
+      const response = await fetch(`/hotels/${city}/${checkInDate}`);
       const body = await response.json();
       if (response.status !== 200) throw Error(body.message);
   

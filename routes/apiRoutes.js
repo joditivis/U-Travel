@@ -132,10 +132,15 @@ module.exports = function(app) {
   });
 
   // Get list of hotels by city code
-  app.get("/hotels/:city", (req, res) => {
+  app.get("/hotels/:city/:checkInDate?", (req, res) => {
+    let today = new Date();
+    let dd = String(today.getDate()).padStart(2, '0');
+    let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    let yyyy = today.getFullYear();
     amadeus.shopping.hotelOffers
       .get({
-        cityCode: req.params.city
+        cityCode: req.params.city,
+        checkInDate: req.params.checkInDate || `${yyyy}-${mm}-${dd}`
       })
       .then(function(response) {
         res.send({ data: response.data });

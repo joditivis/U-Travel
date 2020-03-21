@@ -62,11 +62,10 @@ class HotelSearchForm extends Component {
       suggestionsDestination: [],
       isLoading: false,
       city: "",
-      date: "",
+      checkInDate: "",
+      checkOutDate: "",
       numAdults: 1,
       nonStop: false,
-      startDate: "",
-      endDate: ""
     };
     this.lastRequestId = null;
   }
@@ -130,17 +129,17 @@ class HotelSearchForm extends Component {
   setDate = datePicker => {
     console.log("dates should be saving");
     console.log(datePicker);
-    let startDate =
+    let checkInDate =
       datePicker === null
         ? ""
         : moment(datePicker.startDate).format("YYYY-MM-DD");
-    let endDate =
+    let checkOutDate =
       datePicker === null
         ? ""
         : moment(datePicker.endDate).format("YYYY-MM-DD");
     this.setState({
-      startDate: startDate,
-      endDate: endDate
+      checkInDate: checkInDate,
+      checkOutDate: checkOutDate
     });
   };
 
