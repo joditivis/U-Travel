@@ -52,9 +52,9 @@ class TravelSearchResults extends Component {
             }
           </h3>
         </CardHeader>
-        <CardBody>
-          <p className="flight-details">
-            <h5>Departure:</h5>{" "}
+        <CardBody className="flight-details">
+
+            <h5>Departure:</h5>          <p className="flight-details">{" "}
             {
               this.props.flight.offerItems[0].services[0].segments[0]
                 .flightSegment.departure.iataCode
@@ -67,8 +67,8 @@ class TravelSearchResults extends Component {
             ).format("MM/DD/YYYY h:mm a")}
           </p>
           <hr></hr>
-          <p className="flight-details">
-            <h5>Arrival:</h5>{" "}
+
+            <h5>Arrival:</h5>          <p className="flight-details">{" "}
             {
               this.props.flight.offerItems[0].services[0].segments[0]
                 .flightSegment.arrival.iataCode
@@ -81,8 +81,8 @@ class TravelSearchResults extends Component {
             ).format("MM/DD/YYYY h:mm a")}
           </p>
           <hr></hr>
-          <p className="flight-details">
-            <h5>Price:</h5> ${this.props.flight.offerItems[0].price.total}
+
+            <h5>Price:</h5>           <p className="flight-details"> ${this.props.flight.offerItems[0].price.total}
           </p>
           <br></br>
           <Button

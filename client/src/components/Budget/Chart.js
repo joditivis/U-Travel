@@ -9,14 +9,18 @@ class Chart extends Component {
     const options = {
       animationEnabled: true,
       // exportEnabled: true,
-      theme: 'dark1', // "light1", "dark1", "dark2"
+      theme: 'dark2', // "light1", "dark1", "dark2", "light2"
       title: {
         text: 'Budget Chart'
       },
       data: [
         {
           type: 'pie',
-          indexLabel: '{label}: {y}%',
+          indexLabelPlacement: 'outside', //'inside' 
+          // showInLegend: true,
+          // legendText: "{label}",
+          indexLabel: '{label}: {y}',
+          yValueFormatString: '$#,###.##',
           startAngle: -90,
           dataPoints: (this.props.trip || []).map(trip => ({
             label: trip.title,
@@ -25,13 +29,6 @@ class Chart extends Component {
         }
       ]
     };
-
-    // { y: 20, label: "Flights" },
-    // { y: 24, label: "Hotel" },
-    // { y: 20, label: "Food & Drinks" },
-    // { y: 14, label: "Rental Car" },
-    // { y: 12, label: "Activities" },
-    // { y: 10, label: "Misc" }
 
     return (
       <div>

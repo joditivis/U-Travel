@@ -13,15 +13,14 @@ const tripSchema = new Schema(
                 arrival: {type: String},
                 price: {type: mongoose.Decimal128}
             },
-        hotel: [
+        hotel: 
             {
-                hotel_id: {type: Number},
+                hotel_id: {type: String},
                 name: {type: String},
                 roomType: {type: String},
                 price: {type: mongoose.Decimal128}
 
-            }
-        ],        
+            },        
         user: { type: String, required: true }
         
 

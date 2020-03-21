@@ -11,9 +11,11 @@ router.route("/savetrip/:id")
     .put(tripsController.updateById);
 
 router.route("/saveflight/:id")
-// .get(savedTrips.findById)
     .put(tripsController.updateFlightById);
-// .delete(savedTrips.remove);
+
+router.route("/savehotel/:id")
+    .put(tripsController.updateHotelById);
+
 router.route("/findtrip/:userId")
     .get(tripsController.findByUserID);
 router.route("/addtrip")

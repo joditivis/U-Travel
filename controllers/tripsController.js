@@ -51,6 +51,21 @@ module.exports = {
     )
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
+  },
+  updateHotelById: function(req, res) {
+    console.log(req.body.hotel);
+    db.Trip.findOneAndUpdate(
+      { _id: req.params.id },
+      { $set: {hotel: {
+        hotel_id: req.body.hotel.id,
+        name: req.body.hotel.name,
+        roomType: req.body.hotel.roomType,
+        price: req.body.hotel.price
+      }}},
+      req.body
+    )
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
   }
 };
 
