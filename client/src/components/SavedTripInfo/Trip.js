@@ -7,7 +7,7 @@ const Trip = ({ trip, index, removeTrip }) => {
     <tbody>
       <tr>
         <td>{trip.title}</td>
-        <td>{trip.peopleOrDays}</td>
+        {/* <td>{trip.peopleOrDays}</td> */}
         <td>${trip.amount}</td>
         <td>
           <Button

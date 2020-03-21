@@ -22,7 +22,7 @@ const AddItemForm = ({ addItem }) => {
       />
       <br></br>
       <Button className="add-item-btn" size="sm" onClick={handleSubmit}>
-        Add Item
+        Add
       </Button>
       <br></br>
     </Form>

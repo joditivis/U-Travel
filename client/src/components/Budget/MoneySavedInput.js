@@ -25,8 +25,8 @@ function addNumber() {
           onChange={e => setNumber1(e.target.value)}
         />
         <br></br>
-        <Button className='add-money-btn' size='md' onClick={addNumber}>
-          Submit
+        <Button className='add-money-btn' size='sm' onClick={addNumber}>
+          Add
         </Button>
 
         <br></br>

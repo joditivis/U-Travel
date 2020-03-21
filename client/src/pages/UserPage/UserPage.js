@@ -44,7 +44,7 @@ const AddTripForm = ({ addTrip }) => {
         onChange={event => setTitle(event.target.value)}
       />
       <br></br>
-      <Input
+      {/* <Input
         className="add-trip-input"
         type="text"
         name="peopleOrDays"
@@ -52,7 +52,7 @@ const AddTripForm = ({ addTrip }) => {
         value={peopleOrDays}
         onChange={event => setPeopleOrDays(event.target.value)}
       />
-      <br></br>
+      <br></br> */}
       <Input
         className="add-trip-input"
         type="text"
@@ -118,7 +118,7 @@ const UserPage = () => {
                 <thead>
                   <tr>
                     <th>Activity</th>
-                    <th>People/Days</th>
+                    {/* <th>People/Days</th> */}
                     <th>Cost</th>
                     <th>Remove</th>
                   </tr>
