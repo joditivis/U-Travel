@@ -136,7 +136,9 @@ class App extends Component {
             path="/flightSearchPage"
             render={() => <TravelSearch user={this.state.userId} trip={this.state.tripID} />} 
             />
-            <Route path="/hotelSearchPage" component={HotelSearchPage} />
+            <Route path="/hotelSearchPage"
+            render={() => <HotelSearchPage user={this.state.userId} trip={this.state.tripID} />}
+             />
             <Route component={NoMatch} />
           </Switch>
 

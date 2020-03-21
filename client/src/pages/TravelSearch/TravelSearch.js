@@ -6,26 +6,19 @@ import TravelSearchAnyResults from "../../components/TravelSearch/TravelSearchAn
 import axios from "axios";
 
 class TravelSearch extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       flights: [],
       flightsAny: [],
       trip: "",
-      user: "",
-      saveFlightId: '',
-      saveFlightOrigin: '',
-      saveFlightDest: '',
-      saveFlightDep: '',
-      saveFlightArr: '',
-      saveFlightPrice: ''
+      user: ""
     };
     //this.setState = this.setState.bind(this);
     this.getTripInfoFromButton = this.getTripInfoFromButton.bind(this);
   }
 
-
-   db = async (requestOptions, trip_id) => {
+  db = async (requestOptions, trip_id) => {
     const response = await axios.put(`/saveflight/${trip_id}`, requestOptions);
     const body = await response;
     if (response.status !== 200) throw Error(body.message);
@@ -36,20 +29,20 @@ class TravelSearch extends Component {
     const requestOptions = {
       flight: flightInfo
     };
-    this.db(requestOptions, trip_id)
-    .then(data => console.log(data));
+    this.db(requestOptions, trip_id).then(data => console.log(data));
     // empty dependency array means this effect will only run once (like componentDidMount in classes)
   };
-
 
   componentDidMount() {
     console.log(this.props.user);
     console.log(this.props.trip);
-    this.setState({
-      trip: this.props.trip,
-      user: this.props.user
-    }, () =>console.log(this.state));
-    ;
+    this.setState(
+      {
+        trip: this.props.trip,
+        user: this.props.user
+      },
+      () => console.log(this.state)
+    );
   }
 
   deleteItem = id => {
@@ -111,7 +104,7 @@ class TravelSearch extends Component {
     console.log("trip is updated");
     console.log(this.state);
   }
-  
+
   render() {
     return (
       <Container>
@@ -119,16 +112,22 @@ class TravelSearch extends Component {
           flightSearch={this.flightSearch}
           flightSearchAny={this.flightSearchAny}
         />
-        {this.state.flights.map(flight => (
-          <Row>
-            <TravelSearchResults flight={flight} updateDB={this.updateDB} getTripInfoFromButton={this.getTripInfoFromButton} trip={this.state.trip_id} />
-          </Row>
-        ))}
-        {this.state.flightsAny.map(flight => (
-          <Row>
-            <TravelSearchAnyResults flight={flight}  />
-          </Row>
-        ))}
+        <Row>
+          {this.state.flights.map(flight => (
+            <TravelSearchResults
+              key={flight.id}
+              flight={flight}
+              updateDB={this.updateDB}
+              getTripInfoFromButton={this.getTripInfoFromButton}
+              trip={this.state.trip_id}
+            />
+          ))}
+        </Row>
+        <Row>
+          {this.state.flightsAny.map(flight => (
+            <TravelSearchAnyResults key={flight.flight.id} flight={flight} />
+          ))}
+        </Row>
       </Container>
     );
   }

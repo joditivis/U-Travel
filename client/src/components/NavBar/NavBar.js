@@ -31,7 +31,9 @@ class NavbarComponent extends Component {
             if (response.status === 200) {
               this.props.updateUser({
                 loggedIn: false,
-                email: null
+                email: null,
+                userId: null,
+                tripID: null
               });
             }
           })
