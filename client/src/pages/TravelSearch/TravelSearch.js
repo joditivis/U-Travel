@@ -3,29 +3,39 @@ import { Container, Row } from "reactstrap";
 import TravelSearchForm from "../../components/TravelSearch/TravelSearchForm";
 import TravelSearchResults from "../../components/TravelSearch/TravelSearchResults";
 import TravelSearchAnyResults from "../../components/TravelSearch/TravelSearchAnyResults";
+import axios from "axios";
 
 class TravelSearch extends Component {
-  state = {
-    flights: [],
-    flightsAny: [],
-    trip: "",
-    user: ""
-  };
+  constructor(props){
+    super(props);
+    this.state = {
+      flights: [],
+      flightsAny: [],
+      trip: "",
+      user: "",
+      saveFlightId: '',
+      saveFlightOrigin: '',
+      saveFlightDest: '',
+      saveFlightDep: '',
+      saveFlightArr: '',
+      saveFlightPrice: ''
+    };
+    //this.setState = this.setState.bind(this);
+    this.getTripInfoFromButton = this.getTripInfoFromButton.bind(this);
+  }
 
-  db = async (requestOptions, trip_id) => {
-    const response = await fetch(`/savetrip/${trip_id}`, requestOptions);
-    const body = await response.json();
+
+   db = async (requestOptions, trip_id) => {
+    const response = await axios.put(`/saveflight/${trip_id}`, requestOptions);
+    const body = await response;
     if (response.status !== 200) throw Error(body.message);
     return body;
   };
-  updateDB = () => {
+  updateDB = (trip_id, flightInfo) => {
     // POST request using fetch inside useEffect React hook
     const requestOptions = {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ destination: "here is the destination" })
+      flight: flightInfo
     };
-    const trip_id = "5e6fd0f1beec473d50eb1b2e";
     this.db(requestOptions, trip_id)
     .then(data => console.log(data));
     // empty dependency array means this effect will only run once (like componentDidMount in classes)
@@ -95,6 +105,13 @@ class TravelSearch extends Component {
     return body;
   };
 
+  getTripInfoFromButton(tripObject) {
+    console.log(tripObject);
+    this.updateDB(this.state.trip, tripObject);
+    console.log("trip is updated");
+    console.log(this.state);
+  }
+  
   render() {
     return (
       <Container>
@@ -104,12 +121,12 @@ class TravelSearch extends Component {
         />
         {this.state.flights.map(flight => (
           <Row>
-            <TravelSearchResults flight={flight} updateDB={this.updateDB} />
+            <TravelSearchResults flight={flight} updateDB={this.updateDB} getTripInfoFromButton={this.getTripInfoFromButton} trip={this.state.trip_id} />
           </Row>
         ))}
         {this.state.flightsAny.map(flight => (
           <Row>
-            <TravelSearchAnyResults flight={flight} />
+            <TravelSearchAnyResults flight={flight}  />
           </Row>
         ))}
       </Container>

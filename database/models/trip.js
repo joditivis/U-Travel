@@ -4,14 +4,15 @@ const Schema = mongoose.Schema;
 const tripSchema = new Schema(
     {
         destination: {type: String, required: true},
-        flight:[
+        flight:
             {
-                flight_id: {type: Number},
+                flight_id: {type: String},
+                origin: {type: String},
+                destination: {type: String},
                 departure: {type: String},
                 arrival: {type: String},
                 price: {type: mongoose.Decimal128}
-            }
-        ],
+            },
         hotel: [
             {
                 hotel_id: {type: Number},

@@ -9,6 +9,10 @@ const tripsController = require('../controllers/tripsController');
 router.route("/savetrip/:id")
 // .get(savedTrips.findById)
     .put(tripsController.updateById);
+
+router.route("/saveflight/:id")
+// .get(savedTrips.findById)
+    .put(tripsController.updateFlightById);
 // .delete(savedTrips.remove);
 router.route("/findtrip/:userId")
     .get(tripsController.findByUserID);
