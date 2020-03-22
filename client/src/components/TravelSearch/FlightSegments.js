@@ -5,36 +5,34 @@ import moment from "moment";
 
 
 const FlightSegments = props => {
-  console.log(props);
+  //console.log(props);
   return (
     <div className="flight-details">
-    <h5>Departure:</h5>          <p className="flight-details">{" "}
+    <p className="flight-details">Departure:{" "}
     {
-      props.segment.segments[0].flightSegment.departure.iataCode
+      props.segment.flightSegment.departure.iataCode
     }{" "}
     at{" "}
     {moment(
-      props.segment.segments[0]
+      props.segment
         .flightSegment.departure.at,
       ["YYYY", moment.ISO_8601]
     ).format("MM/DD/YYYY h:mm a")}
   </p>
-  <hr></hr>
-
-    <h5>Arrival:</h5>          <p className="flight-details">{" "}
+    <p className="flight-details">Arrival:{" "}
     {
-      props.segment.segments[0]
+      props.segment
         .flightSegment.arrival.iataCode
     }{" "}
     at{" "}
     {moment(
-      props.segment.segments[0]
+      props.segment
         .flightSegment.arrival.at,
       ["YYYY", moment.ISO_8601]
     ).format("MM/DD/YYYY h:mm a")}
   </p>
   <hr></hr>
-  <br></br>
+  {/* <br></br> */}
 </div>
   );
 };

@@ -80,7 +80,8 @@ class TravelSearch extends Component {
       flightSearch.startDate,
       flightSearch.endDate,
       flightSearch.numAdults,
-      flightSearch.oneWay
+      flightSearch.oneWay,
+      flightSearch.nonStop
     )
       .then(res => this.setState({ flights: res.data }))
       .then(res2 => console.log(this.state.flights))
@@ -102,10 +103,10 @@ class TravelSearch extends Component {
       });
   };
 
-  callApi = async (origin, destination, startDate, endDate, adults, oneWay) => {
+  callApi = async (origin, destination, startDate, endDate, adults, oneWay, nonStop) => {
     const response = await fetch(oneWay ? 
-      `/flights/${origin}/${destination}/${startDate}/${adults}/true` :
-      `/flightsround/${origin}/${destination}/${startDate}/${endDate}/${adults}/true`
+      `/flights/${origin}/${destination}/${startDate}/${adults}/${nonStop}` :
+      `/flightsround/${origin}/${destination}/${startDate}/${endDate}/${adults}/${nonStop}`
     );
     const body = await response.json();
     if (response.status !== 200) throw Error(body.message);

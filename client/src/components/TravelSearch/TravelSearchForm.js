@@ -225,6 +225,12 @@ class TravelSearchForm extends Component {
     this.setState({ oneWay: event.target.checked });
   };
 
+  handleCheckboxNonStop = event => {
+    console.log(event.target.checked);
+    // Getting the value and name of the input which triggered the change
+    this.setState({ nonStop: event.target.checked });
+  };
+
   handleSubmit = e => {
     e.preventDefault();
     console.log(this.state);
@@ -360,12 +366,24 @@ class TravelSearchForm extends Component {
                     <Label check>
                       <Input 
                       type="checkbox" 
-                      id="anyDestination" 
-                      name="anyDestination"
+                      id="oneWay" 
+                      name="oneWay"
                       onChange={this.handleCheckboxOneWay}
                       //value={this.state.anyDestination}
                       checked={this.state.oneWay}
                       /> One-Way
+                    </Label>
+                  </FormGroup>
+                  <FormGroup check>
+                    <Label check>
+                      <Input 
+                      type="checkbox" 
+                      id="nonStop" 
+                      name="nonStop"
+                      onChange={this.handleCheckboxNonStop}
+                      //value={this.state.anyDestination}
+                      checked={this.state.nonStop}
+                      /> Non-Stop Flights Only
                     </Label>
                   </FormGroup>
                   <br></br>
