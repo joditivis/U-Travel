@@ -19,7 +19,7 @@ class DatePicker extends Component {
   onDatesChange = (startDate, endDate) => {
     //this.setState({ startDate, endDate });
     console.log(this.state);
-    this.props.setDate(this.state);
+    //this.props.onEvent(this.state);
   }
 
   render() {
@@ -30,13 +30,20 @@ class DatePicker extends Component {
           startDateId="your_unique_start_date_id" // PropTypes.string.isRequired,
           endDate={this.state.endDate} // momentPropTypes.momentObj or null,
           endDateId="your_unique_end_date_id" // PropTypes.string.isRequired,
-          onDatesChange={({ startDate, endDate }) =>
-            this.setState({ startDate, endDate })
+          onDatesChange={({ startDate, endDate }) =>{
+            console.log(startDate, endDate);
+            this.setState({ startDate, endDate });
+            this.props.onEvent(startDate, endDate);
+          }
+            
             //this.props.setDate(startDate, endDate)
           } // PropTypes.func.isRequired,
           onClose={this.onDatesChange}
           focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
-          onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
+          onFocusChange={focusedInput =>{
+            this.setState({ focusedInput });
+            console.log(focusedInput);
+          } } // PropTypes.func.isRequired,
         />
       </div>
     );

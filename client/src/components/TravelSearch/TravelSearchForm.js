@@ -184,20 +184,20 @@ class TravelSearchForm extends Component {
     cities = [];
   };
 
-  setDate = datePicker => {
+  setDate = (startDate, endDate) => {
     console.log("dates should be saving");
-    console.log(datePicker);
-    let startDate =
-      datePicker === null
+    console.log(startDate, endDate);
+    let start =
+      startDate === null
         ? ""
-        : moment(datePicker.startDate).format("YYYY-MM-DD");
-    let endDate =
-      datePicker === null
+        : moment(startDate).format("YYYY-MM-DD");
+    let end =
+      endDate === null
         ? ""
-        : moment(datePicker.endDate).format("YYYY-MM-DD");
+        : moment(endDate).format("YYYY-MM-DD");
     this.setState({
-      startDate: startDate,
-      endDate: endDate
+      startDate: start,
+      endDate: end
     });
   };
 
@@ -350,7 +350,7 @@ class TravelSearchForm extends Component {
               <br></br>
 
               <p className="travel-form-label">Depart / Return</p>
-              <DatePicker setDate={this.setDate} />
+              <DatePicker onEvent={this.setDate} />
 
               <br></br>
               <br></br>
