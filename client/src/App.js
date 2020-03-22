@@ -130,7 +130,10 @@ class App extends Component {
             />
             <Route path="/createaccount" render={() => <CreateAccountPage />} />
             <Route path="/weather" component={WeatherPage} />
-            <Route path="/userpage" component={UserPage} />
+            <Route 
+            path="/userpage" 
+            render={()=><UserPage user={this.state.userId} trip={this.state.tripID} />}
+            />
             <Route 
             path="/flightSearchPage"
             render={() => <TravelSearch user={this.state.userId} trip={this.state.tripID} />} 

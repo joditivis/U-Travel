@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, Component, useEffect } from 'react';
 import {
   Container,
   Row,
@@ -19,11 +19,16 @@ import WeatherPage from '../WeatherPage/WeatherPage';
 import Trip from '../../components/SavedTripInfo/Trip';
 // import AddTripForm from '../../components/SavedTripInfo/AddTripForm';
 import './style.css';
+import Axios from 'axios';
+import { decodeBase64 } from 'bcryptjs';
+
 
 const AddTripForm = ({ addTrip }) => {
   const [title, setTitle] = useState('');
   const [peopleOrDays, setPeopleOrDays] = useState('');
   const [amount, setAmount] = useState('');
+  
+    
 
   const handleSubmit = event => {
     event.preventDefault();
@@ -31,7 +36,11 @@ const AddTripForm = ({ addTrip }) => {
     setTitle('');
     setPeopleOrDays('');
     setAmount('');
+  
   };
+  
+
+  
 
   return (
     <Form>
@@ -69,7 +78,12 @@ const AddTripForm = ({ addTrip }) => {
   );
 };
 
-const UserPage = () => {
+const UserPage = (props) => {
+  // console.log("trip", props);
+  // console.log("tripID", props.trip);
+ 
+  const [tripId, setTripId] = useState(props.trip)
+ 
   const [trips, setTrip] = useState([
     {
       title: 'Surfing',
@@ -87,12 +101,37 @@ const UserPage = () => {
       amount: 1000
     }
   ]);
+ 
 
-  const addTrip = (title, peopleOrDays, amount) => {
+  useEffect(()=>{
+    console.log("trips data:", trips);
+    console.log("tripId: ", tripId);
+  
+    Axios.get(`/gettrips/${props.trip}`,{
+     params: {
+      tripId: trips
+     }
+    })
+    .then(res=>{
+     
+      console.log("response:",res)
+    })
+  })
+  
+  
+ 
+  const addTrip = async(title, peopleOrDays, amount) => {
     console.log('add trip', { title, peopleOrDays, amount });
     const newTrip = [...trips, { title, peopleOrDays, amount }];
     setTrip(newTrip);
+
+    Axios.put(`/userpage/${props.trip}`,{
+      trip: newTrip
+    })
+  
+    
   };
+ 
 
   const removeTrip = index => {
     console.log('remove trip', index);
@@ -101,6 +140,7 @@ const UserPage = () => {
     setTrip(newTrip);
   };
 
+ 
   return (
     <Container>
       <br></br>
@@ -124,6 +164,7 @@ const UserPage = () => {
                   </tr>
                 </thead>
                 {trips.map((trip, index) => (
+
                   <Trip
                     key={index}
                     index={index}

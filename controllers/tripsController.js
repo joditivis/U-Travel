@@ -66,20 +66,24 @@ module.exports = {
     )
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
+  },
+  updateByTripId: function(req, res){
+    console.log("this is the req.body: ",req.body);
+    db.Trip.findOneAndUpdate(
+      { _id: req.params.tripId },
+      { $set: { trip: req.body.trip }},
+      req.body
+    )
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+    
+  }, 
+  findByTripID: function(req,res){
+    console.log("findByTripId: ",req.params);
+      db.Trip.findOne({trip: req.params.body})
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
   }
 };
 
-//     updateById: function(req, res){
-//         db.Trips
-//             .findOneAndUpdate({_id: req.params.id},{$set:{isSaved: true}}, req.body)
-//             .then(dbModel => res.json(dbModel))
-//             .catch(err=> res.status(404).json(err));
-//     },
-//     remove: function(req, res){
-//         db.Trips
-//             .findOneAndDelete({_id: req.params.id})
-//             .then(dbModel => dbModel.remove())
-//             .then(dbModel => res.json(dbModel))
-//             .catch(err=> res.status(404).json(err));
-//     }
-// };
+
