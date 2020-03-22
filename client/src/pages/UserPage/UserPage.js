@@ -107,13 +107,8 @@ const UserPage = (props) => {
     console.log("trips data:", trips);
     console.log("tripId: ", tripId);
   
-    Axios.get(`/gettrips/${props.trip}`,{
-     params: {
-      tripId: trips
-     }
-    })
+    Axios.get(`/gettrips/${props.trip}`)
     .then(res=>{
-     
       console.log("response:",res)
     })
   })

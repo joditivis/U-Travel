@@ -80,7 +80,7 @@ module.exports = {
   }, 
   findByTripID: function(req,res){
     console.log("findByTripId: ",req.params);
-      db.Trip.findOne({trip: req.params.body})
+      db.Trip.findOne({_id: req.params.tripId})
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   }
