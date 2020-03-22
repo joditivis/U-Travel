@@ -78,10 +78,12 @@ class TravelSearch extends Component {
       flightSearch.origin,
       flightSearch.destination,
       flightSearch.startDate,
-      flightSearch.numAdults
+      flightSearch.endDate,
+      flightSearch.numAdults,
+      flightSearch.oneWay
     )
       .then(res => this.setState({ flights: res.data }))
-      // .then(res2 => console.log(this.state.flights))
+      .then(res2 => console.log(this.state.flights))
       .catch(err => {
         console.log(err);
       });
@@ -100,9 +102,10 @@ class TravelSearch extends Component {
       });
   };
 
-  callApi = async (origin, destination, date, adults) => {
-    const response = await fetch(
-      `/flights/${origin}/${destination}/${date}/${adults}/true`
+  callApi = async (origin, destination, startDate, endDate, adults, oneWay) => {
+    const response = await fetch(oneWay ? 
+      `/flights/${origin}/${destination}/${startDate}/${adults}/true` :
+      `/flightsround/${origin}/${destination}/${startDate}/${endDate}/${adults}/true`
     );
     const body = await response.json();
     if (response.status !== 200) throw Error(body.message);

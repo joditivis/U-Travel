@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Card, CardHeader, CardBody, Button } from "reactstrap";
 import moment from "moment";
+import FlightSegments from "./FlightSegments";
 
 class TravelSearchResults extends Component {
   //console.log(props.flight.offerItems[0].services[0].segments[0].flightSegment.carrierCode);
@@ -40,6 +41,11 @@ class TravelSearchResults extends Component {
       price: event.currentTarget.dataset.price
     });
   }
+
+  componentDidMount() {
+    console.log(this.props.flight.offerItems[0].services);
+    
+  }
   render() {
     return (
       <Card className="travelCard">
@@ -53,33 +59,16 @@ class TravelSearchResults extends Component {
           </h3>
         </CardHeader>
         <CardBody className="flight-details">
-
-            <h5>Departure:</h5>          <p className="flight-details">{" "}
-            {
-              this.props.flight.offerItems[0].services[0].segments[0]
-                .flightSegment.departure.iataCode
-            }{" "}
-            at{" "}
-            {moment(
-              this.props.flight.offerItems[0].services[0].segments[0]
-                .flightSegment.departure.at,
-              ["YYYY", moment.ISO_8601]
-            ).format("MM/DD/YYYY h:mm a")}
-          </p>
-          <hr></hr>
-
-            <h5>Arrival:</h5>          <p className="flight-details">{" "}
-            {
-              this.props.flight.offerItems[0].services[0].segments[0]
-                .flightSegment.arrival.iataCode
-            }{" "}
-            at{" "}
-            {moment(
-              this.props.flight.offerItems[0].services[0].segments[0]
-                .flightSegment.arrival.at,
-              ["YYYY", moment.ISO_8601]
-            ).format("MM/DD/YYYY h:mm a")}
-          </p>
+          {!this.props.flight ? 
+          (
+            <div>Test</div>
+          ): (
+            this.props.flight.offerItems[0].services.map((segment, index) => (
+              <FlightSegments key={index} segment={segment} />
+            ))
+          )
+          }
+          
           <hr></hr>
 
             <h5>Price:</h5>           <p className="flight-details"> ${this.props.flight.offerItems[0].price.total}
