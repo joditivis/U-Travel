@@ -17,6 +17,10 @@ function addNumber() {
 
     return (
       <Form className='add-money-input'>
+        <h5>Money Saved:</h5>
+      {/* <br></br> */}
+        <h2>${total}</h2>
+        
         <Input
           type='text'
           placeholder='$0'
@@ -25,12 +29,12 @@ function addNumber() {
           onChange={e => setNumber1(e.target.value)}
         />
         <br></br>
-        <Button className='add-money-btn' size='md' onClick={addNumber}>
-          Submit
+        <Button className='add-money-btn' size='sm' onClick={addNumber}>
+          Add
         </Button>
 
-        <br></br>
-        <h2>${total}</h2>
+        {/* <br></br>
+        <h2>${total}</h2> */}
       </Form>
     );
 };
