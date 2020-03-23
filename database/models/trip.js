@@ -20,7 +20,14 @@ const tripSchema = new Schema(
                 roomType: {type: String},
                 price: {type: mongoose.Decimal128}
 
-            },        
+            },     
+        trip:[
+        {
+            title: { type: String},
+            peopleOrDays:{type: Number},
+            amount: {type: mongoose.Decimal128}
+        }
+    ],
         user: { type: String, required: true }
         
 
