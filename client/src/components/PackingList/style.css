@@ -1,14 +1,19 @@
 .packing-card {
   background-color: rgba(66, 66, 66, 0.74);
-  /* font-family: 'Pontano Sans', sans-serif; */
+  font-family: 'Pontano Sans', sans-serif;
   color: rgb(255, 255, 255);
+}
+
+.packing-header {
+  font-size: 20px;
+  text-align: center;
 }
 
 .item {
   /* background: #fff; */
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15);
   padding: 3px 10px;
-  font-size: 16px;
+  font-size: 18px;
   margin-bottom: 6px;
   border-radius: 3px;
   display: flex;

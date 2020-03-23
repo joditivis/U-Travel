@@ -17,7 +17,7 @@
 .add-money-input {
     display: block;
     margin: 0 auto;
-    width: 15rem;
+    width: 10rem;
 }
 
 .add-money-btn {
@@ -27,7 +27,14 @@
     box-shadow: 0px 5px 15px 8px rgba(0, 0, 0, 0.2), 10px 5px 10px 0px rgba(0, 0, 0, 0.19);
     font-family: 'Pontano Sans', sans-serif;
     font-size: 17px;
-    width: 12rem;
+    width: 7rem;
     margin: 0 auto;
     display: block;
+}
+
+.add-money-btn:hover {
+    color: rgb(0, 0, 0);
+    background-color: rgba(255, 255, 255, 0.87);
+    border: solid rgba(255, 255, 255, 0.87);
+    font-family: 'Pontano Sans', sans-serif;
 }

@@ -47,7 +47,7 @@ class LogInPage extends Component {
                     })
                     // Update the state to redirect to home
                     this.setState({
-                        redirectTo: '/'
+                        redirectTo: '/userpage'
                     })
                 }
                 // } else {

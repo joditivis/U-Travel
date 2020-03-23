@@ -125,21 +125,20 @@ class HotelSearchForm extends Component {
     });
     cities = [];
   };
-
-  setDate = datePicker => {
+  setDate = (startDate, endDate) => {
     console.log("dates should be saving");
-    console.log(datePicker);
-    let checkInDate =
-      datePicker === null
+    console.log(startDate, endDate);
+    let start =
+      startDate === null
         ? ""
-        : moment(datePicker.startDate).format("YYYY-MM-DD");
-    let checkOutDate =
-      datePicker === null
+        : moment(startDate).format("YYYY-MM-DD");
+    let end =
+      endDate === null
         ? ""
-        : moment(datePicker.endDate).format("YYYY-MM-DD");
+        : moment(endDate).format("YYYY-MM-DD");
     this.setState({
-      checkInDate: checkInDate,
-      checkOutDate: checkOutDate
+      startDate: start,
+      endDate: end
     });
   };
 
@@ -239,7 +238,7 @@ class HotelSearchForm extends Component {
           <br></br>
 
           <p className="hotel-form-label">Check In / Check Out</p>
-          <DatePicker  setDate={this.setDate} />
+          <DatePicker onEvent={this.setDate} />
 
           <br></br>
           <br></br>

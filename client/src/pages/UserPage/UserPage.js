@@ -17,6 +17,7 @@ import CountDown from '../../components/DaysUntilTrip/CountDown';
 import WeatherPage from '../WeatherPage/WeatherPage';
 // import TripInfo from '../../components/SavedTripInfo/TripInfo';
 import Trip from '../../components/SavedTripInfo/Trip';
+import DestinationCard from '../../components/DestinationInput/DestinationCard';
 // import AddTripForm from '../../components/SavedTripInfo/AddTripForm';
 import './style.css';
 import Axios from 'axios';
@@ -25,16 +26,14 @@ import { decodeBase64 } from 'bcryptjs';
 
 const AddTripForm = ({ addTrip }) => {
   const [title, setTitle] = useState('');
-  const [peopleOrDays, setPeopleOrDays] = useState('');
   const [amount, setAmount] = useState('');
   
     
 
   const handleSubmit = event => {
     event.preventDefault();
-    addTrip(title, peopleOrDays, amount);
+    addTrip(title, amount);
     setTitle('');
-    setPeopleOrDays('');
     setAmount('');
   
   };
@@ -51,15 +50,6 @@ const AddTripForm = ({ addTrip }) => {
         placeholder="surfing lessons"
         value={title}
         onChange={event => setTitle(event.target.value)}
-      />
-      <br></br>
-      <Input
-        className="add-trip-input"
-        type="text"
-        name="peopleOrDays"
-        placeholder="people/days"
-        value={peopleOrDays}
-        onChange={event => setPeopleOrDays(event.target.value)}
       />
       <br></br>
       <Input
@@ -131,9 +121,30 @@ const [trips, setTrip] = useState(tripdata)
   
   
  
-  const addTrip = async(title, peopleOrDays, amount) => {
-    console.log('add trip', { title, peopleOrDays, amount });
-    const newTrip = [...trips, { title, peopleOrDays, amount }];
+//   const addTrip = async(title, peopleOrDays, amount) => {
+// //     console.log('add trip', { title, peopleOrDays, amount });
+//     const newTrip = [...trips, { title, peopleOrDays, amount }];
+
+// const UserPage = () => {
+//   const [trips, setTrip] = useState([
+//     {
+//       title: 'Surfing',
+//       amount: 400
+//     },
+//     {
+//       title: 'Hiking',
+//       amount: 100
+//     },
+//     {
+//       title: 'Helicopter Tour',
+//       amount: 1000
+//     }
+//   ]);
+
+  const addTrip = (title, amount) => {
+    console.log('add trip', { title, amount });
+    const newTrip = [...trips, { title, amount }];
+    
     setTrip(newTrip);
 
     Axios.put(`/userpage/${props.trip}`,{
@@ -155,12 +166,18 @@ const [trips, setTrip] = useState(tripdata)
   return (
     <Container>
       <br></br>
-      <br></br>
       <Row>
-        <Col md={7}>
+        <Col md={6}>
+          <DestinationCard />
+        </Col>
+        <Col md={6}>
+          <CountDown />
+          <br></br>
+        </Col>
+        <Col md={6}>
           <Card className="trip-card">
             <CardHeader className="trip-header">
-              <h4>Planned trip to Kailua Kona, HI</h4>
+              <h4>Planned Activities</h4>
             </CardHeader>
             {/* <CardHeader>Add to my trip</CardHeader>
       <AddTripForm addTrip={addTrip} /> */}
@@ -169,7 +186,6 @@ const [trips, setTrip] = useState(tripdata)
                 <thead>
                   <tr>
                     <th>Activity</th>
-                    <th>People/Days</th>
                     <th>Cost</th>
                     <th>Remove</th>
                   </tr>
@@ -196,9 +212,7 @@ const [trips, setTrip] = useState(tripdata)
           <PackingList />
           <br></br>
         </Col>
-        <Col md={5}>
-          <CountDown />
-          <br></br>
+        <Col md={6}>
           <BudgetCard
           trip={trips} 
           />
@@ -212,6 +226,5 @@ const [trips, setTrip] = useState(tripdata)
     </Container>
   );
 };
-
 
 export default UserPage;

@@ -9,10 +9,13 @@ class Chart extends Component {
     const options = {
       animationEnabled: true,
       // exportEnabled: true,
-      theme: 'dark2', // "light1", "dark1", "dark2", "light2"
-      title: {
-        text: 'Budget Chart'
-      },
+      backgroundColor: 'rgba(80, 80, 80, 0.06)',
+      //theme: 'dark2', // "light1", "dark1", "dark2", "light2"
+      // title: {
+      //   text: 'Budget Chart',
+      //   fontFamily: 'Pontano Sans, sans-serif',
+      //   fontColor: 'white'
+      // },
       data: [
         {
           type: 'pie',
@@ -20,6 +23,8 @@ class Chart extends Component {
           // showInLegend: true,
           // legendText: "{label}",
           indexLabel: '{label}: {y}',
+          indexLabelFontColor: 'rgba(255, 255, 255, 0.87)',
+          indexLabelFontFamily: 'Pontano Sans, sans-serif',
           yValueFormatString: '$#,###.##',
           startAngle: -90,
           dataPoints: (this.props.trip || []).map(trip => ({
