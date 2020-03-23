@@ -1,4 +1,4 @@
-import React, { useState, Component, useEffect } from 'react';
+import React, { useState, Component, useEffect } from "react";
 import {
   Container,
   Row,
@@ -10,36 +10,29 @@ import {
   Button,
   Form,
   Input
-} from 'reactstrap';
-import PackingList from '../../components/PackingList/PackingList';
-import BudgetCard from '../../components/Budget/BudgetCard';
-import CountDown from '../../components/DaysUntilTrip/CountDown';
-import WeatherPage from '../WeatherPage/WeatherPage';
+} from "reactstrap";
+import PackingList from "../../components/PackingList/PackingList";
+import BudgetCard from "../../components/Budget/BudgetCard";
+import CountDown from "../../components/DaysUntilTrip/CountDown";
+import WeatherPage from "../WeatherPage/WeatherPage";
 // import TripInfo from '../../components/SavedTripInfo/TripInfo';
-import Trip from '../../components/SavedTripInfo/Trip';
-import DestinationCard from '../../components/DestinationInput/DestinationCard';
+import Trip from "../../components/SavedTripInfo/Trip";
+import DestinationCard from "../../components/DestinationInput/DestinationCard";
 // import AddTripForm from '../../components/SavedTripInfo/AddTripForm';
-import './style.css';
-import Axios from 'axios';
-import { decodeBase64 } from 'bcryptjs';
-
+import "./style.css";
+import Axios from "axios";
+import { decodeBase64 } from "bcryptjs";
 
 const AddTripForm = ({ addTrip }) => {
-  const [title, setTitle] = useState('');
-  const [amount, setAmount] = useState('');
-  
-    
+  const [title, setTitle] = useState("");
+  const [amount, setAmount] = useState("");
 
   const handleSubmit = event => {
     event.preventDefault();
     addTrip(title, amount);
-    setTitle('');
-    setAmount('');
-  
+    setTitle("");
+    setAmount("");
   };
-  
-
-  
 
   return (
     <Form>
@@ -68,101 +61,47 @@ const AddTripForm = ({ addTrip }) => {
   );
 };
 
-const UserPage = (props) => {
-  const tripdata =[];
-  const [tripId, setTripId] = useState(props.trip)
+const UserPage = props => {
+  const tripdata = [];
+  // const tripdata = useState([]);
+
+  const [tripId, setTripId] = useState(props.trip);
   // const [flight, setflight] = useState(props.trip.flight)
-  useEffect(()=>{
 
-   
-    Axios.get(`/gettrips/${props.trip}`)
-    .then(res=>{
-      res.data.trip.forEach(()=>{
-        tripdata.push(res.data.trip)
-      })
-     
-      console.log("response:",res)
-    })
-  })
-const [trips, setTrip] = useState(tripdata)
-  // const [trips, setTrip] = useState([
-    
-  //   {
-  //     title: 'Surfing',
-  //     peopleOrDays: 5,
-  //     amount: 400
-  //   },
-  //   {
-  //     title: 'Hiking',
-  //     peopleOrDays: 2,
-  //     amount: 100
-  //   },
-  //   {
-  //     title: 'Helicopter Tour',
-  //     peopleOrDays: 4,
-  //     amount: 1000
-  //   }
-  // ]);
- 
+  useEffect(() => {
+    console.log("we are here", props.trip);
 
-  // useEffect(()=>{
-  //   console.log("trips data:", trips);
-  //   console.log("tripId: ", tripId);
-  
-  //   Axios.get(`/gettrips/${props.trip}`)
-  //   .then(res=>{
+    Axios.get(`/gettrips/${props.trip}`).then(res => {
+      res.data.trip.forEach(() => {
+        tripdata.push(res.data.trip);
+      });
 
-  //     // setTrip(
-  //     //   tripdata
-  //     // )
-  //     console.log("response:",res)
-  //   })
-  // })
-  
-  
- 
-//   const addTrip = async(title, peopleOrDays, amount) => {
-// //     console.log('add trip', { title, peopleOrDays, amount });
-//     const newTrip = [...trips, { title, peopleOrDays, amount }];
+      console.log("line 76", tripdata);
+      console.log("response:", res);
+    });
+  });
 
-// const UserPage = () => {
-//   const [trips, setTrip] = useState([
-//     {
-//       title: 'Surfing',
-//       amount: 400
-//     },
-//     {
-//       title: 'Hiking',
-//       amount: 100
-//     },
-//     {
-//       title: 'Helicopter Tour',
-//       amount: 1000
-//     }
-//   ]);
+  console.log("line 80", tripdata);
+  const [trips, setTrip] = useState(tripdata);
 
+  console.log("trips line 82", trips);
   const addTrip = (title, amount) => {
-    console.log('add trip', { title, amount });
+    console.log("add trip", { title, amount });
     const newTrip = [...trips, { title, amount }];
-    
-    setTrip(newTrip);
 
-    Axios.put(`/userpage/${props.trip}`,{
+    setTrip(newTrip);
+    Axios.put(`/userpage/${props.trip}`, {
       trip: newTrip
-    })
-  
-    
+    });
   };
- 
 
   const removeTrip = index => {
-    console.log('remove trip', index);
+    console.log("remove trip", index);
     const newTrip = [...trips];
     newTrip.splice(index, 1);
     setTrip(newTrip);
   };
 
- 
   return (
     <Container>
       <br></br>
@@ -191,7 +130,6 @@ const [trips, setTrip] = useState(tripdata)
                   </tr>
                 </thead>
                 {trips.map((trip, index) => (
-
                   <Trip
                     key={index}
                     index={index}
@@ -213,9 +151,7 @@ const [trips, setTrip] = useState(tripdata)
           <br></br>
         </Col>
         <Col md={6}>
-          <BudgetCard
-          trip={trips} 
-          />
+          <BudgetCard trip={trips} />
         </Col>
       </Row>
       <br></br>
