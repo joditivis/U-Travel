@@ -213,28 +213,6 @@ class HotelSearchForm extends Component {
             </Col>
           </Row>
 
-          {/* <br></br>
-          <p className="hotel-form-label">Check In / Check Out</p>
-          <DatePicker /> */}
-
-          <br></br>
-
-          <Row>
-            <Col md={12}>
-              <FormGroup>
-                <Label className="hotel-form-label" for="numOfTravelers">
-                  Number of Travelers
-                </Label>
-                <Input
-                  type="text"
-                  name="numOfTravelers"
-                  id="numOfTravelersInput"
-                  placeholder="1"
-                />
-              </FormGroup>
-            </Col>
-          </Row>
-
           <br></br>
 
           <p className="hotel-form-label">Check In / Check Out</p>

@@ -43,11 +43,13 @@ module.exports = {
         $set: {
           flight: {
             flight_id: req.body.flight.id,
-            origin: req.body.flight.origin,
-            destination: req.body.flight.destination,
-            departure: req.body.flight.departure,
-            arrival: req.body.flight.arrival,
-            price: req.body.flight.price
+            flightSegments: req.body.flight.offerItems[0].services[0],
+            price: req.body.flight.offerItems[0].price.total
+          },
+          returnFlight: {
+            flight_id: req.body.flight.id,
+            flightSegments: req.body.flight.offerItems[0].services[1],
+            price: req.body.flight.offerItems[0].price.total
           }
         }
       },

@@ -5,10 +5,12 @@ const tripSchema = new Schema({
   destination: { type: String, required: true },
   flight: {
     flight_id: { type: String },
-    origin: { type: String },
-    destination: { type: String },
-    departure: { type: String },
-    arrival: { type: String },
+    flightSegments: { type: Array },
+    price: { type: mongoose.Decimal128 }
+  },
+  returnFlight: {
+    flight_id: { type: String },
+    flightSegments: { type: Array },
     price: { type: mongoose.Decimal128 }
   },
   hotel: {
