@@ -24,7 +24,6 @@ const tripSchema = new Schema(
         trip:[
         {
             title: { type: String},
-            peopleOrDays:{type: Number},
             amount: {type: mongoose.Decimal128}
         }
     ],

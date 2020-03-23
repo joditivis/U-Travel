@@ -84,46 +84,8 @@ const UserPage = (props) => {
       console.log("response:",res)
     })
   })
+
 const [trips, setTrip] = useState(tripdata)
-  // const [trips, setTrip] = useState([
-    
-  //   {
-  //     title: 'Surfing',
-  //     peopleOrDays: 5,
-  //     amount: 400
-  //   },
-  //   {
-  //     title: 'Hiking',
-  //     peopleOrDays: 2,
-  //     amount: 100
-  //   },
-  //   {
-  //     title: 'Helicopter Tour',
-  //     peopleOrDays: 4,
-  //     amount: 1000
-  //   }
-  // ]);
- 
-
-  // useEffect(()=>{
-  //   console.log("trips data:", trips);
-  //   console.log("tripId: ", tripId);
-  
-  //   Axios.get(`/gettrips/${props.trip}`)
-  //   .then(res=>{
-
-  //     // setTrip(
-  //     //   tripdata
-  //     // )
-  //     console.log("response:",res)
-  //   })
-  // })
-  
-  
- 
-//   const addTrip = async(title, peopleOrDays, amount) => {
-// //     console.log('add trip', { title, peopleOrDays, amount });
-//     const newTrip = [...trips, { title, peopleOrDays, amount }];
 
 // const UserPage = () => {
 //   const [trips, setTrip] = useState([
@@ -140,6 +102,21 @@ const [trips, setTrip] = useState(tripdata)
 //       amount: 1000
 //     }
 //   ]);
+
+ // useEffect(()=>{
+  //   console.log("trips data:", trips);
+  //   console.log("tripId: ", tripId);
+  
+  //   Axios.get(`/gettrips/${props.trip}`)
+  //   .then(res=>{
+
+  //     // setTrip(
+  //     //   tripdata
+  //     // )
+  //     console.log("response:",res)
+  //   })
+  // })
+  
 
   const addTrip = (title, amount) => {
     console.log('add trip', { title, amount });
