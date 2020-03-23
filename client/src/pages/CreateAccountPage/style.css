@@ -8,7 +8,7 @@
 }
 
 .create-act-header {
-    font-size: 20px;
+    font-size: 23px;
     text-align: center;
 }
 
@@ -19,10 +19,10 @@
 
 .create-act-label {
     color: rgb(255, 255, 255);
-    font-size: 18px;
+    font-size: 17px;
 }
 
-#createUserEmail, #createUserPassword {
+#createUserEmail, #createUserPassword, #createUserName {
     display: block;
     margin: 0 auto;
     width: 18rem;
@@ -72,4 +72,36 @@
     margin: 0 auto;
     border-radius: 3px;
     margin-top: 1rem;
+}
+
+@media screen and (max-width:470px) {
+    .create-act-card {
+        width: 21.5rem;
+        margin: 0 auto;
+        margin-top: 4rem;
+    }
+
+    .create-act-header {
+        font-size: 20px;
+        text-align: center;
+    }
+    
+    .create-act-form {
+        text-align: center;
+        align-items: center;
+    }
+    
+    .create-act-label {
+        color: rgb(255, 255, 255);
+        font-size: 16px;
+    }
+
+    .create-act-btn {
+        font-size: 16px;
+        width: 10rem;
+    }
+
+    .login-link {
+        font-size: 17px;
+    }
 }

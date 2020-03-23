@@ -108,7 +108,9 @@ const UserPage = props => {
       <Row>
         <Col md={6}>
           <DestinationCard />
+          <br></br>
         </Col>
+        
         <Col md={6}>
           <CountDown />
           <br></br>
@@ -116,7 +118,7 @@ const UserPage = props => {
         <Col md={6}>
           <Card className="trip-card">
             <CardHeader className="trip-header">
-              <h4>Planned Activities</h4>
+            Planned Activities
             </CardHeader>
             {/* <CardHeader>Add to my trip</CardHeader>
       <AddTripForm addTrip={addTrip} /> */}
@@ -140,7 +142,7 @@ const UserPage = props => {
               </Table>
               <hr></hr>
               <CardHeader className="trip-header">
-                <h4>Add to Trip</h4>
+                Add to Trip
               </CardHeader>
               <AddTripForm addTrip={addTrip} />
             </CardBody>

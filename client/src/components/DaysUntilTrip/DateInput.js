@@ -5,7 +5,7 @@ class DateInput extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            date: 'MM/DD/YYYY',
+            date: 'mm/dd/yyyy',
             editing: false
         };
 

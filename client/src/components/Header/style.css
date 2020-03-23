@@ -8,3 +8,17 @@
     color: white;
     margin-top: -50px;
 }
+
+@media screen and (max-width:470px) {
+    .header {
+        font-size: 60px;
+        margin-top: -25px;
+    }
+}
+
+@media screen and (max-width:376px) {
+    .header {
+        font-size: 60px;
+        margin-top: -25px;
+    }
+}

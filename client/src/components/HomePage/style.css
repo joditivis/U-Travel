@@ -8,7 +8,7 @@ body {
 }
 
 .instruction-jumbo {
-    margin-top: 5rem;
+    margin-top: 3rem;
     background-color: rgba(66, 66, 66, 0.74);
 }
 
@@ -16,6 +16,7 @@ body {
     text-align: center;
     color: white;
     font-family: 'Pontano Sans', sans-serif;
+    font-size: 25px;
 }
 
 .line-break {
@@ -46,4 +47,21 @@ body {
     background-color: rgba(255, 255, 255, 0.87);
     border: solid rgba(255, 255, 255, 0.87);
     font-family: 'Pontano Sans', sans-serif;
+}
+
+
+@media screen and (max-width:470px) {
+    .lead-instructions {
+        font-size: 22px;
+    }
+
+    .instructions {
+        font-size: 16px;
+    }
+
+    .start-planning-btn {
+        width: 10rem;
+        height: 3.4rem;
+        font-size: 16px;
+    }
 }

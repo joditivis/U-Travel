@@ -162,6 +162,7 @@ class TravelSearch extends Component {
           loading={this.state.isLoading}
         />
         <TravelSearchForm
+          className="travel-search-form"
           flightSearch={this.flightSearch}
           flightSearchAny={this.flightSearchAny}
         />
