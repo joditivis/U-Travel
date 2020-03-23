@@ -99,7 +99,7 @@ class NavbarComponent extends Component {
                           </Link>
                       </DropdownItem>
                       <DropdownItem>
-                        <Link to={`/`} className="nav-link-dark">
+                        <Link to={`/`} className="nav-link-dark" onClick={this.logout}>
                         Logout
                         </Link>
                       </DropdownItem>
