@@ -89,7 +89,8 @@ class TravelSearchForm extends Component {
       nonStop: false,
       startDate: "",
       endDate: "",
-      anyDestination: false
+      anyDestination: false, 
+      oneWay: false
     };
 
     this.lastRequestId = null;
@@ -184,20 +185,20 @@ class TravelSearchForm extends Component {
     cities = [];
   };
 
-  setDate = datePicker => {
+  setDate = (startDate, endDate) => {
     console.log("dates should be saving");
-    console.log(datePicker);
-    let startDate =
-      datePicker === null
+    console.log(startDate, endDate);
+    let start =
+      startDate === null
         ? ""
-        : moment(datePicker.startDate).format("YYYY-MM-DD");
-    let endDate =
-      datePicker === null
+        : moment(startDate).format("YYYY-MM-DD");
+    let end =
+      endDate === null
         ? ""
-        : moment(datePicker.endDate).format("YYYY-MM-DD");
+        : moment(endDate).format("YYYY-MM-DD");
     this.setState({
-      startDate: startDate,
-      endDate: endDate
+      startDate: start,
+      endDate: end
     });
   };
 
@@ -216,7 +217,18 @@ class TravelSearchForm extends Component {
     console.log(event.target.checked);
     // Getting the value and name of the input which triggered the change
     this.setState({ anyDestination: event.target.checked });
-    console.log(this.state);
+  };
+
+  handleCheckboxOneWay = event => {
+    console.log(event.target.checked);
+    // Getting the value and name of the input which triggered the change
+    this.setState({ oneWay: event.target.checked });
+  };
+
+  handleCheckboxNonStop = event => {
+    console.log(event.target.checked);
+    // Getting the value and name of the input which triggered the change
+    this.setState({ nonStop: event.target.checked });
   };
 
   handleSubmit = e => {
@@ -348,9 +360,34 @@ class TravelSearchForm extends Component {
               
 
               <br></br>
-
+              
               <p className="travel-form-label">Depart / Return</p>
-              <DatePicker setDate={this.setDate} />
+              <FormGroup check>
+                    <Label check>
+                      <Input 
+                      type="checkbox" 
+                      id="oneWay" 
+                      name="oneWay"
+                      onChange={this.handleCheckboxOneWay}
+                      //value={this.state.anyDestination}
+                      checked={this.state.oneWay}
+                      /> One-Way
+                    </Label>
+                  </FormGroup>
+                  <FormGroup check>
+                    <Label check>
+                      <Input 
+                      type="checkbox" 
+                      id="nonStop" 
+                      name="nonStop"
+                      onChange={this.handleCheckboxNonStop}
+                      //value={this.state.anyDestination}
+                      checked={this.state.nonStop}
+                      /> Non-Stop Flights Only
+                    </Label>
+                  </FormGroup>
+                  <br></br>
+              <DatePicker onEvent={this.setDate} />
 
               <br></br>
               <br></br>

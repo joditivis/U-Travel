@@ -74,12 +74,32 @@ module.exports = function(app) {
   });
 
   // Flight Offers Search
-  app.get("/flights/:originCity/:destinationCity/:date/:adults/:nonstop?", (req, res) => {
+  app.get("/flights/:originCity/:destinationCity/:date/:adults/:nonstop?/", (req, res) => {
     amadeus.shopping.flightOffers
       .get({
         origin: req.params.originCity,
         destination: req.params.destinationCity,
         departureDate: req.params.date,
+        adults: req.params.adults,
+        max: 50,
+        nonStop: req.params.nonstop || false
+      })
+      .then(function(response) {
+        res.send({ data: response.data });
+      })
+      .catch(function(responseError) {
+        console.log(responseError.code);
+        console.log(responseError)
+      });
+  });
+
+  app.get("/flightsround/:originCity/:destinationCity/:date/:endDate/:adults/:nonstop?", (req, res) => {
+    amadeus.shopping.flightOffers
+      .get({
+        origin: req.params.originCity,
+        destination: req.params.destinationCity,
+        departureDate: req.params.date,
+        returnDate: req.params.endDate,
         adults: req.params.adults,
         max: 50,
         nonStop: req.params.nonstop || false
