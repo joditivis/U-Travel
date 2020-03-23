@@ -79,39 +79,55 @@ const AddTripForm = ({ addTrip }) => {
 };
 
 const UserPage = (props) => {
-  // console.log("trip", props);
-  // console.log("tripID", props.trip);
- 
+  const tripdata =[];
   const [tripId, setTripId] = useState(props.trip)
- 
-  const [trips, setTrip] = useState([
-    {
-      title: 'Surfing',
-      peopleOrDays: 5,
-      amount: 400
-    },
-    {
-      title: 'Hiking',
-      peopleOrDays: 2,
-      amount: 100
-    },
-    {
-      title: 'Helicopter Tour',
-      peopleOrDays: 4,
-      amount: 1000
-    }
-  ]);
- 
-
+  // const [flight, setflight] = useState(props.trip.flight)
   useEffect(()=>{
-    console.log("trips data:", trips);
-    console.log("tripId: ", tripId);
-  
+
+   
     Axios.get(`/gettrips/${props.trip}`)
     .then(res=>{
+      res.data.trip.forEach(()=>{
+        tripdata.push(res.data.trip)
+      })
+     
       console.log("response:",res)
     })
   })
+const [trips, setTrip] = useState(tripdata)
+  // const [trips, setTrip] = useState([
+    
+  //   {
+  //     title: 'Surfing',
+  //     peopleOrDays: 5,
+  //     amount: 400
+  //   },
+  //   {
+  //     title: 'Hiking',
+  //     peopleOrDays: 2,
+  //     amount: 100
+  //   },
+  //   {
+  //     title: 'Helicopter Tour',
+  //     peopleOrDays: 4,
+  //     amount: 1000
+  //   }
+  // ]);
+ 
+
+  // useEffect(()=>{
+  //   console.log("trips data:", trips);
+  //   console.log("tripId: ", tripId);
+  
+  //   Axios.get(`/gettrips/${props.trip}`)
+  //   .then(res=>{
+
+  //     // setTrip(
+  //     //   tripdata
+  //     // )
+  //     console.log("response:",res)
+  //   })
+  // })
   
   
  
