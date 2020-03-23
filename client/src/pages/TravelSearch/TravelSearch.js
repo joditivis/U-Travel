@@ -139,6 +139,7 @@ class TravelSearch extends Component {
     return (
       <Container>
         <TravelSearchForm
+          className="travel-search-form"
           flightSearch={this.flightSearch}
           flightSearchAny={this.flightSearchAny}
         />

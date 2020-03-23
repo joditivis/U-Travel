@@ -1,9 +1,10 @@
-import React, { useState, Component } from "react";
+import React, { Component } from "react";
 import axios from "axios";
 import {
-  Collapse,
+  // Collapse,
   Navbar,
-  NavbarToggler,
+  // NavbarToggler,
+  // NavbarBrand,
   Nav,
   NavItem,
   UncontrolledDropdown,
@@ -14,6 +15,12 @@ import {
 } from "reactstrap";
 import { Link } from "react-router-dom";
 import "./style.css";
+
+// const NavbarComponent = (props) => {
+//   const [isOpen, setIsOpen] = useState(false);
+
+//   const toggle = () => setIsOpen(!isOpen);
+
 
 class NavbarComponent extends Component {
     constructor() {
@@ -41,24 +48,10 @@ class NavbarComponent extends Component {
             console.log("Logout error")
           });
       }
-
-
-  // Navbar dropdown toggler
-  isOpen(event) {
-    event.preventDefault();
-    useState(false);
-  }
-  setIsOpen(event) {
-    event.preventDefault();
-    useState(false);
-  }
-  toggle(event) {
-    event.preventDefault();
-    this.setIsOpen(!this.isOpen);
-  }
+  
 
   render() {
-
+ 
     const loggedIn = this.props.loggedIn;
     console.log("navbar render, props: ");
     console.log(this.props);
@@ -66,10 +59,11 @@ class NavbarComponent extends Component {
     return (
       <div>
         <Container>
-          <Navbar className="navbar" expand="md">
-            <NavbarToggler onClick={this.toggle} />
-            <Collapse isOpen={false} navbar>
-              <Nav className="mr-auto nav" navbar>
+          <Navbar className="navbar" expand="sm">
+          {/* <NavbarBrand href="#"></NavbarBrand>
+            <NavbarToggler className="navbaricon" onClick={toggle} />
+            <Collapse isOpen={isOpen} navbar> */}
+              <Nav className="mr-auto nav" tabs>
                 <NavItem>
                   <Link to={`/`} className="nav-link">
                     Home
@@ -105,12 +99,12 @@ class NavbarComponent extends Component {
                           </Link>
                       </DropdownItem>
                       <DropdownItem>
-                        <Link to={`/`} className="nav-link-dark" onClick={this.logout}>
+                        <Link to={`/`} className="nav-link-dark">
                         Logout
                         </Link>
                       </DropdownItem>
                     </DropdownMenu>
-                  ) : (
+                   ) : ( 
                     <DropdownMenu>
                       <DropdownItem>
                         <Link to={`/login`} className="nav-link-dark">
@@ -123,10 +117,10 @@ class NavbarComponent extends Component {
                         </Link>
                       </DropdownItem>
                     </DropdownMenu>
-                  )}
+                   )}
                 </UncontrolledDropdown>
               </Nav>
-            </Collapse>
+            {/* </Collapse> */}
           </Navbar>
         </Container>
       </div>

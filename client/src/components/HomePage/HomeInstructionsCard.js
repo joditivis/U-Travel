@@ -8,8 +8,7 @@ const InstructionsCard = (props) => {
     <div>
     <Container>
       <Jumbotron className="instruction-jumbo">
-        <h2 className="lead-instructions">Ready to take your next vacation?</h2>
-        <h3 className="lead-instructions">We're ready to help you get there.</h3>
+        <p className="lead-instructions">Ready to take your next vacation?</p>
         <hr className="line-break"></hr>
         <p className="instructions">1. Create an account to start saving your plans</p>
         <p className="instructions">2. Search for flights and hotels</p>

@@ -110,7 +110,7 @@ class HotelSearchPage extends Component {
         <Container>
           <Card className="hotel-card">
             <CardHeader className="hotel-header">
-              <h3>Search Hotels</h3>
+              Search Hotels
             </CardHeader>
             <CardBody className="hotel-body">
               <HotelSearchForm hotelSearch={this.hotelSearch} />

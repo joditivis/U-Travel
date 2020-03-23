@@ -5,7 +5,7 @@
 }
 
 .trip-header {
-    font-size: 20px;
+    font-size: 22px;
     text-align: center;
 }
 
@@ -14,11 +14,11 @@
 }
 
 th {
-    font-size: 20px;
+    font-size: 18px;
 }
 
 td {
-    font-size: 19px;
+    font-size: 16px;
 }
 
 .remove-button {
@@ -57,4 +57,44 @@ td {
     background-color: rgba(255, 255, 255, 0.87);
     border: solid rgba(255, 255, 255, 0.87);
     font-family: 'Pontano Sans', sans-serif;
+}
+
+@media screen and (max-width:470px) {
+    .trip-header {
+        font-size: 20px;
+    }
+
+    .add-trip-input {
+        display: block;
+        margin: 0 auto;
+        width: 14rem;
+    }
+
+    th {
+        font-size: 18px;
+    }
+    
+    td {
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width:780px) {
+    .trip-header {
+        font-size: 20px;
+    }
+
+    .add-trip-input {
+        display: block;
+        margin: 0 auto;
+        width: 14rem;
+    }
+
+    th {
+        font-size: 17px;
+    }
+    
+    td {
+        font-size: 16px;
+    }
 }

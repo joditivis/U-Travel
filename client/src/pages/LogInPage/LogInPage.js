@@ -73,7 +73,7 @@ class LogInPage extends Component {
             <Container>
               <Card className='login-card'>
                 <CardHeader className='login-header'>
-                  <h2>Log In</h2>
+                  Log In
                 </CardHeader>
                   <CardBody className='login-body'>
                     <Form className="login-form">

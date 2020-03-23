@@ -12,7 +12,7 @@ console.log('trip', props.trip)
   return (
     <div>
       <Card className='budget-card'>
-        <CardHeader className='budget-header'><h4>Trip Expenses</h4></CardHeader>
+        <CardHeader className='budget-header'>Trip Expenses</CardHeader>
             <CardBody>
                <Chart 
                trip={props.trip}/>
@@ -22,12 +22,11 @@ console.log('trip', props.trip)
                <br></br>
 
               <Row>
-                <Col md={6}>
-                  <h5>Total Trip Cost:</h5>
+                <Col lg={6}>
+                  <h5 className='total-cost'>Total Trip Cost:</h5>
                   <h4 className="trip-cost">$6,470</h4>
                 </Col>
-
-                <Col md={6}>
+                <Col lg={6}>
                   {/* <h5>Money Saved:</h5> */}
                   <MoneySavedInput />
                 </Col>
