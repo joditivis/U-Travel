@@ -103,10 +103,19 @@ class TravelSearch extends Component {
       });
   };
 
-  callApi = async (origin, destination, startDate, endDate, adults, oneWay, nonStop) => {
-    const response = await fetch(oneWay ? 
-      `/flights/${origin}/${destination}/${startDate}/${adults}/${nonStop}` :
-      `/flightsround/${origin}/${destination}/${startDate}/${endDate}/${adults}/${nonStop}`
+  callApi = async (
+    origin,
+    destination,
+    startDate,
+    endDate,
+    adults,
+    oneWay,
+    nonStop
+  ) => {
+    const response = await fetch(
+      oneWay
+        ? `/flights/${origin}/${destination}/${startDate}/${adults}/${nonStop}`
+        : `/flightsround/${origin}/${destination}/${startDate}/${endDate}/${adults}/${nonStop}`
     );
     const body = await response.json();
     if (response.status !== 200) throw Error(body.message);
