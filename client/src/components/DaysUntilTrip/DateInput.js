@@ -41,6 +41,7 @@ class DateInput extends Component {
             date: value,
             editing: false
         })
+    
     };
 
     componentDidUpdate() {
@@ -49,6 +50,7 @@ class DateInput extends Component {
 
     render() {
         return this.state.editing ? this.editor : <p className='vacation-date' onClick={this.edit}>{this.state.date}  <i className="fas fa-pen pencil"></i></p>
+    
     };
 }
 

@@ -29,6 +29,17 @@ const tripSchema = new Schema({
       amount: { type: mongoose.Decimal128 }
     }
   ],
+  date:{
+    trip_id: { type: String },
+    date: { type: String }
+  },
+  item:[
+    {
+      item_id:{ type: String },
+      text: { type: String }, 
+      isCompleted: {type: Boolean, default: false}
+    }
+  ],
   user: { type: String, required: true }
 });
 const Trip = mongoose.model("Trip", tripSchema);
