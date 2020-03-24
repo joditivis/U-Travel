@@ -17,9 +17,8 @@ function addNumber() {
 
     return (
       <Form className='add-money-input'>
-        <h5>Money Saved:</h5>
-      {/* <br></br> */}
-        <h2>${total}</h2>
+        <h5 className='money-saved'>Money Saved:</h5>
+        <h2 className='total-saved'>${total}</h2>
         
         <Input
           type='text'

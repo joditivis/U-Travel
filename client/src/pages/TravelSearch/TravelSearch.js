@@ -6,6 +6,8 @@ import TravelSearchAnyResults from "../../components/TravelSearch/TravelSearchAn
 import axios from "axios";
 import toast from "toasted-notes";
 import "toasted-notes/src/styles.css";
+import { css } from "@emotion/core";
+import ClipLoader from "react-spinners/ClipLoader";
 
 class TravelSearch extends Component {
   constructor(props) {
@@ -15,7 +17,8 @@ class TravelSearch extends Component {
       flightsAny: [],
       trip: "",
       user: "",
-      search: false
+      search: false,
+      isLoading: false
     };
     //this.setState = this.setState.bind(this);
     this.getTripInfoFromButton = this.getTripInfoFromButton.bind(this);
@@ -72,7 +75,8 @@ class TravelSearch extends Component {
 
   flightSearch = flightSearch => {
     this.setState({
-      search: true
+      search: true,
+      isLoading: true
     });
     this.callApi(
       flightSearch.origin,
@@ -83,7 +87,7 @@ class TravelSearch extends Component {
       flightSearch.oneWay,
       flightSearch.nonStop
     )
-      .then(res => this.setState({ flights: res.data }))
+      .then(res => this.setState({ flights: res.data, isLoading: false }))
       .then(res2 => console.log(this.state.flights))
       .catch(err => {
         console.log(err);
@@ -103,10 +107,19 @@ class TravelSearch extends Component {
       });
   };
 
-  callApi = async (origin, destination, startDate, endDate, adults, oneWay, nonStop) => {
-    const response = await fetch(oneWay ? 
-      `/flights/${origin}/${destination}/${startDate}/${adults}/${nonStop}` :
-      `/flightsround/${origin}/${destination}/${startDate}/${endDate}/${adults}/${nonStop}`
+  callApi = async (
+    origin,
+    destination,
+    startDate,
+    endDate,
+    adults,
+    oneWay,
+    nonStop
+  ) => {
+    const response = await fetch(
+      oneWay
+        ? `/flights/${origin}/${destination}/${startDate}/${adults}/${nonStop}`
+        : `/flightsround/${origin}/${destination}/${startDate}/${endDate}/${adults}/${nonStop}`
     );
     const body = await response.json();
     if (response.status !== 200) throw Error(body.message);
@@ -142,7 +155,14 @@ class TravelSearch extends Component {
   render() {
     return (
       <Container>
+        <div className="sweet-loading">
+        <ClipLoader
+          size={150}
+          color={"white"}
+          loading={this.state.isLoading}
+        />
         <TravelSearchForm
+          className="travel-search-form"
           flightSearch={this.flightSearch}
           flightSearchAny={this.flightSearchAny}
         />
@@ -165,6 +185,8 @@ class TravelSearch extends Component {
             ))
           )}
         </Row>
+        
+        </div>
         <Row>
           {this.state.flightsAny.map(flight => (
             <TravelSearchAnyResults key={flight.flight.id} flight={flight} />

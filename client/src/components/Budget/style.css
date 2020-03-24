@@ -6,12 +6,36 @@
 }
 
 .budget-header {
-    font-size: 20px;
+    font-size: 22px;
     text-align: center;
 }
 
+.total-cost {
+    font-size: 18px;
+}
+
 .trip-cost {
-    font-size: 30px;
+    font-size: 28px;
+    color: white;
+    background-color: rgba(255, 255, 255, 0.404);
+    width: 10rem;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 4px;
+}
+
+.money-saved {
+    font-size: 18px;
+}
+
+.total-saved {
+    font-size: 28px;
+    color: white;
+    background-color: rgba(255, 255, 255, 0.404);
+    width: 10rem;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 4px;
 }
 
 .add-money-input {
@@ -37,4 +61,58 @@
     background-color: rgba(255, 255, 255, 0.87);
     border: solid rgba(255, 255, 255, 0.87);
     font-family: 'Pontano Sans', sans-serif;
+}
+
+@media screen and (max-width:470px) {
+    .budget-header {
+        font-size: 20px;
+    }
+
+    .total-cost {
+        font-size: 17px;
+    }
+
+    .trip-cost {
+        font-size: 27px;
+        margin-bottom: 2rem;
+    }
+
+    .money-saved {
+        font-size: 17px;
+    }
+
+    .total-saved {
+        font-size: 27px;
+        width: 10rem;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 4px;
+    }
+}
+
+@media screen and (max-width:780px) {
+    .budget-header {
+        font-size: 20px;
+    }
+
+    .total-cost {
+        font-size: 17px;
+    }
+
+    .trip-cost {
+        font-size: 26px;
+        margin-bottom: 2rem;
+    }
+
+    .money-saved {
+        font-size: 17px;
+    }
+
+    .total-saved {
+        font-size: 26px;
+        width: 10rem;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 4px;
+    }
 }

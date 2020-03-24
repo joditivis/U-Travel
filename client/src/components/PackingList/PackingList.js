@@ -44,7 +44,7 @@ const PackingList = () => {
 
   return (
     <Card className='packing-card'>
-      <CardHeader className='packing-header'><h4>Items to Pack</h4></CardHeader>
+      <CardHeader className='packing-header'>Packing List</CardHeader>
       <CardBody className="item-list">
         {items.map((item, index) => (
           <Item

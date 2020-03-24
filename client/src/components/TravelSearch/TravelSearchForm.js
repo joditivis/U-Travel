@@ -259,7 +259,7 @@ class TravelSearchForm extends Component {
       <Container>
         <Card className="travel-card">
           <CardHeader className="travel-header">
-            <h3>Search Flights</h3>
+            Search Flights
           </CardHeader>
           <CardBody className="travel-body">
             <Form className="travel-form">

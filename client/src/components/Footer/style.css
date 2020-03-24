@@ -34,9 +34,28 @@ body {
     color: white;
     font-family: 'Pontano Sans', sans-serif;
     margin: 12px;
-    font-size: 18px;
+    font-size: 17px;
 }
 
 .profile-links:hover {
     color: black;
+}
+
+
+@media screen and (max-width:470px) {
+    .footer {
+        margin-top: 5rem;
+    }
+
+    .project-github {
+        font-size: 26px;
+    }
+
+    .copyright {
+        font-size: 15px;
+    }
+
+    .profile-links {
+        font-size: 16px;
+    }
 }

@@ -69,7 +69,7 @@ render() {
         <Container>
           <Card className='create-act-card'>
             <CardHeader className='create-act-header'>
-              <h2>Create Account</h2>
+              Create Account
             </CardHeader>
               <CardBody className='create-act-body'>
                 <Form className='create-act-form'>

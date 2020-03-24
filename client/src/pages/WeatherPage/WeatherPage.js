@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Row, Col } from 'reactstrap';
+import {  Row, Col } from 'reactstrap';
 import moment from 'moment';
 import WeatherSearchBar from '../../components/Weather/WeatherSearchBar';
 import WeatherDayCard from '../../components/Weather/WeatherDayCard';
@@ -54,12 +54,12 @@ const WeatherPage = () => {
 
   return (
     <div>
-    <Container>
+    {/* <Container> */}
       <Row>
-        <Col md={8}>
+        <Col lg={8}>
           <h3 className='weather-for'>Weather for {location}</h3>
         </Col>
-        <Col md={4}>
+        <Col lg={4}>
           <WeatherSearchBar
             searchTerm={searchTerm}
             handleInputChange={handleInputChange}
@@ -83,7 +83,7 @@ const WeatherPage = () => {
           />
         ))}
       </Row>
-    </Container>
+    {/* </Container> */}
     </div>
   );
 };

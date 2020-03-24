@@ -8,7 +8,7 @@ const DestinationCard = () => {
 return (
     <div>
       <Card className='destination-card'>
-        <CardHeader className='destination-header'><h4>Destination</h4></CardHeader>
+        <CardHeader className='destination-header'>Destination</CardHeader>
             <CardBody>
               <DestinationInput />
             </CardBody>
