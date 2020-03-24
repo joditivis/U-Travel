@@ -1,4 +1,4 @@
-import React, { useState, Component, useEffect } from 'react';
+import React, { useState, Component, useEffect } from "react";
 import {
   Container,
   Row,
@@ -10,29 +10,29 @@ import {
   Button,
   Form,
   Input
-} from 'reactstrap';
-import PackingList from '../../components/PackingList/PackingList';
-import BudgetCard from '../../components/Budget/BudgetCard';
-import CountDown from '../../components/DaysUntilTrip/CountDown';
-import WeatherPage from '../WeatherPage/WeatherPage';
+} from "reactstrap";
+import PackingList from "../../components/PackingList/PackingList";
+import BudgetCard from "../../components/Budget/BudgetCard";
+import CountDown from "../../components/DaysUntilTrip/CountDown";
+import WeatherPage from "../WeatherPage/WeatherPage";
 // import TripInfo from '../../components/SavedTripInfo/TripInfo';
-import Trip from '../../components/SavedTripInfo/Trip';
-import DestinationCard from '../../components/DestinationInput/DestinationCard';
+import Trip from "../../components/SavedTripInfo/Trip";
+import DestinationCard from "../../components/DestinationInput/DestinationCard";
 // import AddTripForm from '../../components/SavedTripInfo/AddTripForm';
-import SavedFlightHotel from '../../components/SavedFlightHotel/SavedFlightHotel';
-import './style.css';
-import Axios from 'axios';
-import { decodeBase64 } from 'bcryptjs';
+import SavedFlightHotel from "../../components/SavedFlightHotel/SavedFlightHotel";
+import "./style.css";
+import Axios from "axios";
+import { decodeBase64 } from "bcryptjs";
 
 const AddTripForm = ({ addTrip }) => {
-  const [title, setTitle] = useState('');
-  const [amount, setAmount] = useState('');
+  const [title, setTitle] = useState("");
+  const [amount, setAmount] = useState("");
 
   const handleSubmit = event => {
     event.preventDefault();
     addTrip(title, amount);
-    setTitle('');
-    setAmount('');
+    setTitle("");
+    setAmount("");
   };
 
   return (
@@ -75,37 +75,36 @@ const UserPage = props => {
     setTripId(props.trip);
     console.log("I'm here!!!", tripId, props.trip);
 
-      Axios.get(`/gettrips/${tripId}`).then(res => {
-        let tripdata = [];
-        res.data.trip.forEach(() => {
-          tripdata = tripdata.concat(res.data.trip);
-        });
-        setTrip(res.data.trip);
-        setSavedFlights(res.data.flight);
-        setSavedReturnFlights(res.data.returnFlight);
-        setSavedHotel(res.data.hotel);
-        console.log('tripdata', tripdata);
-        console.log('response:', res);
+    Axios.get(`/gettrips/${tripId}`).then(res => {
+      let tripdata = [];
+      res.data.trip.forEach(() => {
+        tripdata = tripdata.concat(res.data.trip);
       });
+      setTrip(res.data.trip);
+      setSavedFlights(res.data.flight);
+      setSavedReturnFlights(res.data.returnFlight);
+      setSavedHotel(res.data.hotel);
+      console.log("tripdata", tripdata);
+      console.log("response:", res);
+    });
   }, [props.trip]);
 
- 
   const addTrip = (title, amount) => {
-    console.log('add trip', { title, amount });
+    console.log("add trip", { title, amount });
     const newTrip = [...trips, { title, amount }];
 
     console.log("new", newTrip);
-    
+
     Axios.put(`/userpage/${props.trip}`, {
       trip: newTrip
-    }).then(res=>{
-      console.log("res.data",res.data.trip)
-      setTrip(res.data.trip)
+    }).then(res => {
+      console.log("res.data", res.data.trip);
+      setTrip(res.data.trip);
     });
   };
 
   const removeTrip = index => {
-    console.log('remove trip', index);
+    console.log("remove trip", index);
     const newTrip = [...trips];
     newTrip.splice(index, 1);
     setTrip(newTrip);
@@ -117,18 +116,24 @@ const UserPage = props => {
       <Row>
         <Col md={6}>
           <DestinationCard />
-          <br></br>
         </Col>
 
         <Col md={6}>
           <CountDown />
-          <br></br>
         </Col>
+      </Row>
+      <hr></hr>
+      <Row>
         <Col md={12}>
-          <SavedFlightHotel flight={savedFlights} returnFlight={savedReturnFlights} hotel={savedHotel}></SavedFlightHotel>
+          <SavedFlightHotel
+            flight={savedFlights}
+            returnFlight={savedReturnFlights}
+            hotel={savedHotel}
+          ></SavedFlightHotel>
         </Col>
-        <br></br>
-        <hr></hr>
+      </Row>
+      <hr></hr>
+      <Row>
         <Col md={6}>
           <Card className="trip-card">
             <CardHeader className="trip-header">Planned Activities</CardHeader>
@@ -143,14 +148,17 @@ const UserPage = props => {
                     <th>Remove</th>
                   </tr>
                 </thead>
-                {trips.map((trip, index) => {console.log(trip); return (
-                  <Trip
-                    key={index}
-                    index={index}
-                    trip={trip}
-                    removeTrip={removeTrip}
-                  />
-                )})}
+                {trips.map((trip, index) => {
+                  console.log(trip);
+                  return (
+                    <Trip
+                      key={index}
+                      index={index}
+                      trip={trip}
+                      removeTrip={removeTrip}
+                    />
+                  );
+                })}
               </Table>
               <hr></hr>
               <CardHeader className="trip-header">Add to Trip</CardHeader>

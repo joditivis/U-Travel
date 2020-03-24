@@ -85,11 +85,12 @@ class TravelSearchResults extends Component {
               0
                 ? "(Nonstop)"
                 : this.props.flight.offerItems[0].services[0].segments.length -
-                1 ===
-              1
+                    1 ===
+                  1
                 ? `(${this.props.flight.offerItems[0].services[0].segments
-                    .length - 1} Stop)`: `(${this.props.flight.offerItems[0].services[0].segments
-                      .length - 1} Stops)`}
+                    .length - 1} Stop)`
+                : `(${this.props.flight.offerItems[0].services[0].segments
+                    .length - 1} Stops)`}
             </strong>
           </h5>
           {this.props.flight.offerItems[0].services[0].segments.map(
@@ -99,38 +100,47 @@ class TravelSearchResults extends Component {
           )}
           <p>Total Flight Time: {this.timeTraveled(0)}</p>
           <hr></hr>
-          <h5>
-            <strong>
-              Returning Flights{" "}
-              {this.props.flight.offerItems[0].services[1].segments.length -
-                1 ===
-              0
-              ? "(Nonstop)"
-              : this.props.flight.offerItems[0].services[1].segments.length -
-              1 ===
-            1
-              ? `(${this.props.flight.offerItems[0].services[1].segments
-                  .length - 1} Stop)`: `(${this.props.flight.offerItems[0].services[1].segments
-                    .length - 1} Stops)`}
-            </strong>
-          </h5>
-          {this.props.flight.offerItems[0].services[1].segments.map(
-            (segment, index) => (
-              <FlightSegments key={index} segment={segment} />
-            )
+          {this.props.flight.offerItems[0].services[1] ? (
+            <div>
+              <h5>
+                <strong>
+                  Returning Flights{" "}
+                  {this.props.flight.offerItems[0].services[1].segments.length -
+                    1 ===
+                  0
+                    ? "(Nonstop)"
+                    : this.props.flight.offerItems[0].services[1].segments
+                        .length -
+                        1 ===
+                      1
+                    ? `(${this.props.flight.offerItems[0].services[1].segments
+                        .length - 1} Stop)`
+                    : `(${this.props.flight.offerItems[0].services[1].segments
+                        .length - 1} Stops)`}
+                </strong>
+              </h5>
+              {this.props.flight.offerItems[0].services[1].segments.map(
+                (segment, index) => (
+                  <FlightSegments key={index} segment={segment} />
+                )
+              )}
+              <p>Total Flight Time: {this.timeTraveled(1)}</p>
+              <hr></hr>
+              <h5>Price:</h5>{" "}
+              <p className="flight-details">
+                {" "}
+                {new Intl.NumberFormat("en-US", {
+                  style: "currency",
+                  currency: "USD",
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2
+                }).format(this.props.flight.offerItems[0].price.total)}
+              </p>
+            </div>
+          ) : (
+            <div></div>
           )}
-          <p>Total Flight Time: {this.timeTraveled(1)}</p>
-          <hr></hr>
-          <h5>Price:</h5>{" "}
-          <p className="flight-details">
-            {" "}
-            {new Intl.NumberFormat("en-US", {
-              style: "currency",
-              currency: "USD",
-              minimumFractionDigits: 2,
-              maximumFractionDigits: 2
-            }).format(this.props.flight.offerItems[0].price.total)}
-          </p>
+
           <br></br>
           <Button
             className="flight-results-btn"
