@@ -36,10 +36,10 @@ class LogInPage extends Component {
                 password: this.state.password
             })
             .then(response => {
-                console.log('login response: ', response)
-                if (response.status === 200) {
+                console.log("Response from log in submission: ", response)
+                if (response.data._id) {
                     // Update state to logged in
-                    console.log(response.data);
+                    // console.log(response.data);
                     this.props.updateUser({
                         loggedIn: true,
                         email: response.data.email,
@@ -49,16 +49,15 @@ class LogInPage extends Component {
                     this.setState({
                         redirectTo: '/userpage'
                     })
-                }
                 // } else {
-                //   let incorrectEmail = response.data.error ? response.data.email : ''
-                //   let incorrectPassword = response.data.error ? response.data.password : ''
+                //   let incorrectEmail = response.data.err ? response.data.email : ''
+                //   let incorrectPassword = response.data.err ? response.data.password : ''
 
                 //   this.setState({
                 //     incorrectEmail : incorrectEmail,
                 //     incorrectPassword : incorrectPassword
                 //   })
-                // }
+                }
             }).catch(error => {
                 console.log('Login Error: ', error);
 
@@ -88,6 +87,7 @@ class LogInPage extends Component {
                               onChange={this.handleChange}
                             />
                           </FormGroup>
+                          {/* {this.state.incorrectEmail ? (<p className='errormsg'>{this.state.incorrectEmail}</p> ):( <p></p>)} */}
                           <br></br>
                           <FormGroup>
                             <Label className="login-form-label" for='userPassword'>Password</Label>
@@ -100,6 +100,7 @@ class LogInPage extends Component {
                               onChange={this.handleChange}
                             />
                           </FormGroup>
+                          {/* {this.state.incorrectPassword ? (<p className='errormsg'>{this.state.incorrectPassword}</p> ):( <p></p>)} */}
                           <br></br>
                           <Button 
                             className='login-btn'
