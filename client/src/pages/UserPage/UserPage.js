@@ -160,7 +160,7 @@ const UserPage = props => {
           <br></br>
         </Col>
         <Col md={6}>
-          <BudgetCard trip={trips} />
+          <BudgetCard tripId={tripId} trip={trips} />
         </Col>
       </Row>
       <br></br>
