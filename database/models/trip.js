@@ -24,6 +24,7 @@ const tripSchema = new Schema({
   },
   trip: [
     {
+      trip_id: { type: String },
       title: { type: String },
       amount: { type: mongoose.Decimal128 }
     }
