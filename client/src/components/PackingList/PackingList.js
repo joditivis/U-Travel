@@ -1,24 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import AddItemForm from '../PackingList/AddItemForm';
 import Item from '../PackingList/Item';
 import { Card, CardHeader, CardBody } from 'reactstrap';
 import './style.css';
+import Axios from 'axios';
 
-const PackingList = () => {
+const PackingList = props => {
   const [items, setItems] = useState([
-    {
-      text: 'Sunscreen',
-      isCompleted: false
-    },
-    {
-      text: 'Sunglasses',
-      isCompleted: false
-    },
-    {
-      text: 'Sandals',
-      isCompleted: false
-    }
+    // {
+    //   text: 'Sunscreen',
+    //   isCompleted: false
+    // },
+    // {
+    //   text: 'Sunglasses',
+    //   isCompleted: false
+    // },
+    // {
+    //   text: 'Sandals',
+    //   isCompleted: false
+    // }
   ]);
+  const [packing, setPacking] = useState(props.trip)
+  useEffect(()=>{
+    const packing = props.trip;
+    setPacking(props.trip);
+    console.log("pack?", packing, props.trip);
+
+    Axios.get(`/getpacking/${tripId}`).then(res=>{
+      let packingdata = [];
+      res.data.
+    })
+    
+  })
 
   const addItem = text => {
     console.log('add', text);
