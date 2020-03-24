@@ -137,6 +137,8 @@ class TravelSearch extends Component {
 
   getTripInfoFromButton(tripObject) {
     console.log(tripObject);
+    console.log(tripObject.key);
+    console.log(this.state.flights[tripObject.key]);
     if (!this.state.trip) {
       toast.notify(
         "Please create an account before attempting to save a trip.",
@@ -146,7 +148,7 @@ class TravelSearch extends Component {
         }
       );
     } else {
-      this.updateDB(this.state.trip, tripObject);
+      this.updateDB(this.state.trip, this.state.flights[tripObject.key]);
       console.log("trip is updated");
       console.log(this.state);
     }
@@ -174,9 +176,10 @@ class TravelSearch extends Component {
               </Card>
             </Col>
           ) : (
-            this.state.flights.map(flight => (
+            this.state.flights.map((flight, index) => (
               <TravelSearchResults
                 key={flight.id}
+                flightNumber={index}
                 flight={flight}
                 updateDB={this.updateDB}
                 getTripInfoFromButton={this.getTripInfoFromButton}

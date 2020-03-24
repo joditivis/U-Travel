@@ -43,11 +43,13 @@ module.exports = {
         $set: {
           flight: {
             flight_id: req.body.flight.id,
-            origin: req.body.flight.origin,
-            destination: req.body.flight.destination,
-            departure: req.body.flight.departure,
-            arrival: req.body.flight.arrival,
-            price: req.body.flight.price
+            flightSegments: req.body.flight.offerItems[0].services[0],
+            price: req.body.flight.offerItems[0].price.total
+          },
+          returnFlight: {
+            flight_id: req.body.flight.id,
+            flightSegments: req.body.flight.offerItems[0].services[1],
+            price: req.body.flight.offerItems[0].price.total
           }
         }
       },
@@ -66,7 +68,10 @@ module.exports = {
             hotel_id: req.body.hotel.id,
             name: req.body.hotel.name,
             roomType: req.body.hotel.roomType,
-            price: req.body.hotel.price
+            price: req.body.hotel.price,
+            checkInDate: req.body.hotel.checkInDate,
+            checkOutDate: req.body.hotel.checkOutDate,
+            currency: req.body.hotel.currency
           }
         }
       },
