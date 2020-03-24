@@ -80,9 +80,10 @@ module.exports = {
     db.Trip.findOneAndUpdate(
       { _id: req.params.tripId },
       { $set: { trip: req.body.trip } },
-      req.body
-    )
-      .then(dbModel => res.json(dbModel))
+      { new: true })
+      .then(dbModel => {
+        console.log(dbModel)
+         res.json(dbModel)})
       .catch(err => res.status(422).json(err));
   },
   findByTripID: function(req, res) {
