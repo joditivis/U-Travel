@@ -33,11 +33,11 @@ const tripSchema = new Schema({
     trip_id: { type: String },
     date: { type: String }
   },
-  packing:[
+  item:[
     {
-      packing_id:{ type: String },
+      item_id:{ type: String },
       text: { type: String }, 
-      
+      isCompleted: {type: Boolean, default: false}
     }
   ],
   user: { type: String, required: true }

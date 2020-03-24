@@ -6,37 +6,38 @@ import './style.css';
 import Axios from 'axios';
 
 const PackingList = props => {
-  const [items, setItems] = useState([
-    // {
-    //   text: 'Sunscreen',
-    //   isCompleted: false
-    // },
-    // {
-    //   text: 'Sunglasses',
-    //   isCompleted: false
-    // },
-    // {
-    //   text: 'Sandals',
-    //   isCompleted: false
-    // }
-  ]);
-  const [packing, setPacking] = useState(props.trip)
-  useEffect(()=>{
-    const packing = props.trip;
-    setPacking(props.trip);
-    console.log("pack?", packing, props.trip);
+  const [items, setItems] = useState([]);
+  const [tripIdPack, setTripIdPack] = useState(props.tripId);
 
-    Axios.get(`/getpacking/${tripId}`).then(res=>{
-      let packingdata = [];
-      res.data.
-    })
-    
-  })
+  useEffect(() => {
+    // const tripId = props.tripId;
+    console.log("HERE: ",props);
+    setTripIdPack(props.tripId);
+    console.log("packing?", tripIdPack, props.tripId);
+
+      Axios.get(`/getpacking/${props.tripId}`).then(res => {
+        let itemdata = [];
+        res.data.item.forEach(() => {
+          itemdata = itemdata.concat(res.data.item);
+        });
+        setItems(res.data.item);
+        console.log('packing tripdata', itemdata);
+        console.log('packing response:', res);
+      });
+  }, [props.tripId]);
 
   const addItem = text => {
     console.log('add', text);
     const newItems = [...items, { text, isCompleted: false }];
-    setItems(newItems);
+    
+    console.log("is this happening?", newItems);
+
+    Axios.put(`/userpage/${props.tripId}`, {
+      item: newItems
+    }).then(res=>{
+      console.log("res.data",res.data.item)
+      setItems(res.data.item)
+    });
   };
 
   const completeItem = index => {

@@ -100,7 +100,7 @@ module.exports = {
   updatePackingByTripId: function(req,res){
     db.Trip.findOneAndUpdate(
       { _id: req.params.tripId },
-      { $set: { packing: req.body.items } },
+      { $set: { item: req.body.item } },
       { new: true })
       .then(dbModel => {
         console.log(dbModel)

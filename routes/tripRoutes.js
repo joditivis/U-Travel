@@ -28,10 +28,10 @@ router.route("/userpage/:tripId")
 router.route("/gettrips/:tripId")
   .get(tripsController.findByTripID);
 
-router.route("/getpaking/:tripId")
+router.route("/getpacking/:tripId")
   .get(tripsController.findByTripID);
 
-router.route("/packing/tripId")
+router.route("/packing/:tripId")
   .put(tripsController.updatePackingByTripId);
   
 // router.route("/date/:tripId")

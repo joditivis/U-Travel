@@ -69,7 +69,7 @@ const UserPage = props => {
     const tripId = props.trip;
     setTripId(props.trip);
     console.log("I'm here!!!", tripId, props.trip);
-
+    
       Axios.get(`/gettrips/${tripId}`).then(res => {
         let tripdata = [];
         res.data.trip.forEach(() => {
@@ -100,7 +100,13 @@ const UserPage = props => {
     console.log('remove trip', index);
     const newTrip = [...trips];
     newTrip.splice(index, 1);
-    setTrip(newTrip);
+
+    Axios.put(`/userpage/${props.trip}`, {
+      trip: newTrip
+    }).then(res=>{
+      console.log("res.data",res.data.trip)
+      setTrip(res.data.trip)
+    });
   };
 
   return (
@@ -146,7 +152,7 @@ const UserPage = props => {
           </Card>
 
           <br></br>
-          <PackingList />
+          <PackingList tripId={tripId}/>
           <br></br>
         </Col>
         <Col md={6}>
