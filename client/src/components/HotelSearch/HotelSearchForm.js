@@ -128,17 +128,17 @@ class HotelSearchForm extends Component {
   setDate = (startDate, endDate) => {
     console.log("dates should be saving");
     console.log(startDate, endDate);
-    let start =
+    let checkInDate =
       startDate === null
         ? ""
         : moment(startDate).format("YYYY-MM-DD");
-    let end =
+    let checkOutDate =
       endDate === null
         ? ""
         : moment(endDate).format("YYYY-MM-DD");
     this.setState({
-      startDate: start,
-      endDate: end
+      checkInDate: checkInDate,
+      checkOutDate: checkOutDate
     });
   };
 

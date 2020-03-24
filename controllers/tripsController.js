@@ -68,7 +68,10 @@ module.exports = {
             hotel_id: req.body.hotel.id,
             name: req.body.hotel.name,
             roomType: req.body.hotel.roomType,
-            price: req.body.hotel.price
+            price: req.body.hotel.price,
+            checkInDate: req.body.hotel.checkInDate,
+            checkOutDate: req.body.hotel.checkOutDate,
+            currency: req.body.hotel.currency
           }
         }
       },

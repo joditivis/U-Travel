@@ -17,7 +17,10 @@ const tripSchema = new Schema({
     hotel_id: { type: String },
     name: { type: String },
     roomType: { type: String },
-    price: { type: mongoose.Decimal128 }
+    price: { type: mongoose.Decimal128 },
+    checkInDate: {type: String},
+    checkOutDate: {type: String},
+    currency: {type: String},
   },
   trip: [
     {
