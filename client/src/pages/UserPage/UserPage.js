@@ -66,19 +66,23 @@ const UserPage = props => {
   const [tripId, setTripId] = useState(props.trip);
 
   useEffect(() => {
-    const tripId = props.trip;
+    //const tripId = props.trip;
     setTripId(props.trip);
     console.log("I'm here!!!", tripId, props.trip);
-    
-      Axios.get(`/gettrips/${tripId}`).then(res => {
+    if(props.trip){
+      Axios.get(`/gettrips/${props.trip}`).then(res => {
         let tripdata = [];
-        res.data.trip.forEach(() => {
-          tripdata = tripdata.concat(res.data.trip);
-        });
-        setTrip(res.data.trip);
+        if(res.data.trip){
+          res.data.trip.forEach(() => {
+            tripdata = tripdata.concat(res.data.trip);
+          });
+        }
+        setTrip(res.data.trip || []);
         console.log('tripdata', tripdata);
         console.log('response:', res);
       });
+    }
+      
   }, [props.trip]);
 
  

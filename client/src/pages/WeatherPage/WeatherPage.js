@@ -33,7 +33,7 @@ const WeatherPage = () => {
   const getWeather = city => {
     API.getWeather(city)
       .then(res => {
-        console.log(res);
+        //console.log(res);
         setData({
           searchTerm: '',
           days: res.data.data,

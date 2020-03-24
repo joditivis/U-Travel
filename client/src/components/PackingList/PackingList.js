@@ -14,7 +14,7 @@ const PackingList = props => {
     console.log("HERE: ",props);
     setTripIdPack(props.tripId);
     console.log("packing?", tripIdPack, props.tripId);
-
+    if(props.tripId){
       Axios.get(`/getpacking/${props.tripId}`).then(res => {
         let itemdata = [];
         res.data.item.forEach(() => {
@@ -24,6 +24,7 @@ const PackingList = props => {
         console.log('packing tripdata', itemdata);
         console.log('packing response:', res);
       });
+    }
   }, [props.tripId]);
 
   const addItem = text => {
@@ -32,7 +33,7 @@ const PackingList = props => {
     
     console.log("is this happening?", newItems);
 
-    Axios.put(`/userpage/${props.tripId}`, {
+    Axios.put(`/packing/${props.tripId}`, {
       item: newItems
     }).then(res=>{
       console.log("res.data",res.data.item)
