@@ -47,14 +47,24 @@ const PackingList = props => {
     if (newItems[index].isCompleted === false)
       newItems[index].isCompleted = true;
     else newItems[index].isCompleted = false;
-    setItems(newItems);
+    Axios.put(`/packing/${props.tripId}`, {
+      item: newItems
+    }).then(res=>{
+      console.log("res.data",res.data.item)
+      setItems(res.data.item)
+    });
   };
 
   const removeItem = index => {
     console.log('remove', index);
     const newItems = [...items];
     newItems.splice(index, 1);
-    setItems(newItems);
+    Axios.put(`/packing/${props.tripId}`, {
+      item: newItems
+    }).then(res=>{
+      console.log("res.data",res.data.item)
+      setItems(res.data.item)
+    });
   };
 
   return (
