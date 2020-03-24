@@ -5,7 +5,7 @@ class DateInput extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            date: 'mm/dd/yyyy',
+            date: "MM/DD/YYYY",
             editing: false
         };
 
@@ -22,7 +22,8 @@ class DateInput extends Component {
                         onKeyPress={(event) => {
                             const key = event.which || event.keyCode;
                             if (key === 13) { // if user hits the "enter" key, save input value
-                                this.save(event.target.value)
+                                this.save(event.target.value);
+                                this.props.handleInputChange(event.target.value);
                             }
                         }} autoFocus={true}
                       />
