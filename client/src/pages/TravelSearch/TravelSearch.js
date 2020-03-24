@@ -90,6 +90,7 @@ class TravelSearch extends Component {
       .then(res => this.setState({ flights: res.data, isLoading: false }))
       .then(res2 => console.log(this.state.flights))
       .catch(err => {
+        this.setState({isLoading: false});
         console.log(err);
       });
   };
@@ -157,19 +158,20 @@ class TravelSearch extends Component {
   render() {
     return (
       <Container>
-        <div className="sweet-loading">
-        <ClipLoader
-          size={150}
-          color={"white"}
-          loading={this.state.isLoading}
-        />
+        
         <TravelSearchForm
           className="travel-search-form"
           flightSearch={this.flightSearch}
           flightSearchAny={this.flightSearchAny}
         />
+      
+        <ClipLoader
+          size={150}
+          color={"white"}
+          loading={this.state.isLoading}
+        />
         <Row>
-          {!this.state.flights.length && this.state.search ? (
+          {!this.state.flights.length && this.state.search && !this.state.isLoading ? (
             <Col>
               <Card className="travelCard">
                 <CardHeader>There are no flight results.</CardHeader>
@@ -189,7 +191,7 @@ class TravelSearch extends Component {
           )}
         </Row>
         
-        </div>
+       
         <Row>
           {this.state.flightsAny.map(flight => (
             <TravelSearchAnyResults key={flight.flight.id} flight={flight} />
