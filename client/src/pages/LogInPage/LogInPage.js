@@ -37,7 +37,7 @@ class LogInPage extends Component {
             })
             .then(response => {
                 console.log("Response from log in submission: ", response)
-                if (response.data._id) {
+                if (response.status === 200) {
                     // Update state to logged in
                     // console.log(response.data);
                     this.props.updateUser({

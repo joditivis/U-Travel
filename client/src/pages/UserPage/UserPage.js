@@ -19,6 +19,7 @@ import WeatherPage from '../WeatherPage/WeatherPage';
 import Trip from '../../components/SavedTripInfo/Trip';
 import DestinationCard from '../../components/DestinationInput/DestinationCard';
 // import AddTripForm from '../../components/SavedTripInfo/AddTripForm';
+import SavedFlightHotel from '../../components/SavedFlightHotel/SavedFlightHotel';
 import './style.css';
 import Axios from 'axios';
 import { decodeBase64 } from 'bcryptjs';
@@ -65,6 +66,10 @@ const UserPage = props => {
   const [trips, setTrip] = useState([]);
   const [tripId, setTripId] = useState(props.trip);
 
+  const [savedFlights, setSavedFlights] = useState([]);
+  const [savedReturnFlights, setSavedReturnFlights] = useState([]);
+  const [savedHotel, setSavedHotel] = useState([]);
+
   useEffect(() => {
     const tripId = props.trip;
     setTripId(props.trip);
@@ -76,6 +81,9 @@ const UserPage = props => {
           tripdata = tripdata.concat(res.data.trip);
         });
         setTrip(res.data.trip);
+        setSavedFlights(res.data.flight);
+        setSavedReturnFlights(res.data.returnFlight);
+        setSavedHotel(res.data.hotel);
         console.log('tripdata', tripdata);
         console.log('response:', res);
       });
@@ -116,6 +124,11 @@ const UserPage = props => {
           <CountDown />
           <br></br>
         </Col>
+        <Col md={12}>
+          <SavedFlightHotel flight={savedFlights} returnFlight={savedReturnFlights} hotel={savedHotel}></SavedFlightHotel>
+        </Col>
+        <br></br>
+        <hr></hr>
         <Col md={6}>
           <Card className="trip-card">
             <CardHeader className="trip-header">Planned Activities</CardHeader>
