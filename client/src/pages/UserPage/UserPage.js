@@ -1,4 +1,4 @@
-import React, { useState, Component, useEffect } from "react";
+import React, { useState, Component, useEffect } from 'react';
 import {
   Container,
   Row,
@@ -10,28 +10,28 @@ import {
   Button,
   Form,
   Input
-} from "reactstrap";
-import PackingList from "../../components/PackingList/PackingList";
-import BudgetCard from "../../components/Budget/BudgetCard";
-import CountDown from "../../components/DaysUntilTrip/CountDown";
-import WeatherPage from "../WeatherPage/WeatherPage";
+} from 'reactstrap';
+import PackingList from '../../components/PackingList/PackingList';
+import BudgetCard from '../../components/Budget/BudgetCard';
+import CountDown from '../../components/DaysUntilTrip/CountDown';
+import WeatherPage from '../WeatherPage/WeatherPage';
 // import TripInfo from '../../components/SavedTripInfo/TripInfo';
-import Trip from "../../components/SavedTripInfo/Trip";
-import DestinationCard from "../../components/DestinationInput/DestinationCard";
+import Trip from '../../components/SavedTripInfo/Trip';
+import DestinationCard from '../../components/DestinationInput/DestinationCard';
 // import AddTripForm from '../../components/SavedTripInfo/AddTripForm';
-import "./style.css";
-import Axios from "axios";
-import { decodeBase64 } from "bcryptjs";
+import './style.css';
+import Axios from 'axios';
+import { decodeBase64 } from 'bcryptjs';
 
 const AddTripForm = ({ addTrip }) => {
-  const [title, setTitle] = useState("");
-  const [amount, setAmount] = useState("");
+  const [title, setTitle] = useState('');
+  const [amount, setAmount] = useState('');
 
   const handleSubmit = event => {
     event.preventDefault();
     addTrip(title, amount);
-    setTitle("");
-    setAmount("");
+    setTitle('');
+    setAmount('');
   };
 
   return (
@@ -62,31 +62,28 @@ const AddTripForm = ({ addTrip }) => {
 };
 
 const UserPage = props => {
-  const tripdata = [];
-  // const tripdata = useState([]);
-
+  const [trips, setTrip] = useState([]);
   const [tripId, setTripId] = useState(props.trip);
-  // const [flight, setflight] = useState(props.trip.flight)
 
   useEffect(() => {
-    console.log("we are here", props.trip);
+    const tripId = props.trip;
+    setTripId(props.trip);
+    console.log("I'm here!!!", tripId, props.trip);
 
-    Axios.get(`/gettrips/${props.trip}`).then(res => {
-      res.data.trip.forEach(() => {
-        tripdata.push(res.data.trip);
+      Axios.get(`/gettrips/${tripId}`).then(res => {
+        let tripdata = [];
+        res.data.trip.forEach(() => {
+          tripdata = tripdata.concat(res.data.trip);
+        });
+        setTrip(res.data.trip);
+        console.log('tripdata', tripdata);
+        console.log('response:', res);
       });
+  }, [props.trip]);
 
-      console.log("line 76", tripdata);
-      console.log("response:", res);
-    });
-  });
-
-  console.log("line 80", tripdata);
-  const [trips, setTrip] = useState(tripdata);
-
-  console.log("trips line 82", trips);
+ 
   const addTrip = (title, amount) => {
-    console.log("add trip", { title, amount });
+    console.log('add trip', { title, amount });
     const newTrip = [...trips, { title, amount }];
 
     setTrip(newTrip);
@@ -96,7 +93,7 @@ const UserPage = props => {
   };
 
   const removeTrip = index => {
-    console.log("remove trip", index);
+    console.log('remove trip', index);
     const newTrip = [...trips];
     newTrip.splice(index, 1);
     setTrip(newTrip);
@@ -110,16 +107,14 @@ const UserPage = props => {
           <DestinationCard />
           <br></br>
         </Col>
-        
+
         <Col md={6}>
           <CountDown />
           <br></br>
         </Col>
         <Col md={6}>
           <Card className="trip-card">
-            <CardHeader className="trip-header">
-            Planned Activities
-            </CardHeader>
+            <CardHeader className="trip-header">Planned Activities</CardHeader>
             {/* <CardHeader>Add to my trip</CardHeader>
       <AddTripForm addTrip={addTrip} /> */}
             <CardBody className="trip-body">
@@ -131,19 +126,17 @@ const UserPage = props => {
                     <th>Remove</th>
                   </tr>
                 </thead>
-                {trips.map((trip, index) => (
+                {trips.map((trip, index) => {console.log(trip); return (
                   <Trip
                     key={index}
                     index={index}
                     trip={trip}
                     removeTrip={removeTrip}
                   />
-                ))}
+                )})}
               </Table>
               <hr></hr>
-              <CardHeader className="trip-header">
-                Add to Trip
-              </CardHeader>
+              <CardHeader className="trip-header">Add to Trip</CardHeader>
               <AddTripForm addTrip={addTrip} />
             </CardBody>
           </Card>
