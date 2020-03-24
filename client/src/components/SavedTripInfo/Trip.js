@@ -8,7 +8,7 @@ const Trip = ({ trip, index, removeTrip }) => {
       <tr>
         <td>{trip.title}</td>
         {/* <td>{trip.peopleOrDays}</td> */}
-        <td>${trip.amount}</td>
+        <td>${trip.amount.$numberDecimal}</td>
         <td>
           <Button
             className="remove-button"

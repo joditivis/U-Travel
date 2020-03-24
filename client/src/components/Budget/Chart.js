@@ -29,7 +29,7 @@ class Chart extends Component {
           startAngle: -90,
           dataPoints: (this.props.trip || []).map(trip => ({
             label: trip.title,
-            y: trip.amount
+            y: trip.amount.$numberDecimal
           }))
         }
       ]
