@@ -86,9 +86,13 @@ const UserPage = props => {
     console.log('add trip', { title, amount });
     const newTrip = [...trips, { title, amount }];
 
-    setTrip(newTrip);
+    console.log("new", newTrip);
+    
     Axios.put(`/userpage/${props.trip}`, {
       trip: newTrip
+    }).then(res=>{
+      console.log("res.data",res.data.trip)
+      setTrip(res.data.trip)
     });
   };
 

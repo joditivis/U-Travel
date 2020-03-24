@@ -19,6 +19,8 @@
     margin: 0 auto;
     display: block;
     font-size: 22px;
+    color: white;
+    background-color: rgba(255, 255, 255, 0.404);
 }
 
 .pencil {

@@ -38,7 +38,8 @@ class TravelSearchResults extends Component {
       destination: event.currentTarget.dataset.destination,
       departure: event.currentTarget.dataset.departure,
       arrival: event.currentTarget.dataset.arrival,
-      price: event.currentTarget.dataset.price
+      price: event.currentTarget.dataset.price,
+      key: event.currentTarget.dataset.key
     });
   }
 
@@ -59,7 +60,7 @@ class TravelSearchResults extends Component {
   }
 
   componentDidMount() {
-    //console.log(this.props.flight.offerItems[0].services[0].segments[0]);
+    console.log(this.props);
   }
   render() {
     // departingTime = this.timeTraveled(0);
@@ -126,8 +127,8 @@ class TravelSearchResults extends Component {
             {new Intl.NumberFormat("en-US", {
               style: "currency",
               currency: "USD",
-              minimumFractionDigits: 0,
-              maximumFractionDigits: 0
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2
             }).format(this.props.flight.offerItems[0].price.total)}
           </p>
           <br></br>
@@ -153,6 +154,7 @@ class TravelSearchResults extends Component {
               ["YYYY", moment.ISO_8601]
             ).format("MM/DD/YYYY h:mm a")}
             data-price={this.props.flight.offerItems[0].price.total}
+            data-key={this.props.flightNumber}
             onClick={this.handleSubmit}
             type="submit"
           >

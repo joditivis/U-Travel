@@ -6,6 +6,8 @@ import "./style.css";
 import axios from "axios";
 import toast from "toasted-notes";
 import "toasted-notes/src/styles.css";
+import { css } from "@emotion/core";
+import ClipLoader from "react-spinners/ClipLoader";
 
 class HotelSearchPage extends Component {
   constructor(props) {
@@ -14,7 +16,8 @@ class HotelSearchPage extends Component {
       hotels: [],
       trip: "",
       user: "", 
-      search: false
+      search: false,
+      isLoading: false
     };
     //this.setState = this.setState.bind(this);
     this.getHotelInfoFromButton = this.getHotelInfoFromButton.bind(this);
@@ -41,17 +44,21 @@ class HotelSearchPage extends Component {
   }
 
   hotelSearch = hotelSearch => {
+    console.log(hotelSearch);
     this.setState({
-      search: true
+      search: true,
+      isLoading: true
     });
-    this.callApi(hotelSearch.city, hotelSearch.checkInDate)
-      .then(res => this.setState({ hotels: res.data }))
+    this.callApi(hotelSearch.city, hotelSearch.checkInDate,hotelSearch.checkOutDate)
+      .then(res => this.setState({ hotels: res.data, isLoading: false  }))
       // .then(res2 => console.log(this.state.flights))
-      .catch(err => console.log(err));
+      .catch(err => {
+        this.setState({isLoading: false});
+        console.log(err)});
   };
 
-  callApi = async (city, checkInDate) => {
-    const response = await fetch(`/hotels/${city}/${checkInDate}`);
+  callApi = async (city, checkInDate, checkOutDate) => {
+    const response = await fetch(`/hotels/${city}/${checkInDate}/${checkOutDate}`);
     const body = await response.json();
     if (response.status !== 200) throw Error(body.message);
 
@@ -116,7 +123,13 @@ class HotelSearchPage extends Component {
               <HotelSearchForm hotelSearch={this.hotelSearch} />
             </CardBody>
           </Card>
-          {!this.state.hotels.length && this.state.search ? (
+
+        <ClipLoader
+          size={150}
+          color={"white"}
+          loading={this.state.isLoading}
+        />
+          {!this.state.hotels.length && this.state.search && !this.state.isLoading ? (
             <Col>
               <Card className="travelCard">
                 <CardHeader>There are no hotel results.</CardHeader>
