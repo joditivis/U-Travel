@@ -4,7 +4,6 @@ import moment from "moment";
 import FlightSegments from "./FlightSegments";
 
 class TravelSearchResults extends Component {
-  //console.log(props.flight.offerItems[0].services[0].segments[0].flightSegment.carrierCode);
   constructor() {
     super();
     this.state = {
@@ -29,9 +28,6 @@ class TravelSearchResults extends Component {
   handleSubmit(event) {
     event.preventDefault();
     console.log("handleSubmit");
-    console.log(event.currentTarget);
-    console.log(event.currentTarget.dataset);
-    console.log(this.props);
     this.props.getTripInfoFromButton({
       id: event.currentTarget.id,
       origin: event.currentTarget.dataset.origin,
@@ -68,11 +64,11 @@ class TravelSearchResults extends Component {
     return (
       <Card className="travelCard">
         <CardHeader className="flight-results-header">
-            Airline:{" "}
-            {
-              this.props.flight.offerItems[0].services[0].segments[0]
-                .flightSegment.carrierCode
-            }
+          Airline:{" "}
+          {
+            this.props.flight.offerItems[0].services[0].segments[0]
+              .flightSegment.carrierCode
+          }
         </CardHeader>
         <CardBody className="flight-details">
           <h5>

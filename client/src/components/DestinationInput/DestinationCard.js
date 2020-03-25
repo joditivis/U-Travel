@@ -1,14 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import { Card, CardHeader, CardBody } from 'reactstrap';
-import DestinationInput from './DestinationInput';
-import './style.css';
-import Axios from 'axios';
+import React, { useState, useEffect } from "react";
+import { Card, CardHeader, CardBody } from "reactstrap";
+import DestinationInput from "./DestinationInput";
+import "./style.css";
+import Axios from "axios";
 
-const DestinationCard = (props) => {
-  //console.log(props);
-//console.log("dest card trip: ", props.tripId);
+const DestinationCard = props => {
+  const [destination, setDestination] = useState("");
 
-const [destination, setDestination] = useState('')
+  useEffect(() => {
+    Axios.get(`/getdestination/${props.tripId}`).then(res => {
+      setDestination(res.data.destination);
+    });
+  });
+
 
 useEffect(()=>{
 
@@ -34,9 +38,10 @@ return (
             <CardBody>
               <DestinationInput destination={destination} tripId={props.tripId} oneTimeReset={oneTimeReset}/>
             </CardBody>
+
       </Card>
     </div>
   );
-}
+};
 
 export default DestinationCard;

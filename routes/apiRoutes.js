@@ -65,7 +65,7 @@ module.exports = function(app) {
         departureDate: req.params.date
       })
       .then(function(response) {
-          console.log(response.data);
+        console.log(response.data);
         res.send({ data: response.data });
       })
       .catch(function(responseError) {
@@ -74,44 +74,50 @@ module.exports = function(app) {
   });
 
   // Flight Offers Search
-  app.get("/flights/:originCity/:destinationCity/:date/:adults/:nonstop?/", (req, res) => {
-    amadeus.shopping.flightOffers
-      .get({
-        origin: req.params.originCity,
-        destination: req.params.destinationCity,
-        departureDate: req.params.date,
-        adults: req.params.adults,
-        max: 50,
-        nonStop: req.params.nonstop || false
-      })
-      .then(function(response) {
-        res.send({ data: response.data });
-      })
-      .catch(function(responseError) {
-        console.log(responseError.code);
-        console.log(responseError)
-      });
-  });
+  app.get(
+    "/flights/:originCity/:destinationCity/:date/:adults/:nonstop?/",
+    (req, res) => {
+      amadeus.shopping.flightOffers
+        .get({
+          origin: req.params.originCity,
+          destination: req.params.destinationCity,
+          departureDate: req.params.date,
+          adults: req.params.adults,
+          max: 50,
+          nonStop: req.params.nonstop || false
+        })
+        .then(function(response) {
+          res.send({ data: response.data });
+        })
+        .catch(function(responseError) {
+          console.log(responseError.code);
+          console.log(responseError);
+        });
+    }
+  );
 
-  app.get("/flightsround/:originCity/:destinationCity/:date/:endDate/:adults/:nonstop?", (req, res) => {
-    amadeus.shopping.flightOffers
-      .get({
-        origin: req.params.originCity,
-        destination: req.params.destinationCity,
-        departureDate: req.params.date,
-        returnDate: req.params.endDate,
-        adults: req.params.adults,
-        max: 50,
-        nonStop: req.params.nonstop || false
-      })
-      .then(function(response) {
-        res.send({ data: response.data });
-      })
-      .catch(function(responseError) {
-        console.log(responseError.code);
-        console.log(responseError)
-      });
-  });
+  app.get(
+    "/flightsround/:originCity/:destinationCity/:date/:endDate/:adults/:nonstop?",
+    (req, res) => {
+      amadeus.shopping.flightOffers
+        .get({
+          origin: req.params.originCity,
+          destination: req.params.destinationCity,
+          departureDate: req.params.date,
+          returnDate: req.params.endDate,
+          adults: req.params.adults,
+          max: 50,
+          nonStop: req.params.nonstop || false
+        })
+        .then(function(response) {
+          res.send({ data: response.data });
+        })
+        .catch(function(responseError) {
+          console.log(responseError.code);
+          console.log(responseError);
+        });
+    }
+  );
 
   // Flight Choice Prediction
   app.get(
@@ -154,9 +160,9 @@ module.exports = function(app) {
   // Get list of hotels by city code
   app.get("/hotels/:city/:checkInDate?/:checkOutDate?", (req, res) => {
     let today = new Date();
-    let dd = String(today.getDate()).padStart(2, '0');
-    let dd2 = String(today.getDate()+1).padStart(2, '0');
-    let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    let dd = String(today.getDate()).padStart(2, "0");
+    let dd2 = String(today.getDate() + 1).padStart(2, "0");
+    let mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
     let yyyy = today.getFullYear();
     amadeus.shopping.hotelOffers
       .get({
@@ -213,17 +219,18 @@ module.exports = function(app) {
       });
   });
 
-    // Points of Interest   
-    app.get("/pointsOfInterest/:latitude/:longitude", (req, res) => {
-        amadeus.referenceData.locations.pointsOfInterest.get({
-            latitude : req.params.latitude,
-            longitude : req.params.longitude
-        })
-          .then(function(response) {
-            res.send({ data: response.data });
-          })
-          .catch(function(responseError) {
-            console.log(responseError.code);
-          });
+  // Points of Interest
+  app.get("/pointsOfInterest/:latitude/:longitude", (req, res) => {
+    amadeus.referenceData.locations.pointsOfInterest
+      .get({
+        latitude: req.params.latitude,
+        longitude: req.params.longitude
+      })
+      .then(function(response) {
+        res.send({ data: response.data });
+      })
+      .catch(function(responseError) {
+        console.log(responseError.code);
       });
+  });
 };

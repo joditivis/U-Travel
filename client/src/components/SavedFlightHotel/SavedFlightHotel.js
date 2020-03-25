@@ -6,22 +6,16 @@ import "./style.css";
 var FontAwesome = require("react-fontawesome");
 
 const SavedFlightHotel = props => {
-  // console.log("Saved Flight Hotel", props);
-  // console.log(props.flight.flightSegments);
-
   if (props.flight.flightSegments) {
-   // console.log(props.flight);
   }
 
   const [display, setDisplay] = useState(false);
 
   const changeDisplayTrue = () => {
-  //  console.log("true clicked", display);
     setDisplay(true);
   };
 
   const changeDisplayFalse = () => {
-   // console.log("clicked", display);
     setDisplay(false);
   };
 
@@ -99,7 +93,8 @@ const SavedFlightHotel = props => {
               </Col>
               <Col lg={6}>
                 <h5 className="start-date-text">Return Flight</h5>
-                {!props.returnFlight.flightSegments || !props.returnFlight.flightSegments.length ? (
+                {!props.returnFlight.flightSegments ||
+                !props.returnFlight.flightSegments.length ? (
                   <p>There is not a saved return flight.</p>
                 ) : (
                   <div>
@@ -138,19 +133,26 @@ const SavedFlightHotel = props => {
                       <p>Room Type: {props.hotel.roomType}</p>
                     ) : (
                       <div></div>
-                    )
-                    
-                    }
+                    )}
                     <p>
-                      Dates: {moment(props.hotel.checkInDate,"YYYY-MM-DD").format("MM/DD/YYYY")} to{" "}
-                      {moment(props.hotel.checkOutDate,"YYYY-MM-DD").format("MM/DD/YYYY")}
+                      Dates:{" "}
+                      {moment(props.hotel.checkInDate, "YYYY-MM-DD").format(
+                        "MM/DD/YYYY"
+                      )}{" "}
+                      to{" "}
+                      {moment(props.hotel.checkOutDate, "YYYY-MM-DD").format(
+                        "MM/DD/YYYY"
+                      )}
                     </p>
-                    <p>Price: {new Intl.NumberFormat("en-US", {
-                style: "currency",
-                currency: props.hotel.currency || "USD",
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2
-              }).format(props.hotel.price.$numberDecimal)}</p>
+                    <p>
+                      Price:{" "}
+                      {new Intl.NumberFormat("en-US", {
+                        style: "currency",
+                        currency: props.hotel.currency || "USD",
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                      }).format(props.hotel.price.$numberDecimal)}
+                    </p>
                   </div>
                 )}
               </Col>

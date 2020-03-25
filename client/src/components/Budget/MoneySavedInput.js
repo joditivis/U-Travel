@@ -9,29 +9,21 @@ const MoneySavedInput = props => {
   const [tripIdTotal, setTripIdTotal] = useState(props.tripId);
 
   useEffect(() => {
-    // console.log("Total HERE: ",props);
     setTripIdTotal(props.tripId);
-    // console.log("total..", tripIdPack, props.tripId);
     if (props.tripId) {
       Axios.get(`/gettotal/${props.tripId}`).then(res => {
-
-        if(!res.data.total){
+        if (!res.data.total) {
           setTotal(0);
           props.setMoneySaved(0);
         } else {
           setTotal(res.data.total);
           props.setMoneySaved(res.data.total);
         }
-        
-
       });
     }
   }, [props.tripId]);
 
   function addNumber() {
-
-    // console.log(number1, total);
-
     const newTotal = parseInt(number1) + total;
 
     Axios.put(`/total/${props.tripId}`, {
@@ -39,25 +31,23 @@ const MoneySavedInput = props => {
     }).then(res => {
       setTotal(res.data.total);
 
-      console.log("hello!", res.data.total);
       props.setMoneySaved(res.data.total);
       setNumber1("");
-      // setTotal(totalSaved);
     });
-    
   }
 
   return (
     <Form className="add-money-input">
       <h5 className="money-saved">Money Saved:</h5>
 
-      <h2 className="total-saved">{new Intl.NumberFormat("en-US", {
-                      style: "currency",
-                      currency: "USD",
-                      minimumFractionDigits: 2,
-                      maximumFractionDigits: 2
-                    }).format(total)}</h2>
-
+      <h2 className="total-saved">
+        {new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: "USD",
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        }).format(total)}
+      </h2>
 
       <Input
         type="text"
@@ -70,9 +60,6 @@ const MoneySavedInput = props => {
       <Button className="add-money-btn" size="sm" onClick={addNumber}>
         Add
       </Button>
-
-      {/* <br></br>
-        <h2>${total}</h2> */}
     </Form>
   );
 };

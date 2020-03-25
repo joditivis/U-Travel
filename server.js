@@ -1,19 +1,18 @@
 //require(`dotenv`).config({ path: './client' });
-require('dotenv').config();
-const express = require('express');
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
-const morgan = require('morgan');
-const session = require('express-session');
-const dbConnection = require('./database') ;
-const MongoStore = require('connect-mongo')(session)
-const passport = require('./passport');
-const path = require('path'); 
+require("dotenv").config();
+const express = require("express");
+const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
+const morgan = require("morgan");
+const session = require("express-session");
+const dbConnection = require("./database");
+const MongoStore = require("connect-mongo")(session);
+const passport = require("./passport");
+const path = require("path");
 
 // Route requires
-const user = require('./routes/user');
-const trip = require('./routes/tripRoutes');
-
+const user = require("./routes/user");
+const trip = require("./routes/tripRoutes");
 
 const app = express();
 const cors = require("cors");
@@ -28,12 +27,12 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // Serve up static assets (usually on heroku)
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === "production") {
   //app.use(express.static('client/build'));
-  app.use(express.static(path.join(__dirname, 'client/build')));
-};
+  app.use(express.static(path.join(__dirname, "client/build")));
+}
 
-app.use(morgan('dev'));
+app.use(morgan("dev"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -43,26 +42,29 @@ app.use(passport.session());
 
 // Session to keep track of the login credentials
 app.use(
-	session({
-		secret: 'tootsie-roll', // random string to make the hash that is generated secure
-		store: new MongoStore({ mongooseConnection: dbConnection }),
-		resave: false, //required
-		saveUninitialized: false //required
-	})
+  session({
+    secret: "tootsie-roll", // random string to make the hash that is generated secure
+    store: new MongoStore({ mongooseConnection: dbConnection }),
+    resave: false, //required
+    saveUninitialized: false //required
+  })
 );
 
 // Add routes, both API and view
-app.use('/user', user);
+app.use("/user", user);
 app.use(trip);
-
 
 // Routes
 require("./routes/apiRoutes")(app);
 
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/utravel',{useNewUrlParser: true});
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/utravel", {
+  useNewUrlParser: true
+});
 
 // Start the API server
 app.listen(PORT, function() {
-  console.log(`🌎  ==> API Server now listening on PORT ${PORT}! ${process.env.MONGODB_URI}`);
+  console.log(
+    `🌎  ==> API Server now listening on PORT ${PORT}! ${process.env.MONGODB_URI}`
+  );
 });
