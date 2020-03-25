@@ -7,7 +7,7 @@ import './style.css';
 
 
 const BudgetCard = props => {
-console.log('trip', props.trip)
+// console.log('trip', props.trip)
 
 const [budgetTrip, setBudgetTrip] = useState([]);
 const [expenses, setExpenses] = useState(0);
@@ -88,7 +88,9 @@ function setMoneySaved(value) {
                 </Col>
                 <Col lg={6}>
                   {/* <h5>Money Saved:</h5> */}
+
                   <MoneySavedInput tripId={props.tripId} setMoneySaved={setMoneySaved}/>
+
                 </Col>
                </Row>
                <br></br>

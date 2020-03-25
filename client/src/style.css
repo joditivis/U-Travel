@@ -8,3 +8,15 @@
     font-size: 27px;
     padding: 10px;
 }
+
+@media screen and (max-width:470px) {
+    .welcome-user {
+        font-size: 20px;
+    }
+}
+
+@media screen and (max-width:780px) {
+    .welcome-user {
+        font-size: 20px;
+    }
+}

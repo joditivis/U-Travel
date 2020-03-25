@@ -68,13 +68,11 @@ class TravelSearchResults extends Component {
     return (
       <Card className="travelCard">
         <CardHeader className="flight-results-header">
-          <h3>
             Airline:{" "}
             {
               this.props.flight.offerItems[0].services[0].segments[0]
                 .flightSegment.carrierCode
             }
-          </h3>
         </CardHeader>
         <CardBody className="flight-details">
           <h5>
