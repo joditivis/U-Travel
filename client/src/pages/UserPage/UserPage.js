@@ -68,7 +68,7 @@ const UserPage = props => {
   useEffect(() => {
     //const tripId = props.trip;
     setTripId(props.trip);
-    console.log("I'm here!!!", tripId, props.trip);
+    // console.log("I'm here!!!", tripId, props.trip);
     if(props.trip){
       Axios.get(`/gettrips/${props.trip}`).then(res => {
         let tripdata = [];
@@ -78,8 +78,8 @@ const UserPage = props => {
           });
         }
         setTrip(res.data.trip || []);
-        console.log('tripdata', tripdata);
-        console.log('response:', res);
+        // console.log('tripdata', tripdata);
+        // console.log('response:', res);
       });
     }
       
@@ -87,28 +87,28 @@ const UserPage = props => {
 
  
   const addTrip = (title, amount) => {
-    console.log('add trip', { title, amount });
+    // console.log('add trip', { title, amount });
     const newTrip = [...trips, { title, amount }];
 
-    console.log("new", newTrip);
+    // console.log("new", newTrip);
     
     Axios.put(`/userpage/${props.trip}`, {
       trip: newTrip
     }).then(res=>{
-      console.log("res.data",res.data.trip)
+      // console.log("res.data",res.data.trip)
       setTrip(res.data.trip)
     });
   };
 
   const removeTrip = index => {
-    console.log('remove trip', index);
+    // console.log('remove trip', index);
     const newTrip = [...trips];
     newTrip.splice(index, 1);
 
     Axios.put(`/userpage/${props.trip}`, {
       trip: newTrip
     }).then(res=>{
-      console.log("res.data",res.data.trip)
+      // console.log("res.data",res.data.trip)
       setTrip(res.data.trip)
     });
   };
@@ -118,7 +118,7 @@ const UserPage = props => {
       <br></br>
       <Row>
         <Col md={6}>
-          <DestinationCard />
+          <DestinationCard tripId={tripId} />
           <br></br>
         </Col>
 

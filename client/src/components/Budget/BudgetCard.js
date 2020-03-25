@@ -7,7 +7,7 @@ import './style.css';
 
 
 const BudgetCard = props => {
-console.log('trip', props.trip)
+// console.log('trip', props.trip)
 
   return (
     <div>

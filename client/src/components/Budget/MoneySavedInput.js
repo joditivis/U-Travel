@@ -20,7 +20,7 @@ const MoneySavedInput = props => {
   }, [props.tripId]);
 
   function addNumber() {
-    console.log(number1, total);
+    // console.log(number1, total);
     const newTotal = parseInt(number1) + total;
 
     Axios.put(`/total/${props.tripId}`, {
