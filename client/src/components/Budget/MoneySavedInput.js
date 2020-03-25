@@ -14,7 +14,14 @@ const MoneySavedInput = props => {
     // console.log("total..", tripIdPack, props.tripId);
     if (props.tripId) {
       Axios.get(`/gettotal/${props.tripId}`).then(res => {
-        setTotal(res.data.total);
+        if(!res.data.total){
+          setTotal(0);
+          props.setMoneySaved(0);
+        } else {
+          setTotal(res.data.total);
+          props.setMoneySaved(res.data.total);
+        }
+        
       });
     }
   }, [props.tripId]);
@@ -27,14 +34,23 @@ const MoneySavedInput = props => {
       total: newTotal
     }).then(res => {
       setTotal(res.data.total);
+      console.log("hello!", res.data.total);
+      props.setMoneySaved(res.data.total);
       // setTotal(totalSaved);
     });
+
+    
   }
 
   return (
     <Form className="add-money-input">
       <h5 className="money-saved">Money Saved:</h5>
-      <h2 className="total-saved">${total}</h2>
+      <h2 className="total-saved">{new Intl.NumberFormat("en-US", {
+                      style: "currency",
+                      currency: "USD",
+                      minimumFractionDigits: 2,
+                      maximumFractionDigits: 2
+                    }).format(total)}</h2>
 
       <Input
         type="text"

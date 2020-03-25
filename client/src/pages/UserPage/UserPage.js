@@ -195,7 +195,7 @@ const UserPage = props => {
                 />
                 ): (<div></div>)}
                 {trips.map((trip, index) => {
-                  console.log(trip);
+                  // console.log(trip);
                   return (
                     <Trip
                       key={index}
@@ -219,7 +219,7 @@ const UserPage = props => {
         </Col>
         <Col md={6}>
 
-          <BudgetCard trip={trips} flightTrip={flightTrip} hotelTrip={hotelTrip} />
+          <BudgetCard trip={trips} flightTrip={flightTrip} hotelTrip={hotelTrip} tripId={tripId}/>
 
         </Col>
       </Row>
