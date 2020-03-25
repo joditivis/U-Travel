@@ -1,4 +1,4 @@
-import React, { useState, Component, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Container,
   Row,
@@ -15,10 +15,8 @@ import PackingList from "../../components/PackingList/PackingList";
 import BudgetCard from "../../components/Budget/BudgetCard";
 import CountDown from "../../components/DaysUntilTrip/CountDown";
 import WeatherPage from "../WeatherPage/WeatherPage";
-// import TripInfo from '../../components/SavedTripInfo/TripInfo';
 import Trip from "../../components/SavedTripInfo/Trip";
 import DestinationCard from "../../components/DestinationInput/DestinationCard";
-// import AddTripForm from '../../components/SavedTripInfo/AddTripForm';
 import SavedFlightHotel from "../../components/SavedFlightHotel/SavedFlightHotel";
 import "./style.css";
 import Axios from "axios";
