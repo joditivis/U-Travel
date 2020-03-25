@@ -15,7 +15,7 @@ class HotelSearchPage extends Component {
     this.state = {
       hotels: [],
       trip: "",
-      user: "", 
+      user: "",
       search: false,
       isLoading: false
     };
@@ -24,7 +24,6 @@ class HotelSearchPage extends Component {
   }
 
   deleteItem = id => {
-    console.log(id);
     const hotels = this.state.hotels.filter(hotel => {
       return hotel.id !== id;
     });
@@ -32,8 +31,6 @@ class HotelSearchPage extends Component {
   };
 
   componentDidMount() {
-    console.log(this.props.user);
-    console.log(this.props.trip);
     this.setState(
       {
         trip: this.props.trip,
@@ -44,21 +41,26 @@ class HotelSearchPage extends Component {
   }
 
   hotelSearch = hotelSearch => {
-    console.log(hotelSearch);
     this.setState({
       search: true,
       isLoading: true
     });
-    this.callApi(hotelSearch.city, hotelSearch.checkInDate,hotelSearch.checkOutDate)
-      .then(res => this.setState({ hotels: res.data, isLoading: false  }))
-      // .then(res2 => console.log(this.state.flights))
+    this.callApi(
+      hotelSearch.city,
+      hotelSearch.checkInDate,
+      hotelSearch.checkOutDate
+    )
+      .then(res => this.setState({ hotels: res.data, isLoading: false }))
       .catch(err => {
-        this.setState({isLoading: false});
-        console.log(err)});
+        this.setState({ isLoading: false });
+        console.log(err);
+      });
   };
 
   callApi = async (city, checkInDate, checkOutDate) => {
-    const response = await fetch(`/hotels/${city}/${checkInDate}/${checkOutDate}`);
+    const response = await fetch(
+      `/hotels/${city}/${checkInDate}/${checkOutDate}`
+    );
     const body = await response.json();
     if (response.status !== 200) throw Error(body.message);
 
@@ -66,7 +68,6 @@ class HotelSearchPage extends Component {
   };
 
   getHotelInfoFromButton(hotelObject) {
-    console.log(hotelObject);
     if (!this.state.trip) {
       toast.notify(
         "Please create an account before attempting to save a trip.",
@@ -78,7 +79,6 @@ class HotelSearchPage extends Component {
     } else {
       this.updateDB(this.state.trip, hotelObject);
       console.log("hotel is updated");
-      console.log(this.state);
     }
   }
 
@@ -116,20 +116,20 @@ class HotelSearchPage extends Component {
       <div>
         <Container>
           <Card className="hotel-card">
-            <CardHeader className="hotel-header">
-              Search Hotels
-            </CardHeader>
+            <CardHeader className="hotel-header">Search Hotels</CardHeader>
             <CardBody className="hotel-body">
               <HotelSearchForm hotelSearch={this.hotelSearch} />
             </CardBody>
           </Card>
 
-        <ClipLoader
-          size={150}
-          color={"white"}
-          loading={this.state.isLoading}
-        />
-          {!this.state.hotels.length && this.state.search && !this.state.isLoading ? (
+          <ClipLoader
+            size={150}
+            color={"white"}
+            loading={this.state.isLoading}
+          />
+          {!this.state.hotels.length &&
+          this.state.search &&
+          !this.state.isLoading ? (
             <Col>
               <Card className="travelCard">
                 <CardHeader>There are no hotel results.</CardHeader>

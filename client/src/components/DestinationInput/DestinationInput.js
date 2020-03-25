@@ -7,19 +7,11 @@ class DestinationInput extends Component {
     this.state = {
       destination: " ",
       editing: false
-           
     };
 
     this.initEditor();
     this.edit = this.edit.bind(this);
     this.save = this.save.bind(this);
-    
-  }
-   
-
-  componentDidMount() {
-      console.log("dest input: ", this.props.destination);
-          
   }
 
   initEditor() {
@@ -41,45 +33,36 @@ class DestinationInput extends Component {
   }
 
   edit() {
-     this.setState({
+    this.setState({
       destination: this.state.destination,
       editing: true
     });
   }
 
-  save(value) {  
-      this.setState({
+  save(value) {
+    this.setState({
       destination: value,
       editing: false
-    }); 
-    Axios.put(`/destination/${this.props.tripId}`,{
-        destination: value
-    
-      }).then(res =>{
-          console.log(res);
-        if(this.state.destination!== res.data.destination){
-          this.setState({destination: res.data.destination})
-        }
-      
-      });
-      
+    });
+    Axios.put(`/destination/${this.props.tripId}`, {
+      destination: value
+    }).then(res => {
+      if (this.state.destination !== res.data.destination) {
+        this.setState({ destination: res.data.destination });
+      }
+    });
   }
 
-
-
   componentDidUpdate(prevProps) {
-    
     this.initEditor();
-    if((prevProps.tripId !== this.props.tripId) || (this.props.destination !== this.state.destination)){
-
-      Axios.get(`/getdestination/${this.props.tripId}`).then(res =>{
-            console.log(res.data);
-
-            this.setState({destination: res.data.destination})
-        })
+    if (
+      prevProps.tripId !== this.props.tripId ||
+      this.props.destination !== this.state.destination
+    ) {
+      Axios.get(`/getdestination/${this.props.tripId}`).then(res => {
+        this.setState({ destination: res.data.destination });
+      });
     }
-    
-   
   }
 
   render() {

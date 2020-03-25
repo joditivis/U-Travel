@@ -2,7 +2,6 @@ const db = require("../database/models");
 
 module.exports = {
   findAll: function(req, res) {
-    // console.log(req)
     db.Trip.find(req.query)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
@@ -13,20 +12,16 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   findByUserID: function(req, res) {
-    // console.log("this is the body line", req.params);
     db.Trip.findOne({ user: req.params.userId })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   create: function(req, res) {
-    // console.log("create is happening");
-    // console.log(req.body);
     db.Trip.create(req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   updateById: function(req, res) {
-    // console.log(req.body.destination);
     db.Trip.findOneAndUpdate(
       { _id: req.params.id },
       { $set: { destination: req.body.destination } },
@@ -36,7 +31,6 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   updateFlightById: function(req, res) {
-    // console.log(req.body.flight);
     db.Trip.findOneAndUpdate(
       { _id: req.params.id },
       {
@@ -59,7 +53,6 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   updateHotelById: function(req, res) {
-    // console.log(req.body.hotel);
     db.Trip.findOneAndUpdate(
       { _id: req.params.id },
       {
@@ -81,64 +74,70 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   updateByTripId: function(req, res) {
-    // console.log("this is the req.body: ", req.body);
     db.Trip.findOneAndUpdate(
       { _id: req.params.tripId },
       { $set: { trip: req.body.trip } },
-      { new: true })
+      { new: true }
+    )
       .then(dbModel => {
-        console.log(dbModel)
-         res.json(dbModel)})
+        console.log(dbModel);
+        res.json(dbModel);
+      })
       .catch(err => res.status(422).json(err));
   },
   findByTripID: function(req, res) {
-    // console.log("findByTripId: ", req.params);
     db.Trip.findOne({ _id: req.params.tripId })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  updatePackingByTripId: function(req,res){
+  updatePackingByTripId: function(req, res) {
     db.Trip.findOneAndUpdate(
       { _id: req.params.tripId },
       { $set: { item: req.body.item } },
-      { new: true })
+      { new: true }
+    )
       .then(dbModel => {
-        console.log(dbModel)
-         res.json(dbModel)})
+        console.log(dbModel);
+        res.json(dbModel);
+      })
       .catch(err => res.status(422).json(err));
   },
 
-  updateTotalByTripId: function(req, res){
+  updateTotalByTripId: function(req, res) {
     db.Trip.findOneAndUpdate(
       { _id: req.params.tripId },
       { $set: { total: req.body.total } },
-      { new: true })
+      { new: true }
+    )
       .then(dbModel => {
-        console.log(dbModel)
-         res.json(dbModel)})
+        console.log(dbModel);
+        res.json(dbModel);
+      })
       .catch(err => res.status(422).json(err));
   },
-  updateDestinationByTripId: function(req, res){
-    console.log("yup:", req.body.destination)
+  updateDestinationByTripId: function(req, res) {
     db.Trip.findOneAndUpdate(
       { _id: req.params.tripId },
       { $set: { destination: req.body.destination } },
 
-      { new: true })
+      { new: true }
+    )
       .then(dbModel => {
-        console.log(dbModel)
-         res.json(dbModel)})
+        console.log(dbModel);
+        res.json(dbModel);
+      })
       .catch(err => res.status(422).json(err));
   },
-  updateDateByTripID: function(req, res){
+  updateDateByTripID: function(req, res) {
     db.Trip.findOneAndUpdate(
       { _id: req.params.tripId },
-      {$set:{date: req.body.date}},
-      {new: true}
-    ).then(dbModel=>{
-      console.log(dbModel)
-      res.json(dbModel)
-    }).catch(err=>res.status(422).json(err));
+      { $set: { date: req.body.date } },
+      { new: true }
+    )
+      .then(dbModel => {
+        console.log(dbModel);
+        res.json(dbModel);
+      })
+      .catch(err => res.status(422).json(err));
   }
-
 };

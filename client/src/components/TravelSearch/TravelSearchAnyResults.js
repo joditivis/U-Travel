@@ -3,7 +3,6 @@ import { Col, Card, CardHeader, CardBody, Button } from 'reactstrap';
 import moment from 'moment';
 
 const TravelSearchResults = props => {
-  console.log(props);
   return (
       <Col>
         <Card className="travelCard">

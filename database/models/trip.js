@@ -18,9 +18,9 @@ const tripSchema = new Schema({
     name: { type: String },
     roomType: { type: String },
     price: { type: mongoose.Decimal128 },
-    checkInDate: {type: String},
-    checkOutDate: {type: String},
-    currency: {type: String},
+    checkInDate: { type: String },
+    checkOutDate: { type: String },
+    currency: { type: String }
   },
   trip: [
     {
@@ -29,16 +29,16 @@ const tripSchema = new Schema({
       amount: { type: mongoose.Decimal128 }
     }
   ],
-  date:{ date: { type: String }  },
-  item:[
+  date: { date: { type: String } },
+  item: [
     {
-      item_id:{ type: String },
-      text: { type: String }, 
-      isCompleted: {type: Boolean, default: false}
+      item_id: { type: String },
+      text: { type: String },
+      isCompleted: { type: Boolean, default: false }
     }
   ],
 
-  total:{
+  total: {
     total_id: { type: String },
     total: { type: mongoose.Decimal128 }
   },
