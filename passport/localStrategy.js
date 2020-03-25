@@ -6,7 +6,6 @@ const strategy = new LocalStrategy(
 	// 	username: 'email'
 	// },
 	function(email, password, done) {
-		console.log(email, password);
 		User.findOne({ 
 			email: email 
 			}, (err, user) => {
