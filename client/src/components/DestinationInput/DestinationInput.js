@@ -6,7 +6,7 @@ class DestinationInput extends Component {
     super(props);
     this.state = {
       destination: " ",
-      editing: false,
+      editing: false
            
     };
 
@@ -19,8 +19,8 @@ class DestinationInput extends Component {
 
   componentDidMount() {
       console.log("dest input: ", this.props.destination);
-   
-    }
+          
+  }
 
   initEditor() {
     this.editor = (
@@ -62,17 +62,7 @@ class DestinationInput extends Component {
         }
       
       });
-    
-    // Axios.put(`/destination/${this.props.tripId}`,{
-    //   destination: this.state.destination
-  
-    // }).then(res =>{
-    //   if(this.state.destination!== res.data.destination){
-    //     this.setState({destination: res.data.destination})
-    //   }
-    
-    // });
-   
+      
   }
 
 
@@ -81,8 +71,10 @@ class DestinationInput extends Component {
     
     this.initEditor();
     if((prevProps.tripId !== this.props.tripId) || (this.props.destination !== this.state.destination)){
-        Axios.get(`/getdestination/${this.props.tripId}`).then(res =>{
-          //  console.log(res.data);
+
+      Axios.get(`/getdestination/${this.props.tripId}`).then(res =>{
+            console.log(res.data);
+
             this.setState({destination: res.data.destination})
         })
     }

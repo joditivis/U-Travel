@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import { Card, CardHeader, CardBody, Row, Col } from "reactstrap";
 import DateInput from "./DateInput";
 import "./style.css";
+import Axios from 'axios';
 
-const CountDown = () => {
+const CountDown = (props) => {
+  console.log(props);
 
   const [date, setDate] = useState("");
   const [delay, setDelay] = useState(1000);
@@ -18,6 +20,10 @@ const CountDown = () => {
 
   useEffect(() => {
 
+    Axios.get(`/getdate/${props.tripId}`).then(res =>{
+      setDate(res.data.date);
+      console.log(res.data);
+    })
     // Update the count down every 1 second
     const x = setInterval(function() {
 
@@ -51,6 +57,8 @@ const CountDown = () => {
       };
     }, 1000, delay);
     return () => clearInterval(x);
+
+   
  })
 
   return (
@@ -61,7 +69,7 @@ const CountDown = () => {
               <Row>
                 <Col lg={6}>
                   <h5 className="start-date-text">Vacation Start Date:</h5>
-                  <DateInput handleInputChange={handleInputChange} />
+                  <DateInput tripId={props.tripId} handleInputChange={handleInputChange} date={date} />
                 </Col>
                 <Col lg={6}>
                   <h5 className="countdown-text">Days Until Trip:</h5>

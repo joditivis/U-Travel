@@ -166,7 +166,7 @@ const UserPage = props => {
         </Col>
 
         <Col md={6}>
-          <CountDown />
+          <CountDown tripId={tripId}/>
         </Col>
       </Row>
       <br></br>

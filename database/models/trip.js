@@ -29,10 +29,7 @@ const tripSchema = new Schema({
       amount: { type: mongoose.Decimal128 }
     }
   ],
-  date:{
-    trip_id: { type: String },
-    date: { type: String }
-  },
+  date:{ date: { type: String }  },
   item:[
     {
       item_id:{ type: String },
