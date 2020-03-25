@@ -6,7 +6,7 @@ import "./style.css";
 import axios from "axios";
 import toast from "toasted-notes";
 import "toasted-notes/src/styles.css";
-import { css } from "@emotion/core";
+//import { css } from "@emotion/core";
 import ClipLoader from "react-spinners/ClipLoader";
 
 class HotelSearchPage extends Component {

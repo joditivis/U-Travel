@@ -20,7 +20,7 @@ import DestinationCard from "../../components/DestinationInput/DestinationCard";
 import SavedFlightHotel from "../../components/SavedFlightHotel/SavedFlightHotel";
 import "./style.css";
 import Axios from "axios";
-import { decodeBase64 } from "bcryptjs";
+//import { decodeBase64 } from "bcryptjs";
 
 const AddTripForm = ({ addTrip }) => {
   const [title, setTitle] = useState("");
@@ -67,6 +67,14 @@ const UserPage = props => {
   const [savedFlights, setSavedFlights] = useState([]);
   const [savedReturnFlights, setSavedReturnFlights] = useState([]);
   const [savedHotel, setSavedHotel] = useState([]);
+  const [flightTrip, setFlightTrip] = useState({
+    title: "Flight(s)",
+    amount: 0
+  });
+  const [hotelTrip, setHotelTrip] = useState({
+    title: "Hotel",
+    amount: 0
+  });
 
   useEffect(() => {
     //const tripId = props.trip;
@@ -84,15 +92,26 @@ const UserPage = props => {
         setTrip(res.data.trip || []);
 
         setSavedFlights(res.data.flight);
+        if(res.data.flight){
+          setFlightTrip({
+            title: "Flight(s)",
+            amount: res.data.flight.price || 0});
+        }
         setSavedReturnFlights(res.data.returnFlight);
         setSavedHotel(res.data.hotel);
+
+        if(res.data.hotel){
+          console.log("THIS IS RESETTING HOTEL", res.data);
+          setHotelTrip({
+            title: "Hotel",
+            amount: res.data.hotel.price || 0});
+        }
 
         console.log('tripdata', tripdata);
         console.log('response:', res);
       });
     }
-
-  }, [props.trip]);
+  }, [props.trip, tripId]);
 
   const addTrip = (title, amount) => {
     console.log("add trip", { title, amount });
@@ -159,6 +178,22 @@ const UserPage = props => {
                     <th>Remove</th>
                   </tr>
                 </thead>
+                {flightTrip.amount !== 0 ? (
+                  <Trip
+                      key={100}
+                      index={100}
+                      trip={flightTrip}
+                      remove={false}
+                    />
+                ): (<div></div>)}
+                {hotelTrip.amount !== 0 ? (
+                  <Trip
+                  key={101}
+                  index={101}
+                  trip={hotelTrip}
+                  remove={false}
+                />
+                ): (<div></div>)}
                 {trips.map((trip, index) => {
                   console.log(trip);
                   return (
@@ -167,6 +202,7 @@ const UserPage = props => {
                       index={index}
                       trip={trip}
                       removeTrip={removeTrip}
+                      remove={true}
                     />
                   );
                 })}
@@ -182,7 +218,9 @@ const UserPage = props => {
           <br></br>
         </Col>
         <Col md={6}>
-          <BudgetCard tripId={tripId} trip={trips} />
+
+          <BudgetCard trip={trips} flightTrip={flightTrip} hotelTrip={hotelTrip} />
+
         </Col>
       </Row>
       <br></br>
