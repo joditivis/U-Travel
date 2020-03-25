@@ -135,7 +135,7 @@ const UserPage = props => {
     Axios.put(`/userpage/${props.trip}`, {
       trip: newTrip
     }).then(res=>{
-      console.log("res.data",res.data.trip)
+      // console.log("res.data",res.data.trip)
       setTrip(res.data.trip)
     });
   };
@@ -145,7 +145,8 @@ const UserPage = props => {
       <br></br>
       <Row>
         <Col md={6}>
-          <DestinationCard />
+          <DestinationCard tripId={tripId} />
+          <br></br>
         </Col>
 
         <Col md={6}>
@@ -195,7 +196,7 @@ const UserPage = props => {
                 />
                 ): (<div></div>)}
                 {trips.map((trip, index) => {
-                  // console.log(trip);
+
                   return (
                     <Trip
                       key={index}
@@ -218,9 +219,7 @@ const UserPage = props => {
           <br></br>
         </Col>
         <Col md={6}>
-
           <BudgetCard trip={trips} flightTrip={flightTrip} hotelTrip={hotelTrip} tripId={tripId}/>
-
         </Col>
       </Row>
       <br></br>
