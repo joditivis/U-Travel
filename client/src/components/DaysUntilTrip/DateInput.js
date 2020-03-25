@@ -59,6 +59,7 @@ class DateInput extends Component {
     console.log(prevProps);
     console.log("date Input props: ", this.props);
     console.log("date Input p.date: ", this.props.date);
+    console.log("state: ", this.state.date);
 
     this.initEditor();
     if ((prevProps.tripId !== this.props.tripId)|| (this.props.date !== this.state.date)) {
