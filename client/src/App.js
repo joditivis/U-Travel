@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Container } from "reactstrap";
 import axios from "axios";
 
 // Components
@@ -23,6 +24,7 @@ class App extends Component {
     super();
     this.state = {
       loggedIn: false,
+      userName: null,
       email: null,
       userId: null,
       results: [],
@@ -100,12 +102,14 @@ class App extends Component {
 
         this.setState({
           loggedIn: true,
-          email: response.data.user.email
+          email: response.data.user.email,
+          userName: response.data.user.userName
         });
       } else {
         console.log("Get user: No user logged in.");
         this.setState({
           loggedIn: false,
+          userName: null,
           email: null
         });
       }
@@ -118,9 +122,13 @@ class App extends Component {
       <Router>
         <div className="App">
           <NavBar updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
-
+        
           <Header />
-          {this.state.loggedIn && <h2 className="welcome-user">Hi, {this.state.email}!</h2>}
+          <Container>
+          {/* <Col lg={12}> */}
+          {this.state.loggedIn && <p className="welcome-user">Hi, {this.state.userName}!</p>}
+          {/* </Col> */}
+          </Container>
 
           <Switch>
             {/* routes to different components */}

@@ -40,6 +40,7 @@ router.route("/destination/:tripId")
 
   router.route("/getdestination/:tripId")
   .get(tripsController.findByTripID);
+
   
 // router.route("/date/:tripId")
 //   .put(tripsController.updateDateByTripID);

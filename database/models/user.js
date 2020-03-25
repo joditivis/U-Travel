@@ -6,8 +6,21 @@ mongoose.promise = Promise;
 // Define userSchema
 const userSchema = new Schema({
 
+	userName: {
+		type: String,
+		trim: true,
+		required: true,
+		unique: true,
+		validate: [
+			function(input) {
+			return input.length > 0;
+			},
+		 "Please enter a name."
+		]
+	},
 	email: { 
 		type: String, 
+		trim: true,
 		required: true, 
 		unique: true,
 		match: [/.+@.+\..+/, "Please enter a valid email address."] 

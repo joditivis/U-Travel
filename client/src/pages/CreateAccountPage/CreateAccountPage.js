@@ -4,17 +4,19 @@ import { Redirect } from 'react-router-dom';
 import { Button, Form, FormGroup, Label, Input, Container, Card, CardHeader, CardBody } from 'reactstrap';
 import './style.css';
 import { Link } from 'react-router-dom';
+import toast from "toasted-notes";
 
 class CreateAccountPage extends Component {
     constructor() {
         super()
         this.state = {
+          userName: '',
           email: '',
           password: '',
           redirectTo: null,
+          errorNameMsg: '',
           errorEmailMsg:'',
           errorPasswordMsg:''
-          // errorExistingEmail: ''
         }
 
         this.handleSubmit = this.handleSubmit.bind(this)
@@ -34,30 +36,42 @@ class CreateAccountPage extends Component {
       event.preventDefault();
 
       // Request to server to add a new email/password
-      axios.post('/user/', {
-        email: this.state.email,
-        password: this.state.password
-      })
-			.then(response => {
-				console.log("Response from create account submission:", response)
-        if(response.data._id){
-          console.log('Account Successfully Created')
-          this.setState({
-            redirectTo: '/login'
-          })
-				} else {
-          let errorEmailMsg = response.data.errors.email ? response.data.errors.email.message  : ''
-          let errorPasswordMsg = response.data.errors.password ? response.data.errors.password.message  : ''
-          // let errorExistingEmail = response.data.error ? response.data.error : ''
+      axios
+        .post('/user/', {
+          userName: this.state.userName,
+          email: this.state.email,
+          password: this.state.password
+        })
+			  .then(response => {
+          console.log("Response from create account submission:", response)
+          if(response.data._id){
+            toast.notify("Account successfully created. Please log in.", {
+                    position: "top",
+                    // This notification will automatically close
+                    duration: 7000
+                  });
+            console.log('Account Successfully Created');
+            this.setState({
+              redirectTo: '/login'
+            })
+				  } else {
+            let errorNameMsg = response.data.errors.userName ? response.data.errors.userName.message : ''
+            let errorEmailMsg = response.data.errors.email ? response.data.errors.email.message  : ''
+            let errorPasswordMsg = response.data.errors.password ? response.data.errors.password.message  : ''
             
-          this.setState({
-            errorEmailMsg : errorEmailMsg, 
-            errorPasswordMsg : errorPasswordMsg, 
-            // errorExistingEmail : errorExistingEmail
-          })
-				}
-			// }).catch(error => {
-			// 	console.log('create account error: ', error)
+            this.setState({
+              errorNameMsg : errorNameMsg,
+              errorEmailMsg : errorEmailMsg, 
+              errorPasswordMsg : errorPasswordMsg
+            });
+          }
+			}).catch(error => {
+        toast.notify("Already an existing account with that email.", {
+                    position: "top",
+                    // This notification will automatically close
+                    duration: 7000
+                  });
+				console.log('create account error: ', error)
 			});
 	}
 
@@ -74,6 +88,19 @@ render() {
               <CardBody className='create-act-body'>
                 <Form className='create-act-form'>
                       <FormGroup>
+                        <Label className='create-act-label' for='createUserName'>Name</Label>
+                        <Input 
+                          type='text' 
+                          name='userName' 
+                          id='createUserName' 
+                          placeholder='John Doe'
+                          value={this.state.username}
+                          onChange={this.handleChange}
+                        />
+                      </FormGroup>
+                      {this.state.errorNameMsg ? (<p className='errormsg'>{this.state.errorNameMsg}</p> ):( <p></p>)}
+                      <br></br>
+                      <FormGroup>
                         <Label className='create-act-label' for='createUserEmail'>Email</Label>
                         <Input 
                           type='email' 
@@ -85,7 +112,6 @@ render() {
                         />
                       </FormGroup>
                       {this.state.errorEmailMsg ? (<p className='errormsg'>{this.state.errorEmailMsg}</p> ):( <p></p>)}
-                      {/* {this.state.errorExistingEmail ? (<p className='errormsg'>{this.state.errorExistingEmail}</p> ):( <p></p>)} */}
                       <br></br>
                       <FormGroup>
                         <Label className='create-act-label' for='createUserPassword'>Password</Label>

@@ -109,6 +109,7 @@ module.exports = {
   },
 
   updateTotalByTripId: function(req, res){
+
     db.Trip.findOneAndUpdate(
       { _id: req.params.tripId },
       { $set: { total: req.body.total } },
@@ -123,6 +124,7 @@ module.exports = {
     db.Trip.findOneAndUpdate(
       { _id: req.params.tripId },
       { $set: { destination: req.body.destination } },
+
       { new: true })
       .then(dbModel => {
         console.log(dbModel)
