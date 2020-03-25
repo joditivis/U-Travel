@@ -18,21 +18,19 @@ This is a full-stack deployed website that allows the user to create an account 
 ## Functionality
 The user will start on the landing page. By hitting Start Planning, the user will be directed to create a new account.
 
-<!-- <img src="/assets/images/login.gif"> -->
+<img src="/images/create-user.gif">
 
 Once logged in, they are immediately directed to their userpage. The userpage is directly tied to a trip. This is where the planning starts. A user can add an activity with the amount that it will cost. This is directly tied to a chart for a great visualization of where their money is being spent. They can also add to their packing list and check off items once they are packed. 
-<!-- 
-<img src="/assets/images/category.gif"> -->
 
-More times than not, a trip will include a flight. Go to the flight search page where there is a robust set of options to search for flight inforamtion. As long as a user is logged in, they can save a flight itinary to view it on their user page.
+<img src="/images/add-activities.gif">
 
-<!-- <img src="/assets/images/charity.gif"> -->
+More times than not, a trip will include a flight. Go to the flight search page where there is a robust set of options to search for flight inforamtion. As long as a user is logged in, they can save a flight itinary to view it on their user page. What about the hotel? No problem - the hotel search will also provide a great place to see what hotels are in the area. These can also be saved to your trip as well.
 
-What about the hotel? No problem - the hotel search will also provide a great place to see what hotels are in the area. These can also be saved to your trip as well.
-
-<!-- <img src="/assets/images/profile.gif"> -->
+<img src="/images/add-flight-and-hotel.gif">
 
 See your whole trip at a glance - expenses, flights, hotels, days until the trip starts, and the weather at your destination. Feel free to use the weather search bar to see the upcoming forecast in any city!
+
+<img src="/images/whole-trip.gif">
 
 ## Technical Features
 * This application utlizes a MERN stack - MongoDB, Express, React, and Node.js.
@@ -40,7 +38,7 @@ See your whole trip at a glance - expenses, flights, hotels, days until the trip
 * This application is deployed on Heroku.
 
 ## Requirements
-If you are running from the deployed Heroku site, then there are no requirements to use. You can access directly at https://egyptian-tsunamis.herokuapp.com/.
+If you are running from the deployed Heroku site, then there are no requirements to use. You can access directly at https://u-travel-dt.herokuapp.com/.
 
 If you would like to fork this application and run directly, then you will need to run:
 `npm install`
