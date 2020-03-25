@@ -1,13 +1,8 @@
 const router = require("express").Router();
 const tripsController = require("../controllers/tripsController");
 
-// router.route('/test')
-//     .get(tripsController.findAll)
-//     .post(tripsController.create);
 
-router
-  .route("/savetrip/:id")
-  // .get(savedTrips.findById)
+router.route("/savetrip/:id")
   .put(tripsController.updateById);
 
 router.route("/saveflight/:id")
@@ -38,6 +33,12 @@ router.route("/total/:tripId")
   .put(tripsController.updateTotalByTripId);
  
 router.route("/gettotal/:tripId")
+  .get(tripsController.findByTripID);
+
+router.route("/destination/:tripId")
+  .put(tripsController.updateDestinationByTripId);
+
+  router.route("/getdestination/:tripId")
   .get(tripsController.findByTripID);
 
   

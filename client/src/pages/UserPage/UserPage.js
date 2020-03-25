@@ -136,9 +136,11 @@ const UserPage = props => {
 
     Axios.put(`/userpage/${props.trip}`, {
       trip: newTrip
-    }).then(res => {
-      console.log("res.data", res.data.trip);
-      setTrip(res.data.trip);
+
+    }).then(res=>{
+      // console.log("res.data",res.data.trip)
+      setTrip(res.data.trip)
+
     });
   };
 
@@ -159,14 +161,15 @@ const UserPage = props => {
       <br></br>
       <Row>
         <Col md={6}>
-          <DestinationCard />
+          <DestinationCard tripId={tripId} />
+          <br></br>
         </Col>
 
         <Col md={6}>
           <CountDown />
         </Col>
       </Row>
-      <hr></hr>
+      <br></br>
       <Row>
         <Col md={12}>
           <SavedFlightHotel
@@ -176,7 +179,7 @@ const UserPage = props => {
           ></SavedFlightHotel>
         </Col>
       </Row>
-      <hr></hr>
+      <br></br>
       <Row>
         <Col md={6}>
           <Card className="trip-card">
@@ -195,7 +198,7 @@ const UserPage = props => {
                 {renderFlightRow()}
                 {renderHotelRow()}
                 {trips.map((trip, index) => {
-                  console.log(trip);
+
                   return (
                     <Trip
                       key={index}
@@ -218,11 +221,9 @@ const UserPage = props => {
           <br></br>
         </Col>
         <Col md={6}>
-          <BudgetCard
-            trip={trips}
-            flightTrip={flightTrip}
-            hotelTrip={hotelTrip}
-          />
+
+          <BudgetCard trip={trips} flightTrip={flightTrip} hotelTrip={hotelTrip} tripId={tripId}/>
+
         </Col>
       </Row>
       <br></br>

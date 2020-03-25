@@ -6,22 +6,22 @@ import "./style.css";
 var FontAwesome = require("react-fontawesome");
 
 const SavedFlightHotel = props => {
-  console.log("Saved Flight Hotel", props);
-  console.log(props.flight.flightSegments);
+  // console.log("Saved Flight Hotel", props);
+  // console.log(props.flight.flightSegments);
 
   if (props.flight.flightSegments) {
-    console.log(props.flight);
+   // console.log(props.flight);
   }
 
   const [display, setDisplay] = useState(false);
 
   const changeDisplayTrue = () => {
-    console.log("true clicked", display);
+  //  console.log("true clicked", display);
     setDisplay(true);
   };
 
   const changeDisplayFalse = () => {
-    console.log("clicked", display);
+   // console.log("clicked", display);
     setDisplay(false);
   };
 

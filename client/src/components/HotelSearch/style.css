@@ -33,6 +33,10 @@
     font-family: 'Pontano Sans', sans-serif;
 }
 
+.hotel-results-header {
+    font-size: 20px;
+}
+
 
 .hotel-details {
     font-size: 18px;
@@ -56,4 +60,49 @@
     border: solid rgba(255, 255, 255, 0.87);
     font-family: 'Pontano Sans', sans-serif;
 }
+
+
+@media screen and (max-width:470px) {
+    .hotel-card {
+      width: 21.5rem;
+      margin: 0 auto;
+      margin-top: 3rem;
+    }
+  
+    .hotel-header {
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .hotel-form-label {
+        color: rgb(255, 255, 255);
+        font-size: 16px;
+    }
+
+    #hotelSearchInput, #numOfTravelersInput {
+        width: 18rem;
+    }
+
+    .hotel-form-btn { 
+        font-size: 16px;
+    }
+
+      /* Hotel Results */
+      .travelCard {
+          width: 21rem;
+      }
+
+      .hotel-results-header {
+          font-size: 20px;
+      }
+
+      .hotel-details {
+        font-size: 17px;
+      }
+
+      .hotel-results-btn {
+        font-size: 16px;
+        width: 10rem;
+    }
+  }
 
