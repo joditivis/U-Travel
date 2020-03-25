@@ -11,7 +11,7 @@ const DestinationCard = (props) => {
 const [destination, setDestination] = useState('')
 
 useEffect(()=>{
-  
+
   Axios.get(`/getdestination/${props.tripId}`).then(res =>{
     setDestination(res.data.destination);
    // console.log(res.data);
@@ -19,13 +19,20 @@ useEffect(()=>{
     
 });
 
+function oneTimeReset(value){
+
+  setDestination(value);
+  props.oneTimeReset(value);
+  
+}
+
 
 return (
     <div>
       <Card className='destination-card'>
         <CardHeader className='destination-header'>Destination</CardHeader>
             <CardBody>
-              <DestinationInput destination={destination} tripId={props.tripId} />
+              <DestinationInput destination={destination} tripId={props.tripId} oneTimeReset={oneTimeReset}/>
             </CardBody>
       </Card>
     </div>

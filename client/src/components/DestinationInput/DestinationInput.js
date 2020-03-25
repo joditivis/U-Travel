@@ -56,11 +56,14 @@ class DestinationInput extends Component {
         destination: value
     
       }).then(res =>{
-          console.log(res);
+    
         if(this.state.destination!== res.data.destination){
-          this.setState({destination: res.data.destination})
+          this.setState({destination: res.data.destination});
+
+          
         }
-      
+   
+        this.props.oneTimeReset(res.data.destination);
       });
     
     // Axios.put(`/destination/${this.props.tripId}`,{
@@ -78,7 +81,8 @@ class DestinationInput extends Component {
 
 
   componentDidUpdate(prevProps) {
-    
+   // console.log("input is triggered");
+    console.log(prevProps.tripId, this.props.tripId,this.props.destination, this.state.destination )
     this.initEditor();
     if((prevProps.tripId !== this.props.tripId) || (this.props.destination !== this.state.destination)){
         Axios.get(`/getdestination/${this.props.tripId}`).then(res =>{
