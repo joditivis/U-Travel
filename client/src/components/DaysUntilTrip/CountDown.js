@@ -37,11 +37,10 @@ const CountDown = () => {
         const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        // if (distance === null) {
-        //   document.getElementById("countdown-num").innerHTML = "0d 0h 0m 0s";
-        // }
-        // else 
-        if (document.getElementById("countdown-num") !== null) {
+        if (!distance) {
+          document.getElementById("countdown-num").innerHTML = "0d 0h 0m 0s";
+        }
+        else if (document.getElementById("countdown-num") !== null) {
           document.getElementById("countdown-num").innerHTML = days + "d " + hours + "h "
         + minutes + "m " + seconds + "s ";
 
