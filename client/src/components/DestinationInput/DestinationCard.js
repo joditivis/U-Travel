@@ -8,18 +8,21 @@ const DestinationCard = props => {
   const [destination, setDestination] = useState("");
 
   useEffect(() => {
-    Axios.get(`/getdestination/${props.tripId}`).then(res => {
-      setDestination(res.data.destination);
-    });
+    if(props.tripId){
+      Axios.get(`/getdestination/${props.tripId}`).then(res => {
+        setDestination(res.data.destination);
+      });
+    }
+    
   });
 
-useEffect(()=>{
+// useEffect(()=>{
 
-  Axios.get(`/getdestination/${props.tripId}`).then(res =>{
-    setDestination(res.data.destination);
-  })
+//   Axios.get(`/getdestination/${props.tripId}`).then(res =>{
+//     setDestination(res.data.destination);
+//   })
     
-});
+// });
 
 function oneTimeReset(value){
   setDestination(value);

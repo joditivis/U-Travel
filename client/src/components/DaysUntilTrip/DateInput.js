@@ -60,9 +60,11 @@ class DateInput extends Component {
       prevProps.tripId !== this.props.tripId ||
       this.props.date !== this.state.date
     ) {
-      Axios.get(`/getdate/${this.props.tripId}`).then(res => {
-        this.setState({ date: res.data.date });
-      });
+      if(this.props.tripId){
+        Axios.get(`/getdate/${this.props.tripId}`).then(res => {
+          this.setState({ date: res.data.date });
+        });
+      }
     }
   }
 

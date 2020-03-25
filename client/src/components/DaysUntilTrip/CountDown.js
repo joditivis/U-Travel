@@ -16,9 +16,12 @@ const CountDown = props => {
   };
 
   useEffect(() => {
-    Axios.get(`/getdate/${props.tripId}`).then(res => {
-      setDate(res.data.date);
-    });
+    if(props.tripId){
+      Axios.get(`/getdate/${props.tripId}`).then(res => {
+        setDate(res.data.date);
+      });
+    }
+    
     // Update the count down every 1 second
     const x = setInterval(
       function() {

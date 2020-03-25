@@ -32,7 +32,8 @@ const WeatherPage = (props) => {
   };
 
   const getWeather = city => {
-    API.getWeather(city)
+    if(city){
+      API.getWeather(city)
       .then(res => {
         setData({
           searchTerm: '',
@@ -41,6 +42,8 @@ const WeatherPage = (props) => {
         });
       })
       .catch(err => console.log(err));
+    }
+    
   };
 
   const handleFormSubmit = event => {

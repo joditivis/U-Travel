@@ -66,9 +66,12 @@ class DestinationInput extends Component {
       prevProps.tripId !== this.props.tripId ||
       this.props.destination !== this.state.destination
     ) {
-      Axios.get(`/getdestination/${this.props.tripId}`).then(res => {
-        this.setState({ destination: res.data.destination });
-      });
+      if(this.props.tripId){
+        Axios.get(`/getdestination/${this.props.tripId}`).then(res => {
+          this.setState({ destination: res.data.destination });
+        });
+      }
+      
     }
   }
 

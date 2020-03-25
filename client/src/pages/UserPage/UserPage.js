@@ -140,13 +140,13 @@ const UserPage = props => {
 
   function renderFlightRow() {
     if (flightTrip.amount !== 0) {
-      return <Trip key={101} index={101} trip={hotelTrip} remove={false} />;
+      return <Trip key={101} index={101} trip={flightTrip} remove={false} />;
     }
   }
 
   function renderHotelRow() {
     if (hotelTrip.amount !== 0) {
-      return <Trip key={100} index={100} trip={flightTrip} remove={false} />;
+      return <Trip key={100} index={100} trip={hotelTrip} remove={false} />;
     }
   }
 
