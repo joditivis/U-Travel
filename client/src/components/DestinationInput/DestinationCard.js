@@ -5,8 +5,8 @@ import './style.css';
 import Axios from 'axios';
 
 const DestinationCard = (props) => {
-  console.log(props);
-console.log("dest card trip: ", props.tripId);
+  //console.log(props);
+//console.log("dest card trip: ", props.tripId);
 
 const [destination, setDestination] = useState('')
 
@@ -14,7 +14,7 @@ useEffect(()=>{
   
   Axios.get(`/getdestination/${props.tripId}`).then(res =>{
     setDestination(res.data.destination);
-    console.log(res.data);
+   // console.log(res.data);
   })
     
 });
