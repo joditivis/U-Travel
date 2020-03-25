@@ -81,10 +81,10 @@ const UserPage = props => {
     setTripId(props.trip);
     console.log("I'm here!!!", tripId, props.trip);
 
-    if(props.trip){
+    if (props.trip) {
       Axios.get(`/gettrips/${props.trip}`).then(res => {
         let tripdata = [];
-        if(res.data.trip){
+        if (res.data.trip) {
           res.data.trip.forEach(() => {
             tripdata = tripdata.concat(res.data.trip);
           });
@@ -92,23 +92,25 @@ const UserPage = props => {
         setTrip(res.data.trip || []);
 
         setSavedFlights(res.data.flight);
-        if(res.data.flight){
+        if (res.data.flight) {
           setFlightTrip({
             title: "Flight(s)",
-            amount: res.data.flight.price || 0});
+            amount: res.data.flight.price || 0
+          });
         }
         setSavedReturnFlights(res.data.returnFlight);
         setSavedHotel(res.data.hotel);
 
-        if(res.data.hotel){
+        if (res.data.hotel) {
           console.log("THIS IS RESETTING HOTEL", res.data);
           setHotelTrip({
             title: "Hotel",
-            amount: res.data.hotel.price || 0});
+            amount: res.data.hotel.price || 0
+          });
         }
 
-        console.log('tripdata', tripdata);
-        console.log('response:', res);
+        console.log("tripdata", tripdata);
+        console.log("response:", res);
       });
     }
   }, [props.trip, tripId]);
@@ -134,11 +136,25 @@ const UserPage = props => {
 
     Axios.put(`/userpage/${props.trip}`, {
       trip: newTrip
+
     }).then(res=>{
       // console.log("res.data",res.data.trip)
       setTrip(res.data.trip)
+
     });
   };
+
+  function renderFlightRow() {
+    if (flightTrip.amount !== 0) {
+      return <Trip key={101} index={101} trip={hotelTrip} remove={false} />;
+    }
+  }
+
+  function renderHotelRow() {
+    if (hotelTrip.amount !== 0) {
+      return <Trip key={100} index={100} trip={flightTrip} remove={false} />;
+    }
+  }
 
   return (
     <Container>
@@ -150,7 +166,7 @@ const UserPage = props => {
         </Col>
 
         <Col md={6}>
-          <CountDown />
+          <CountDown tripId={tripId}/>
         </Col>
       </Row>
       <br></br>
@@ -179,22 +195,8 @@ const UserPage = props => {
                     <th>Remove</th>
                   </tr>
                 </thead>
-                {flightTrip.amount !== 0 ? (
-                  <Trip
-                      key={100}
-                      index={100}
-                      trip={flightTrip}
-                      remove={false}
-                    />
-                ): (<div></div>)}
-                {hotelTrip.amount !== 0 ? (
-                  <Trip
-                  key={101}
-                  index={101}
-                  trip={hotelTrip}
-                  remove={false}
-                />
-                ): (<div></div>)}
+                {renderFlightRow()}
+                {renderHotelRow()}
                 {trips.map((trip, index) => {
 
                   return (
@@ -215,11 +217,13 @@ const UserPage = props => {
           </Card>
 
           <br></br>
-          <PackingList tripId={tripId}/>
+          <PackingList tripId={tripId} />
           <br></br>
         </Col>
         <Col md={6}>
+
           <BudgetCard trip={trips} flightTrip={flightTrip} hotelTrip={hotelTrip} tripId={tripId}/>
+
         </Col>
       </Row>
       <br></br>

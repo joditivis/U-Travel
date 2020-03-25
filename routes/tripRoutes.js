@@ -42,10 +42,10 @@ router.route("/destination/:tripId")
   .get(tripsController.findByTripID);
 
   
-// router.route("/date/:tripId")
-//   .put(tripsController.updateDateByTripID);
+router.route("/date/:tripId")
+  .put(tripsController.updateDateByTripID);
 
-// router.route("/getdate/:tripId")
-//   .get(tripsController.findDateByTripId);
+router.route("/getdate/:tripId")
+  .get(tripsController.findByTripID);
 
 module.exports = router;
