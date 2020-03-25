@@ -13,23 +13,19 @@ const DestinationCard = props => {
     });
   });
 
-
 useEffect(()=>{
 
   Axios.get(`/getdestination/${props.tripId}`).then(res =>{
     setDestination(res.data.destination);
-   // console.log(res.data);
   })
     
 });
 
 function oneTimeReset(value){
-
   setDestination(value);
   props.oneTimeReset(value);
   
 }
-
 
 return (
     <div>

@@ -52,7 +52,9 @@ class CreateAccountPage extends Component {
         password: this.state.password
       })
       .then(response => {
-        console.log("Response from create account submission:", response);
+
+        console.log("Response from create account submission:");
+
         if (response.data._id) {
           toast.notify("Account successfully created. Please log in.", {
             position: "top",

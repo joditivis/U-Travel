@@ -6,7 +6,6 @@ const User = require('../database/models/user');
 // It is used later to retrieve the whole object through the deserializeUser function
 passport.serializeUser((user, done) => {
 	console.log('*** serializeUser called, user: ')
-	console.log(user) // raw user object
 	console.log('---------')
 	done(null, { _id: user._id })
 });
@@ -21,7 +20,7 @@ passport.deserializeUser((id, done) => {
 		'email',
 		(err, user) => {
 			console.log('*** Deserialize user, user:')
-			console.log(user)
+
 			console.log('--------------')
 			done(null, user)
 		}

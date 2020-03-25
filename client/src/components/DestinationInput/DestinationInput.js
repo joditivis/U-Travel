@@ -52,13 +52,11 @@ class DestinationInput extends Component {
     
         if(this.state.destination!== res.data.destination){
           this.setState({destination: res.data.destination});
-
           
         }
    
         this.props.oneTimeReset(res.data.destination);
-      });
-    
+      });  
 
   }
 
