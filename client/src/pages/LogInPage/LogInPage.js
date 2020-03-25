@@ -4,16 +4,16 @@ import axios from 'axios';
 import { Button, Form, FormGroup, Label, Input, Container, Card, CardHeader, CardBody } from 'reactstrap';
 import './style.css';
 import { Link } from 'react-router-dom';
+import toast from "toasted-notes";
 
 class LogInPage extends Component {
     constructor() {
         super()
         this.state = {
+            userName: '',
             email: '',
             password: '',
             redirectTo: null
-            // incorrectEmail: '',
-            // incorrectPassword: ''
         }
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleChange = this.handleChange.bind(this)
@@ -39,9 +39,9 @@ class LogInPage extends Component {
                 console.log("Response from log in submission: ", response)
                 if (response.status === 200) {
                     // Update state to logged in
-                    // console.log(response.data);
                     this.props.updateUser({
                         loggedIn: true,
+                        userName: response.data.userName,
                         email: response.data.email,
                         userId: response.data.id
                     })
@@ -49,16 +49,12 @@ class LogInPage extends Component {
                     this.setState({
                         redirectTo: '/userpage'
                     })
-                // } else {
-                //   let incorrectEmail = response.data.err ? response.data.email : ''
-                //   let incorrectPassword = response.data.err ? response.data.password : ''
-
-                //   this.setState({
-                //     incorrectEmail : incorrectEmail,
-                //     incorrectPassword : incorrectPassword
-                //   })
                 }
             }).catch(error => {
+              toast.notify("Incorrect email or password.", {
+                  position: "top", // top-left, top, top-right, bottom-left, bottom, bottom-right
+                  duration: 7000 // This notification will automatically close
+                });
                 console.log('Login Error: ', error);
 
             })
@@ -87,7 +83,6 @@ class LogInPage extends Component {
                               onChange={this.handleChange}
                             />
                           </FormGroup>
-                          {/* {this.state.incorrectEmail ? (<p className='errormsg'>{this.state.incorrectEmail}</p> ):( <p></p>)} */}
                           <br></br>
                           <FormGroup>
                             <Label className="login-form-label" for='userPassword'>Password</Label>
@@ -100,7 +95,6 @@ class LogInPage extends Component {
                               onChange={this.handleChange}
                             />
                           </FormGroup>
-                          {/* {this.state.incorrectPassword ? (<p className='errormsg'>{this.state.incorrectPassword}</p> ):( <p></p>)} */}
                           <br></br>
                           <Button 
                             className='login-btn'

@@ -4,7 +4,7 @@
     color: rgb(255, 255, 255);
     width: 35rem;
     margin: 0 auto;
-    margin-top: 5rem;
+    margin-top: 3rem;
 }
 
 .create-act-header {
@@ -65,7 +65,7 @@
 .errormsg {
     color: white;
     background-color: rgba(255, 0, 0, 0.589);
-    font-size: 16px;
+    font-size: 15px;
     font-family: 'Pontano Sans', sans-serif;
     text-align: center;
     width: 18rem;
