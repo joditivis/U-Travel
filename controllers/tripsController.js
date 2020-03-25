@@ -107,6 +107,7 @@ module.exports = {
          res.json(dbModel)})
       .catch(err => res.status(422).json(err));
   },
+
   updateTotalByTripId: function(req, res){
     db.Trip.findOneAndUpdate(
       { _id: req.params.tripId },
@@ -127,5 +128,5 @@ module.exports = {
   //     res.json(dbModel)
   //   }).catch(err=>res.status(422).json(err));
   // }
-  
+
 };

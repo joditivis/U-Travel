@@ -40,10 +40,12 @@ const tripSchema = new Schema({
       isCompleted: {type: Boolean, default: false}
     }
   ],
+
   total:{
     total_id: { type: String },
     total: { type: mongoose.Decimal128 }
   },
+
   user: { type: String, required: true }
 });
 const Trip = mongoose.model("Trip", tripSchema);
