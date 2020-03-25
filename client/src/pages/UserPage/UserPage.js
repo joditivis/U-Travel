@@ -152,7 +152,7 @@ const UserPage = props => {
           <CountDown />
         </Col>
       </Row>
-      <hr></hr>
+      <br></br>
       <Row>
         <Col md={12}>
           <SavedFlightHotel
@@ -162,7 +162,7 @@ const UserPage = props => {
           ></SavedFlightHotel>
         </Col>
       </Row>
-      <hr></hr>
+      <br></br>
       <Row>
         <Col md={6}>
           <Card className="trip-card">
