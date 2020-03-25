@@ -107,15 +107,26 @@ module.exports = {
          res.json(dbModel)})
       .catch(err => res.status(422).json(err));
   },
-  updateDateByTripID: function(req, res){
+
+  updateTotalByTripId: function(req, res){
     db.Trip.findOneAndUpdate(
       { _id: req.params.tripId },
-      {$set:{date: req.body.date}},
-      {new: true}
-    ).then(dbModel=>{
-      console.log(dbModel)
-      res.json(dbModel)
-    }).catch(err=>res.status(422).json(err));
+      { $set: { total: req.body.total } },
+      { new: true })
+      .then(dbModel => {
+        console.log(dbModel)
+         res.json(dbModel)})
+      .catch(err => res.status(422).json(err));
   }
-  // findDateByTripId: function()
+  // updateDateByTripID: function(req, res){
+  //   db.Trip.findOneAndUpdate(
+  //     { _id: req.params.tripId },
+  //     {$set:{date: req.body.date}},
+  //     {new: true}
+  //   ).then(dbModel=>{
+  //     console.log(dbModel)
+  //     res.json(dbModel)
+  //   }).catch(err=>res.status(422).json(err));
+  // }
+
 };

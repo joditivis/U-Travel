@@ -28,7 +28,7 @@ console.log('trip', props.trip)
                 </Col>
                 <Col lg={6}>
                   {/* <h5>Money Saved:</h5> */}
-                  <MoneySavedInput />
+                  <MoneySavedInput tripId={props.tripId}/>
                 </Col>
                </Row>
                <br></br>

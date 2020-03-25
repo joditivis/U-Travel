@@ -84,9 +84,11 @@ const UserPage = props => {
           });
         }
         setTrip(res.data.trip || []);
+
         setSavedFlights(res.data.flight);
         setSavedReturnFlights(res.data.returnFlight);
         setSavedHotel(res.data.hotel);
+
         console.log('tripdata', tripdata);
         console.log('response:', res);
       });
@@ -182,7 +184,7 @@ const UserPage = props => {
           <br></br>
         </Col>
         <Col md={6}>
-          <BudgetCard trip={trips} />
+          <BudgetCard tripId={tripId} trip={trips} />
         </Col>
       </Row>
       <br></br>
