@@ -43,14 +43,21 @@ class DestinationInput extends Component {
     this.setState({
       destination: value,
       editing: false
-    });
-    Axios.put(`/destination/${this.props.tripId}`, {
-      destination: value
-    }).then(res => {
-      if (this.state.destination !== res.data.destination) {
-        this.setState({ destination: res.data.destination });
-      }
-    });
+
+    }); 
+    Axios.put(`/destination/${this.props.tripId}`,{
+        destination: value
+    
+      }).then(res =>{
+    
+        if(this.state.destination!== res.data.destination){
+          this.setState({destination: res.data.destination});
+          
+        }
+   
+        this.props.oneTimeReset(res.data.destination);
+      });  
+
   }
 
   componentDidUpdate(prevProps) {

@@ -13,13 +13,28 @@ const DestinationCard = props => {
     });
   });
 
-  return (
+useEffect(()=>{
+
+  Axios.get(`/getdestination/${props.tripId}`).then(res =>{
+    setDestination(res.data.destination);
+  })
+    
+});
+
+function oneTimeReset(value){
+  setDestination(value);
+  props.oneTimeReset(value);
+  
+}
+
+return (
     <div>
-      <Card className="destination-card">
-        <CardHeader className="destination-header">Destination</CardHeader>
-        <CardBody>
-          <DestinationInput destination={destination} tripId={props.tripId} />
-        </CardBody>
+      <Card className='destination-card'>
+        <CardHeader className='destination-header'>Destination</CardHeader>
+            <CardBody>
+              <DestinationInput destination={destination} tripId={props.tripId} oneTimeReset={oneTimeReset}/>
+            </CardBody>
+
       </Card>
     </div>
   );

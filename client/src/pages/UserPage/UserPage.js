@@ -71,6 +71,7 @@ const UserPage = props => {
     title: "Flight(s)",
     amount: 0
   });
+  const [destination, setDestination] = useState("");
   const [hotelTrip, setHotelTrip] = useState({
     title: "Hotel",
     amount: 0
@@ -98,6 +99,7 @@ const UserPage = props => {
         }
         setSavedReturnFlights(res.data.returnFlight);
         setSavedHotel(res.data.hotel);
+        setDestination(res.data.destination);
 
         if (res.data.hotel) {
           setHotelTrip({
@@ -118,6 +120,12 @@ const UserPage = props => {
       setTrip(res.data.trip);
     });
   };
+
+  const oneTimeWeatherReset = (value) =>{
+
+    setDestination(value);
+    
+  }
 
   const removeTrip = index => {
     const newTrip = [...trips];
@@ -147,7 +155,7 @@ const UserPage = props => {
       <br></br>
       <Row>
         <Col md={6}>
-          <DestinationCard tripId={tripId} />
+          <DestinationCard tripId={tripId} oneTimeReset={oneTimeWeatherReset} />
           <br></br>
         </Col>
 
@@ -217,7 +225,7 @@ const UserPage = props => {
       <br></br>
       <hr></hr>
       <br></br>
-      <WeatherPage />
+      <WeatherPage destination={destination} />
       <br></br>
     </Container>
   );

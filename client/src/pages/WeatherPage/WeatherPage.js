@@ -6,7 +6,7 @@ import WeatherDayCard from '../../components/Weather/WeatherDayCard';
 import API from '../../utils/API';
 import './style.css';
 
-const WeatherPage = () => {
+const WeatherPage = (props) => {
   // using react hook to set state
   const [data, setData] = useState({
     days: [],
@@ -19,8 +19,9 @@ const WeatherPage = () => {
 
   // useEffect replaces componentDidMount. Denver will show until the user types a search.
   useEffect(() => {
-    getWeather('Denver, CO');
-  }, []);
+
+    getWeather(props.destination);
+  }, [props]);
 
   const handleInputChange = event => {
     // when using hooks use spread to make a copy of key value pairs. Copies in exsiting state so we don't loose it and add change on top.
