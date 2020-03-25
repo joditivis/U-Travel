@@ -10,10 +10,12 @@ const PackingList = props => {
   const [tripIdPack, setTripIdPack] = useState(props.tripId);
 
   useEffect(() => {
+
   
     // console.log("HERE: ",props);
     setTripIdPack(props.tripId);
     // console.log("packing?", tripIdPack, props.tripId);
+
     if(props.tripId){
       Axios.get(`/getpacking/${props.tripId}`).then(res => {
         let itemdata = [];
@@ -21,8 +23,10 @@ const PackingList = props => {
           itemdata = itemdata.concat(res.data.item);
         });
         setItems(res.data.item);
+
         // console.log('packing tripdata', itemdata);
         // console.log('packing response:', res);
+
       });
     }
   }, [props.tripId]);
@@ -33,10 +37,13 @@ const PackingList = props => {
     
     // console.log("is this happening?", newItems);
 
+
     Axios.put(`/packing/${props.tripId}`, {
       item: newItems
     }).then(res=>{
+
       // console.log("res.data",res.data.item)
+
       setItems(res.data.item)
     });
   };
@@ -50,7 +57,9 @@ const PackingList = props => {
     Axios.put(`/packing/${props.tripId}`, {
       item: newItems
     }).then(res=>{
+
       // console.log("res.data",res.data.item)
+
       setItems(res.data.item)
     });
   };
@@ -62,7 +71,9 @@ const PackingList = props => {
     Axios.put(`/packing/${props.tripId}`, {
       item: newItems
     }).then(res=>{
+
       // console.log("res.data",res.data.item)
+
       setItems(res.data.item)
     });
   };
