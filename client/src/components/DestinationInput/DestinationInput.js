@@ -52,6 +52,16 @@ class DestinationInput extends Component {
       destination: value,
       editing: false
     }); 
+    Axios.put(`/destination/${this.props.tripId}`,{
+        destination: value
+    
+      }).then(res =>{
+          console.log(res);
+        if(this.state.destination!== res.data.destination){
+          this.setState({destination: res.data.destination})
+        }
+      
+      });
     
     // Axios.put(`/destination/${this.props.tripId}`,{
     //   destination: this.state.destination
@@ -67,20 +77,20 @@ class DestinationInput extends Component {
 
 
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
+      console.log(prevProps);
+    console.log("dest CDUp: ",this.props);
       console.log("dest CDUp: ",this.props.destination);
    
     this.initEditor();
-
-    Axios.put(`/destination/${this.props.tripId}`,{
-      destination: this.state.destination
-  
-    }).then(res =>{
-      if(this.state.destination!== res.data.destination){
-        this.setState({destination: res.data.destination})
-      }
+    if(prevProps.tripId !== this.props.tripId){
+        Axios.get(`/getdestination/${this.props.tripId}`).then(res =>{
+            console.log(res.data);
+            this.setState({destination: res.data.destination})
+        })
+    }
     
-    });
+   
   }
 
   render() {

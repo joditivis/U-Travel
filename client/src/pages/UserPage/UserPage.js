@@ -163,7 +163,6 @@ const UserPage = props => {
                   </tr>
                 </thead>
                 {trips.map((trip, index) => {
-                  console.log(trip);
                   return (
                     <Trip
                       key={index}

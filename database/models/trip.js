@@ -2,10 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const tripSchema = new Schema({
-  destination: {
-    destination_id: { type: String },
-    destination:{ type: String, required: true }
-  },
+  destination: { type: String, required: true },
   flight: {
     flight_id: { type: String },
     flightSegments: { type: Array },

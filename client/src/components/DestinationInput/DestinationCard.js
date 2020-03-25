@@ -5,6 +5,7 @@ import './style.css';
 import Axios from 'axios';
 
 const DestinationCard = (props) => {
+  console.log(props);
 console.log("dest card trip: ", props.tripId);
 
 const [destination, setDestination] = useState('')

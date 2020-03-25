@@ -58,7 +58,7 @@ class App extends Component {
 
   findTripByUser = async user_id => {
     this.findTrip(user_id).then(data=> {
-      console.log(data);
+      console.log(!data);
       if(!data){
         this.addNewTrip();
       } else {
@@ -77,6 +77,7 @@ class App extends Component {
     return body;
   };
   addNewTrip = () => {
+    console.log("addnewtrip");
     const requestOptions = {
       user: this.state.userId,
       destination: " "
