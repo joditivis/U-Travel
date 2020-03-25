@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect }from 'react';
 import { Card, CardHeader, CardBody, Row, Col } from 'reactstrap';
 import Chart from './Chart';
 import MoneySavedInput from './MoneySavedInput';
@@ -9,13 +9,61 @@ import './style.css';
 const BudgetCard = props => {
 console.log('trip', props.trip)
 
+const [budgetTrip, setBudgetTrip] = useState([]);
+const [expenses, setExpenses] = useState(0);
+const [moneySavedValue, setMoneySavedValue] = useState(0);
+const [moneySavedValueDisp, setMoneySavedValueDisp] = useState(0);
+
+
+useEffect(() => {
+  console.log(props.flightTrip);
+  let arr = [];
+  if(props.flightTrip.amount !== 0){
+    let newFlight = {
+      title: props.flightTrip.title,
+      amount: {$numberDecimal: (props.flightTrip.amount.$numberDecimal || 0)}
+    }
+    arr.push(newFlight);
+  }
+
+  if(props.hotelTrip.amount !== 0){
+    let newHotel = {
+      title: props.hotelTrip.title,
+      amount: {$numberDecimal: (props.hotelTrip.amount.$numberDecimal || 0)}
+    }
+    arr.push(newHotel);
+  }
+   
+  
+
+  arr = [...arr, ...props.trip]
+  //console.log(arr);
+  setBudgetTrip(arr);
+  let totalExpenses = 0;
+  arr.forEach(element =>{
+    totalExpenses += parseFloat(element.amount.$numberDecimal)
+  });
+  console.log(totalExpenses);
+  setExpenses(totalExpenses);
+
+  let diff = totalExpenses - moneySavedValue;
+  setMoneySavedValueDisp(diff);
+
+}, [props, moneySavedValue])
+
+function setMoneySaved(value) {
+  console.log("set money is running", value, expenses);
+  // let diff = expenses - value;
+  setMoneySavedValue(value);
+}
+
   return (
     <div>
       <Card className='budget-card'>
         <CardHeader className='budget-header'>Trip Expenses</CardHeader>
             <CardBody>
                <Chart 
-               trip={props.trip}/>
+               trip={budgetTrip}/>
 
                <br></br>
                <hr></hr>
@@ -24,11 +72,23 @@ console.log('trip', props.trip)
               <Row>
                 <Col lg={6}>
                   <h5 className='total-cost'>Total Trip Cost:</h5>
-                  <h4 className="trip-cost">$6,470</h4>
+                  <h4 className="trip-cost">{new Intl.NumberFormat("en-US", {
+                      style: "currency",
+                      currency: "USD",
+                      minimumFractionDigits: 2,
+                      maximumFractionDigits: 2
+                    }).format(expenses)}</h4>
+                    <h5 className='total-cost'>Savings Needed:</h5>
+                  <h4 className="trip-cost">{new Intl.NumberFormat("en-US", {
+                      style: "currency",
+                      currency: "USD",
+                      minimumFractionDigits: 2,
+                      maximumFractionDigits: 2
+                    }).format(moneySavedValueDisp)}</h4>
                 </Col>
                 <Col lg={6}>
                   {/* <h5>Money Saved:</h5> */}
-                  <MoneySavedInput />
+                  <MoneySavedInput tripId={props.tripId} setMoneySaved={setMoneySaved}/>
                 </Col>
                </Row>
                <br></br>

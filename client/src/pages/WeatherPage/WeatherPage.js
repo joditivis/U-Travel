@@ -33,7 +33,6 @@ const WeatherPage = () => {
   const getWeather = city => {
     API.getWeather(city)
       .then(res => {
-        console.log(res);
         setData({
           searchTerm: '',
           days: res.data.data,
@@ -54,7 +53,6 @@ const WeatherPage = () => {
 
   return (
     <div>
-    {/* <Container> */}
       <Row>
         <Col lg={8}>
           <h3 className='weather-for'>Weather for {location}</h3>
@@ -68,10 +66,9 @@ const WeatherPage = () => {
         </Col>
       </Row>
       <Row>
-        {/* map over WeatherDayCard to get results */}
+     
         {days.map(day => (
           <WeatherDayCard
-            // need a unique key - using timestamp (ts) from API
             key={day.ts}
             id={day.ts}
             day={moment(day.valid_date, 'YYYY-MM-DD').format('dddd')}
@@ -83,7 +80,6 @@ const WeatherPage = () => {
           />
         ))}
       </Row>
-    {/* </Container> */}
     </div>
   );
 };

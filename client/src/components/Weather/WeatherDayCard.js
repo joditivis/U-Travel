@@ -3,7 +3,7 @@ import { Col, Card, CardHeader, CardBody } from 'reactstrap';
 import './style.css';
 
 const WeatherDayCard = props => {
-  console.log(props);
+ // console.log(props);
   return (
     <Col>
       <Card className='weather-card'>

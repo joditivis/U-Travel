@@ -2,5 +2,9 @@
     text-align: center;
     color: white;
     font-family: 'Pontano Sans', sans-serif;
-    /* font-size: 22px; */
+    background-color: rgba(66, 66, 66, 0.74);
+    margin: 0 auto;
+    border-radius: 4px;
+    font-size: 27px;
+    padding: 10px;
 }

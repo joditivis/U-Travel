@@ -28,4 +28,23 @@ router.route("/userpage/:tripId")
 router.route("/gettrips/:tripId")
   .get(tripsController.findByTripID);
 
+router.route("/getpacking/:tripId")
+  .get(tripsController.findByTripID);
+
+router.route("/packing/:tripId")
+  .put(tripsController.updatePackingByTripId);
+
+router.route("/total/:tripId")
+  .put(tripsController.updateTotalByTripId);
+ 
+router.route("/gettotal/:tripId")
+  .get(tripsController.findByTripID);
+
+  
+// router.route("/date/:tripId")
+//   .put(tripsController.updateDateByTripID);
+
+// router.route("/getdate/:tripId")
+//   .get(tripsController.findDateByTripId);
+
 module.exports = router;
