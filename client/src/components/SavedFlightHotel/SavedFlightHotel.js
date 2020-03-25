@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useInterval } from "react";
+import React, { useState } from "react";
 import { Card, CardHeader, CardBody, Row, Col } from "reactstrap";
 import moment from "moment";
 import "./style.css";
@@ -6,6 +6,9 @@ import "./style.css";
 var FontAwesome = require("react-fontawesome");
 
 const SavedFlightHotel = props => {
+  console.log("Saved Flight Hotel", props);
+  console.log(props.flight.flightSegments);
+
   if (props.flight.flightSegments) {
     console.log(props.flight);
   }
@@ -31,7 +34,7 @@ const SavedFlightHotel = props => {
             <FontAwesome
               className="super-crazy-colors"
               name="chevron-up"
-              size="1x"
+              size="lg"
               style={{ textShadow: "0 1px 0 rgba(0, 0, 0, 0.1)" }}
               onClick={changeDisplayFalse}
             />
@@ -39,13 +42,13 @@ const SavedFlightHotel = props => {
             <FontAwesome
               className="super-crazy-colors"
               name="chevron-down"
-              size="1x"
+              size="lg"
               style={{ textShadow: "0 1px 0 rgba(0, 0, 0, 0.1)" }}
               onClick={changeDisplayTrue}
             />
           )}
         </CardHeader>
-        {display ? (
+        {display && props.flight.flightSegments ? (
           <CardBody className="savedFlightHotel">
             <Row>
               <Col lg={12}>

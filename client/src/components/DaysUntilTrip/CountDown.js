@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useInterval } from "react";
+import React, { useState, useEffect } from "react";
 import { Card, CardHeader, CardBody, Row, Col } from "reactstrap";
 import DateInput from "./DateInput";
-import moment from "moment";
 import "./style.css";
 
 const CountDown = () => {
