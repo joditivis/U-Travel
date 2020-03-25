@@ -15,10 +15,8 @@ import PackingList from "../../components/PackingList/PackingList";
 import BudgetCard from "../../components/Budget/BudgetCard";
 import CountDown from "../../components/DaysUntilTrip/CountDown";
 import WeatherPage from "../WeatherPage/WeatherPage";
-// import TripInfo from '../../components/SavedTripInfo/TripInfo';
 import Trip from "../../components/SavedTripInfo/Trip";
 import DestinationCard from "../../components/DestinationInput/DestinationCard";
-// import AddTripForm from '../../components/SavedTripInfo/AddTripForm';
 import SavedFlightHotel from "../../components/SavedFlightHotel/SavedFlightHotel";
 import "./style.css";
 import Axios from "axios";
@@ -92,6 +90,7 @@ const UserPage = props => {
           });
         }
         setTrip(res.data.trip || []);
+
         setSavedFlights(res.data.flight);
         if(res.data.flight){
           setFlightTrip({
@@ -100,12 +99,14 @@ const UserPage = props => {
         }
         setSavedReturnFlights(res.data.returnFlight);
         setSavedHotel(res.data.hotel);
+
         if(res.data.hotel){
           console.log("THIS IS RESETTING HOTEL", res.data);
           setHotelTrip({
             title: "Hotel",
             amount: res.data.hotel.price || 0});
         }
+
         console.log('tripdata', tripdata);
         console.log('response:', res);
       });
@@ -217,7 +218,9 @@ const UserPage = props => {
           <br></br>
         </Col>
         <Col md={6}>
+
           <BudgetCard trip={trips} flightTrip={flightTrip} hotelTrip={hotelTrip} />
+
         </Col>
       </Row>
       <br></br>

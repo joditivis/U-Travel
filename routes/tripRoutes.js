@@ -33,6 +33,13 @@ router.route("/getpacking/:tripId")
 
 router.route("/packing/:tripId")
   .put(tripsController.updatePackingByTripId);
+
+router.route("/total/:tripId")
+  .put(tripsController.updateTotalByTripId);
+ 
+router.route("/gettotal/:tripId")
+  .get(tripsController.findByTripID);
+
   
 // router.route("/date/:tripId")
 //   .put(tripsController.updateDateByTripID);

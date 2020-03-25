@@ -5,13 +5,13 @@ import "./style.css";
 
 const CountDown = () => {
 
-  const [count, setCount] = useState("");
+  const [date, setDate] = useState("");
   const [delay, setDelay] = useState(1000);
 
-  const dateCountDown = count;
+  const dateCountDown = date;
 
   const handleInputChange = event => {
-    setCount(event);
+    setDate(event);
     setDelay(event);
   }
     
@@ -36,8 +36,11 @@ const CountDown = () => {
         const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        // Display the result in the element with id="demo"
-        if(document.getElementById("countdown-num") !== null){
+        // if (distance === null) {
+        //   document.getElementById("countdown-num").innerHTML = "0d 0h 0m 0s";
+        // }
+        // else 
+        if (document.getElementById("countdown-num") !== null) {
           document.getElementById("countdown-num").innerHTML = days + "d " + hours + "h "
         + minutes + "m " + seconds + "s ";
 

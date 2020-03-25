@@ -1,10 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import {
-  // Collapse,
   Navbar,
-  // NavbarToggler,
-  // NavbarBrand,
   Nav,
   NavItem,
   UncontrolledDropdown,
@@ -13,18 +10,19 @@ import {
   DropdownItem,
   Container
 } from "reactstrap";
+// import { Redirect } from 'react-router-dom';
 import { Link } from "react-router-dom";
 import "./style.css";
-
-// const NavbarComponent = (props) => {
-//   const [isOpen, setIsOpen] = useState(false);
-
-//   const toggle = () => setIsOpen(!isOpen);
 
 
 class NavbarComponent extends Component {
     constructor() {
         super()
+        this.state = {
+          logout: null
+          // redirectTo: null
+        }
+
         this.logout = this.logout.bind(this)
     }
 
@@ -42,6 +40,9 @@ class NavbarComponent extends Component {
                 userId: null,
                 tripID: null
               });
+              //   this.setState({
+              //   redirectTo: '/login'
+              // })
             }
           })
           .catch(error => {
@@ -51,18 +52,17 @@ class NavbarComponent extends Component {
   
 
   render() {
- 
+    // if (this.state.redirectTo) {
+    //       return <Redirect to={{ pathname: this.state.redirectTo }} />
+    //   } else {
+
     const loggedIn = this.props.loggedIn;
-    console.log("navbar render, props: ");
-    console.log(this.props);
+    console.log("navbar render, props: ", this.props);
 
     return (
       <div>
         <Container>
           <Navbar className="navbar" expand="sm">
-          {/* <NavbarBrand href="#"></NavbarBrand>
-            <NavbarToggler className="navbaricon" onClick={toggle} />
-            <Collapse isOpen={isOpen} navbar> */}
               <Nav className="mr-auto nav" tabs>
                 <NavItem>
                   <Link to={`/`} className="nav-link">
@@ -99,7 +99,7 @@ class NavbarComponent extends Component {
                           </Link>
                       </DropdownItem>
                       <DropdownItem>
-                        <Link to={`/`} className="nav-link-dark" onClick={this.logout}>
+                        <Link to={`/login`} className="nav-link-dark" onClick={this.logout}>
                         Logout
                         </Link>
                       </DropdownItem>
@@ -127,5 +127,7 @@ class NavbarComponent extends Component {
     );
   }
 }
+// }
+
 
 export default NavbarComponent;
