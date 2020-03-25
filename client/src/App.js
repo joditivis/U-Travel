@@ -72,14 +72,21 @@ class App extends Component {
     return body;
   };
   addNewTrip = () => {
-    console.log("addnewtrip");
+    let packingList = [];
+    packingList.push( { text: "Walking Shoes", isCompleted: false });
+    packingList.push( { text: "Pants", isCompleted: false });
+    packingList.push( { text: "Shirts", isCompleted: false });
+    packingList.push( { text: "Umbrella", isCompleted: false });
+    packingList.push( { text: "Passport", isCompleted: false });
+    packingList.push( { text: "Jacket", isCompleted: false });
     const requestOptions = {
       user: this.state.userId,
-      destination: " "
+      destination: " ",
+      item: packingList
     };
     this.dbAddTrip(requestOptions).then(data => {
       this.setState({
-        tripID: data.data._id
+        tripID: data.data._id,
       });
     });
   };
