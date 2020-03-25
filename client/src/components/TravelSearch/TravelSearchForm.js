@@ -89,7 +89,7 @@ class TravelSearchForm extends Component {
       nonStop: false,
       startDate: "",
       endDate: "",
-      anyDestination: false, 
+      anyDestination: false,
       oneWay: false
     };
 
@@ -101,7 +101,6 @@ class TravelSearchForm extends Component {
     if (this.lastRequestId !== null) {
       clearTimeout(this.lastRequestId);
     }
-
     this.setState({
       isLoading: true
     });
@@ -186,16 +185,9 @@ class TravelSearchForm extends Component {
   };
 
   setDate = (startDate, endDate) => {
-    console.log("dates should be saving");
-    console.log(startDate, endDate);
     let start =
-      startDate === null
-        ? ""
-        : moment(startDate).format("YYYY-MM-DD");
-    let end =
-      endDate === null
-        ? ""
-        : moment(endDate).format("YYYY-MM-DD");
+      startDate === null ? "" : moment(startDate).format("YYYY-MM-DD");
+    let end = endDate === null ? "" : moment(endDate).format("YYYY-MM-DD");
     this.setState({
       startDate: start,
       endDate: end
@@ -209,34 +201,28 @@ class TravelSearchForm extends Component {
     this.setState({
       [name]: value
     });
-    console.log(name, value);
-    console.log(this.state);
   };
 
   handleCheckbox = event => {
-    console.log(event.target.checked);
     // Getting the value and name of the input which triggered the change
     this.setState({ anyDestination: event.target.checked });
   };
 
   handleCheckboxOneWay = event => {
-    console.log(event.target.checked);
     // Getting the value and name of the input which triggered the change
     this.setState({ oneWay: event.target.checked });
   };
 
   handleCheckboxNonStop = event => {
-    console.log(event.target.checked);
     // Getting the value and name of the input which triggered the change
     this.setState({ nonStop: event.target.checked });
   };
 
   handleSubmit = e => {
     e.preventDefault();
-    console.log(this.state);
-    this.state.anyDestination ? 
-    this.props.flightSearchAny(this.state) :
-    this.props.flightSearch(this.state);
+    this.state.anyDestination
+      ? this.props.flightSearchAny(this.state)
+      : this.props.flightSearch(this.state);
   };
   render() {
     const {
@@ -258,9 +244,7 @@ class TravelSearchForm extends Component {
     return (
       <Container>
         <Card className="travel-card">
-          <CardHeader className="travel-header">
-            Search Flights
-          </CardHeader>
+          <CardHeader className="travel-header">Search Flights</CardHeader>
           <CardBody className="travel-body">
             <Form className="travel-form">
               <Row>
@@ -297,7 +281,7 @@ class TravelSearchForm extends Component {
                     </Label>
                     </FormGroup>
                   ) : ( */}
-                    <FormGroup>
+                  <FormGroup>
                     <Label className="travel-form-label" for="flightSearch">
                       Flying To
                     </Label>
@@ -316,9 +300,9 @@ class TravelSearchForm extends Component {
                       value={this.state.destination}
                       alwaysRenderSuggestions={false}
                     />
-                    </FormGroup>
+                  </FormGroup>
                   {/* )} */}
-                  
+
                   {/* <FormGroup check>
                     <Label check>
                       <Input 
@@ -339,54 +323,55 @@ class TravelSearchForm extends Component {
               {this.state.anyDestination ? (
                 <Row></Row>
               ) : (
-<Row>
-                <Col md={12}>
-                  <FormGroup>
-                    <Label className="travel-form-label" for="numOfTravelers">
-                      Number of Traveling Adults
-                    </Label>
-                    <Input
-                      type="text"
-                      name="numAdults"
-                      id="numOfTravelersInput"
-                      placeholder="2"
-                      onChange={this.handleInputChange}
-                      value={this.state.numAdults}
-                    />
-                  </FormGroup>
-                </Col>
-              </Row>
+                <Row>
+                  <Col md={12}>
+                    <FormGroup>
+                      <Label className="travel-form-label" for="numOfTravelers">
+                        Number of Traveling Adults
+                      </Label>
+                      <Input
+                        type="text"
+                        name="numAdults"
+                        id="numOfTravelersInput"
+                        placeholder="2"
+                        onChange={this.handleInputChange}
+                        value={this.state.numAdults}
+                      />
+                    </FormGroup>
+                  </Col>
+                </Row>
               )}
-              
 
               <br></br>
-              
+
               <p className="travel-form-label">Depart / Return</p>
               <FormGroup check>
-                    <Label check>
-                      <Input 
-                      type="checkbox" 
-                      id="oneWay" 
-                      name="oneWay"
-                      onChange={this.handleCheckboxOneWay}
-                      //value={this.state.anyDestination}
-                      checked={this.state.oneWay}
-                      /> One-Way
-                    </Label>
-                  </FormGroup>
-                  <FormGroup check>
-                    <Label check>
-                      <Input 
-                      type="checkbox" 
-                      id="nonStop" 
-                      name="nonStop"
-                      onChange={this.handleCheckboxNonStop}
-                      //value={this.state.anyDestination}
-                      checked={this.state.nonStop}
-                      /> Non-Stop Flights Only
-                    </Label>
-                  </FormGroup>
-                  <br></br>
+                <Label check>
+                  <Input
+                    type="checkbox"
+                    id="oneWay"
+                    name="oneWay"
+                    onChange={this.handleCheckboxOneWay}
+                    //value={this.state.anyDestination}
+                    checked={this.state.oneWay}
+                  />{" "}
+                  One-Way
+                </Label>
+              </FormGroup>
+              <FormGroup check>
+                <Label check>
+                  <Input
+                    type="checkbox"
+                    id="nonStop"
+                    name="nonStop"
+                    onChange={this.handleCheckboxNonStop}
+                    //value={this.state.anyDestination}
+                    checked={this.state.nonStop}
+                  />{" "}
+                  Non-Stop Flights Only
+                </Label>
+              </FormGroup>
+              <br></br>
               <DatePicker onEvent={this.setDate} />
 
               <br></br>

@@ -54,8 +54,6 @@ class TravelSearch extends Component {
   };
 
   componentDidMount() {
-    console.log(this.props.user);
-    console.log(this.props.trip);
     this.setState(
       {
         trip: this.props.trip,
@@ -66,7 +64,6 @@ class TravelSearch extends Component {
   }
 
   deleteItem = id => {
-    console.log(id);
     const flights = this.state.flights.filter(flight => {
       return flight.id !== id;
     });
@@ -90,7 +87,7 @@ class TravelSearch extends Component {
       .then(res => this.setState({ flights: res.data, isLoading: false }))
       .then(res2 => console.log(this.state.flights))
       .catch(err => {
-        this.setState({isLoading: false});
+        this.setState({ isLoading: false });
         console.log(err);
       });
   };
@@ -102,7 +99,6 @@ class TravelSearch extends Component {
       flightSearch.numAdults
     )
       .then(res => this.setState({ flightsAny: res.data }))
-      // .then(res2 => console.log(this.state.flights))
       .catch(err => {
         console.log(err);
       });
@@ -137,9 +133,6 @@ class TravelSearch extends Component {
   };
 
   getTripInfoFromButton(tripObject) {
-    console.log(tripObject);
-    console.log(tripObject.key);
-    console.log(this.state.flights[tripObject.key]);
     if (!this.state.trip) {
       toast.notify(
         "Please create an account before attempting to save a trip.",
@@ -151,27 +144,23 @@ class TravelSearch extends Component {
     } else {
       this.updateDB(this.state.trip, this.state.flights[tripObject.key]);
       console.log("trip is updated");
-      console.log(this.state);
     }
   }
 
   render() {
     return (
       <Container>
-        
         <TravelSearchForm
           className="travel-search-form"
           flightSearch={this.flightSearch}
           flightSearchAny={this.flightSearchAny}
         />
-      
-        <ClipLoader
-          size={150}
-          color={"white"}
-          loading={this.state.isLoading}
-        />
+
+        <ClipLoader size={150} color={"white"} loading={this.state.isLoading} />
         <Row>
-          {!this.state.flights.length && this.state.search && !this.state.isLoading ? (
+          {!this.state.flights.length &&
+          this.state.search &&
+          !this.state.isLoading ? (
             <Col>
               <Card className="travelCard">
                 <CardHeader>There are no flight results.</CardHeader>
@@ -190,8 +179,7 @@ class TravelSearch extends Component {
             ))
           )}
         </Row>
-        
-       
+
         <Row>
           {this.state.flightsAny.map(flight => (
             <TravelSearchAnyResults key={flight.flight.id} flight={flight} />

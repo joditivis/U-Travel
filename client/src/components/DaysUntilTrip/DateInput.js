@@ -48,7 +48,6 @@ class DateInput extends Component {
     Axios.put(`/date/${this.props.tripId}`, {
       date: value
     }).then(res => {
-      console.log("date res: ", res);
       if (this.state.date !== res.data.date) {
         this.setState({ date: res.data.date });
       }
@@ -56,15 +55,12 @@ class DateInput extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    console.log(prevProps);
-    console.log("date Input props: ", this.props);
-    console.log("date Input p.date: ", this.props.date);
-    console.log("state: ", this.state.date);
-
     this.initEditor();
-    if ((prevProps.tripId !== this.props.tripId)|| (this.props.date !== this.state.date)) {
+    if (
+      prevProps.tripId !== this.props.tripId ||
+      this.props.date !== this.state.date
+    ) {
       Axios.get(`/getdate/${this.props.tripId}`).then(res => {
-        console.log(res.data);
         this.setState({ date: res.data.date });
       });
     }

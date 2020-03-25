@@ -77,9 +77,7 @@ const UserPage = props => {
   });
 
   useEffect(() => {
-    //const tripId = props.trip;
     setTripId(props.trip);
-    console.log("I'm here!!!", tripId, props.trip);
 
     if (props.trip) {
       Axios.get(`/gettrips/${props.trip}`).then(res => {
@@ -102,45 +100,33 @@ const UserPage = props => {
         setSavedHotel(res.data.hotel);
 
         if (res.data.hotel) {
-          console.log("THIS IS RESETTING HOTEL", res.data);
           setHotelTrip({
             title: "Hotel",
             amount: res.data.hotel.price || 0
           });
         }
-
-        console.log("tripdata", tripdata);
-        console.log("response:", res);
       });
     }
   }, [props.trip, tripId]);
 
   const addTrip = (title, amount) => {
-    console.log("add trip", { title, amount });
     const newTrip = [...trips, { title, amount }];
-
-    console.log("new", newTrip);
 
     Axios.put(`/userpage/${props.trip}`, {
       trip: newTrip
     }).then(res => {
-      console.log("res.data", res.data.trip);
       setTrip(res.data.trip);
     });
   };
 
   const removeTrip = index => {
-    console.log("remove trip", index);
     const newTrip = [...trips];
     newTrip.splice(index, 1);
 
     Axios.put(`/userpage/${props.trip}`, {
       trip: newTrip
-
-    }).then(res=>{
-      // console.log("res.data",res.data.trip)
-      setTrip(res.data.trip)
-
+    }).then(res => {
+      setTrip(res.data.trip);
     });
   };
 
@@ -166,7 +152,7 @@ const UserPage = props => {
         </Col>
 
         <Col md={6}>
-          <CountDown tripId={tripId}/>
+          <CountDown tripId={tripId} />
         </Col>
       </Row>
       <br></br>
@@ -198,7 +184,6 @@ const UserPage = props => {
                 {renderFlightRow()}
                 {renderHotelRow()}
                 {trips.map((trip, index) => {
-
                   return (
                     <Trip
                       key={index}
@@ -221,9 +206,12 @@ const UserPage = props => {
           <br></br>
         </Col>
         <Col md={6}>
-
-          <BudgetCard trip={trips} flightTrip={flightTrip} hotelTrip={hotelTrip} tripId={tripId}/>
-
+          <BudgetCard
+            trip={trips}
+            flightTrip={flightTrip}
+            hotelTrip={hotelTrip}
+            tripId={tripId}
+          />
         </Col>
       </Row>
       <br></br>

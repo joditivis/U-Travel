@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
-import { Form, Button, Input } from 'reactstrap';
+import React, { useState } from "react";
+import { Form, Button, Input } from "reactstrap";
 
 const AddItemForm = ({ addItem }) => {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState("");
 
   const handleSubmit = e => {
     e.preventDefault();
     if (!value) return;
     addItem(value);
-    setValue('');
+    setValue("");
   };
 
   return (
