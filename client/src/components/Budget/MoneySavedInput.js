@@ -41,6 +41,7 @@ const MoneySavedInput = props => {
 
       console.log("hello!", res.data.total);
       props.setMoneySaved(res.data.total);
+      setNumber1("");
       // setTotal(totalSaved);
     });
     

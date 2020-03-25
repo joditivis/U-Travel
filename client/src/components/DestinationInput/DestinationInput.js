@@ -68,14 +68,13 @@ class DestinationInput extends Component {
 
 
   componentDidUpdate(prevProps) {
-      console.log(prevProps);
-    console.log("dest CDUp: ",this.props);
-      console.log("dest CDUp: ",this.props.destination);
-   
+    
     this.initEditor();
     if((prevProps.tripId !== this.props.tripId) || (this.props.destination !== this.state.destination)){
+
       Axios.get(`/getdestination/${this.props.tripId}`).then(res =>{
             console.log(res.data);
+
             this.setState({destination: res.data.destination})
         })
     }

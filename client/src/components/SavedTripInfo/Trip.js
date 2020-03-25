@@ -8,7 +8,12 @@ const Trip = ({ trip, index, removeTrip, remove }) => {
       <tr>
         <td>{trip.title}</td>
         {/* <td>{trip.peopleOrDays}</td> */}
-        <td>${trip.amount.$numberDecimal}</td>
+        <td> {new Intl.NumberFormat("en-US", {
+                  style: "currency",
+                  currency: "USD",
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2
+                }).format(trip.amount.$numberDecimal)}</td>
         <td>
           {remove ? (
             <Button

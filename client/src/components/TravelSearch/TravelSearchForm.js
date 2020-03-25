@@ -290,13 +290,13 @@ class TravelSearchForm extends Component {
               <br></br>
               <Row>
                 <Col md={12}>
-                  {this.state.anyDestination ? (
+                  {/* {this.state.anyDestination ? (
                     <FormGroup>
                       <Label className="travel-form-label" for="flightSearch">
                       Take Me Anywhere
                     </Label>
                     </FormGroup>
-                  ) : (
+                  ) : ( */}
                     <FormGroup>
                     <Label className="travel-form-label" for="flightSearch">
                       Flying To
@@ -317,9 +317,9 @@ class TravelSearchForm extends Component {
                       alwaysRenderSuggestions={false}
                     />
                     </FormGroup>
-                  )}
+                  {/* )} */}
                   
-                  <FormGroup check>
+                  {/* <FormGroup check>
                     <Label check>
                       <Input 
                       type="checkbox" 
@@ -331,7 +331,7 @@ class TravelSearchForm extends Component {
                       /> Give me any
                       destination
                     </Label>
-                  </FormGroup>
+                  </FormGroup> */}
                 </Col>
               </Row>
 
